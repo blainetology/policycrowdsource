@@ -20,7 +20,9 @@
                 height: 100vh;
                 margin: 0;
             }
-
+            body{
+                background: linear-gradient(#ABC,#DEF);
+            }
             .full-height {
                 height: 100vh;
             }
@@ -47,6 +49,7 @@
 
             .title {
                 font-size: 84px;
+                font-weight: 300;
             }
 
             .links > a {
@@ -83,11 +86,11 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="#">View Submitted Policies</a>
+                    <a href="#">Draft a Policy</a>
+                    <a href="#">Submit a Request for Policies</a>
+                    <a href="#">Your Account</a>
+                    <a href="#">Friends</a>
                 </div>
             </div>
         </div>
