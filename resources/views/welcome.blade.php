@@ -8,20 +8,20 @@
         <title>{{config('app.name')}}</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600|Montserrat:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
+                background-color: #47A;
+                color: #FFF;
+                font-family: 'Montserrat', 'Arial', 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
             }
             body{
-                background: linear-gradient(#ABC,#DEF);
+                background: linear-gradient(#47A,#69C);
             }
             .full-height {
                 height: 100vh;
@@ -43,17 +43,29 @@
                 top: 18px;
             }
 
+            .bottom-right {
+                position: absolute;
+                right: 10px;
+                bottom: 18px;
+            }
+
             .content {
                 text-align: center;
             }
 
             .title {
-                font-size: 84px;
+                font-size: 72px;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+            .description {
+                font-size: 36px;
                 font-weight: 300;
+                text-transform: lowercase;
             }
 
             .links > a {
-                color: #636b6f;
+                color: #FFF;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -63,7 +75,7 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 10px;
             }
         </style>
     </head>
@@ -79,18 +91,23 @@
                     @endif
                 </div>
             @endif
+                <div class="bottom-right links">
+                    <a href="{{ url('/home') }}">About Us</a>
+                    <a href="{{ url('/home') }}">Our Mission</a>
+                </div>
 
             <div class="content">
                 <div class="title m-b-md">
                     {{config('app.name')}}
                 </div>
-
+                <div class="description m-b-md">
+                    {{config('app.description')}}
+                </div>
+                <br/><br/>
                 <div class="links">
-                    <a href="#">View Submitted Policies</a>
+                    <a href="#">Browse Policies</a>
                     <a href="#">Draft a Policy</a>
-                    <a href="#">Submit a Request for Policies</a>
-                    <a href="#">Your Account</a>
-                    <a href="#">Friends</a>
+                    <a href="#">Request a Policy</a>
                 </div>
             </div>
         </div>
