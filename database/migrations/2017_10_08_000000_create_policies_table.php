@@ -16,17 +16,20 @@ class CreatePoliciesTable extends Migration
         Schema::create('policies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->text('short_synopsis')->nullable();
+            $table->longtext('full_synopsis')->nullable();
             $table->integer('forked_id')->nullable();
-            $table->integer('numbering_pattern_id');
-            $table->integer('rfp_id');
-            $table->integer('public');
+            $table->integer('numbering_pattern_id')->default(1);
+            $table->integer('rfp_id')->nullable();
+            $table->integer('public')->default(0);
             $table->integer('published')->default(0);
             $table->timestamps();
         });
 
         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title')->nullable();
+            $table->longtext('content')->nullable();
             $table->integer('policy_id');
             $table->integer('user_id');
             $table->integer('revision_id')->nullable();
