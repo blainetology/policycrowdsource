@@ -9,12 +9,34 @@ class Policy extends Model
     //
     public $table = 'policies';
 
-    protected $fillable = ['title','content','forked_id','numbering_pattern_id','rfp_id','public','published','short_synopsis','full_synopsis'];
+    protected $fillable = ['title','content','forked_id','numbering_pattern_id','rfp_id','public','published','short_synopsis','full_synopsis','rating'];
 
+
+    // RELATIONSHIPS
 
     public function sections(){
     	return $this->hasMany('\App\Section')->orderBy('display_order','asc');
     }
+
+    // SCOPES
+
+    public function scopeViewable($query){
+        return $query->where('published',1)->where('public',1);
+    }
+    public function scopePublished($query){
+        return $query->where('published',1);
+    }
+    public function scopeUnpublished($query){
+        return $query->where('published',0);
+    }
+    public function scopePublic($query){
+        return $query->where('public',1);
+    }
+    public function scopePrivate($query){
+        return $query->where('public',0);
+    }
+
+    // STATIC METHODS
 
     public static function sortSections($basesections,$parent_id=null){
     	$sections = [];

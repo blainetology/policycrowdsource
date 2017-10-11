@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->integer('email_entity_id')->nullable();
+            $table->integer('email_entity_id')->index()->nullable();
             $table->string('password');
             $table->biginteger('facebook_id')->nullable();
             $table->biginteger('google_id')->nullable();

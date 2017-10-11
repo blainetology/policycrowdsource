@@ -19,4 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('policy','PoliciesController');
+Route::resource('policies','PoliciesController');

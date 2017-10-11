@@ -16,6 +16,11 @@ class PoliciesController extends Controller
     public function index()
     {
         //
+        $policies = Policy::viewable()->get();
+        $data = [
+            'policies'  => $policies
+        ];
+        return view('policies.index',$data);
     }
 
     /**

@@ -105,7 +105,7 @@
                 </div>
                 <br/><br/>
                 <div class="links">
-                    <a href="#">Browse Policies</a>
+                    <a href="{{ route('policies.index') }}">Browse Policies</a>
                     <a href="#">Draft a Policy</a>
                     <a href="#">Request a Policy</a>
                 </div>
