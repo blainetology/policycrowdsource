@@ -16,8 +16,10 @@ class RatingsController extends Controller
             $policy = Policy::find($pid);
             if($policy){                
                 $rated = Rating::firstOrNew(['user_id'=>\Auth::user()->id,'policy_id'=>$policy->id]);
-                $rated->auto_tallied=0;
                 $rated->rating=$rating;
+                $rated->rating_count=abs($rating);
+                $rated->political_weight=\Auth::user()->political_weight;
+                $rated->weighted_rating = $rated->rating*$rated->political_weight;
                 $rated->save();
             }
         }
@@ -32,8 +34,10 @@ class RatingsController extends Controller
                 $section = Section::where('id',$sid)->where('policy_id',$policy->id)->first();
                 if($section){
                     $rated = Rating::firstOrNew(['user_id'=>\Auth::user()->id,'section_id'=>$sid]);
-                    $rated->auto_tallied=0;
                     $rated->rating=$rating;
+                    $rated->rating_count=abs($rating);
+                    $rated->political_weight=\Auth::user()->political_weight;
+                    $rated->weighted_rating = $rated->rating*$rated->political_weight;
                     $rated->save();
                 }
             }
