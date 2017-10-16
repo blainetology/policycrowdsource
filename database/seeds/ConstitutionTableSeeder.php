@@ -14,6 +14,10 @@ class ConstitutionTableSeeder extends Seeder
     public function run()
     {
         //
+
+        \DB::update("ALTER TABLE policies AUTO_INCREMENT = 20000;");
+        \DB::update("ALTER TABLE sections AUTO_INCREMENT = 400000;");
+
         \App\Policy::create(['name'=>'U.S. Constitution', 'short_synopsis'=>'Replacement for the Articles of Confederation','full_synopsis'=>'This is the full synopsis of the proposed policy, with many more details', 'published'=>1, 'public'=>1, 'rating'=>rand(-5,5)]);
 
         \App\Section::create(['content'=>"We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defence, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America.", 'policy_id'=>20000, 'user_id'=>100000, 'display_order'=>1]); //400000

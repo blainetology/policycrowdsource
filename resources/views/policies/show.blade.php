@@ -19,7 +19,6 @@
             @endif
             <h1 class="policy-title">{{$policy->name}}</h1>
             <hr class="clearfix" />
-            {{ print_r($ratings,true) }}
             @foreach($sections as $section1)
                 <div id="section-container-{{$section1['id']}}" class="section-container rating_{{round($section1['rating'])}} row">
                     <div class="col-md-12">
@@ -29,7 +28,7 @@
                                     <h2>{{$section1['title']}} <small>({{$section1['id']}})</small></h2>
                                 @endif
                                 @if(!empty($section1['content']))
-                                    <p>{{$section1['content']}}</p>
+                                    <p>{!!nl2br($section1['content'])!!}</p>
                                 @endif
                             </div>
                             <div class="col-md-2">
@@ -47,7 +46,7 @@
                                                         <h3>{{$section2['title']}} <small>({{$section2['id']}})</small></h3>
                                                     @endif
                                                     @if(!empty($section2['content']))
-                                                        <p>{{$section2['content']}}</p>
+                                                        <p>{!!nl2br($section2['content'])!!}</p>
                                                     @endif
                                                 </div>
                                                 <div class="col-md-2">
@@ -65,7 +64,7 @@
                                                                             <h4>{{$section3['title']}} <small>({{$section3['id']}})</small></h4>
                                                                         @endif
                                                                         @if(!empty($section3['content']))
-                                                                            <p>{{$section3['content']}}</p>
+                                                                            <p>{!!nl2br($section3['content'])!!}</p>
                                                                         @endif
                                                                     </div>
                                                                     <div class="col-md-2">

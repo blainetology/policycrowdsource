@@ -72,6 +72,10 @@
         </nav>
 
         @yield('content')
+
+        <br/><br/><br/>
+        <div align="center">&copy;{{date('Y')}} Policy Crowdsource, LLC</div>
+        <br/><br/>
     </div>
 
     <!-- Scripts -->

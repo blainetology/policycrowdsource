@@ -14,7 +14,5 @@ class PoliciesTableSeeder extends Seeder
     public function run()
     {
         //
-        \DB::update("ALTER TABLE policies AUTO_INCREMENT = 20000;");
-        \DB::update("ALTER TABLE sections AUTO_INCREMENT = 400000;");
     }
 }
