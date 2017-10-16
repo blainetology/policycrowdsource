@@ -18,11 +18,13 @@ class CreateRatingsTable extends Migration
             $table->integer('user_id')->index();
             $table->integer('policy_id')->index()->nullable();
             $table->integer('section_id')->index()->nullable();
-            $table->integer('rating')->default(3);
+            $table->integer('rating')->default(0);
+            $table->integer('political_weight')->default(0);
+            $table->integer('weighted_rating')->default(0);
             $table->integer('auto_tallied')->default(1);
             $table->integer('flagged')->default(0);
             $table->integer('banned')->default(0);
-            $table->string('comment');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
 

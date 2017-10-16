@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Policy;
 use App\Section;
+use App\Rating;
 
 class PoliciesController extends Controller
 {
@@ -54,9 +55,13 @@ class PoliciesController extends Controller
     {
         //
         $policy = Policy::find($id);
+        $ratings = null;
+        if(\Auth::check())
+            $ratings = Rating::byUser()->whereIn('section_id',$policy->sections->pluck('id'))->pluck('rating','section_id')->toArray();
         $data = [
             'policy'        => $policy,
-            'sections'      => Policy::sortSections($policy->sections->toArray())
+            'sections'      => Policy::sortSections($policy->sections->toArray()),
+            'ratings'       => $ratings
         ];
 
         return view('policies.show',$data);

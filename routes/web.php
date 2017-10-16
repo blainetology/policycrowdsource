@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('policies','PoliciesController');
+
+	Route::get('/rate/p/{pid}/r/{rating}',['as'=>'ratepolicy','uses'=>'RatingsController@ratepolicy']);
+	Route::get('/rate/p/{pid}/s/{sid}/r/{rating}',['as'=>'ratesection','uses'=>'RatingsController@ratesection']);
