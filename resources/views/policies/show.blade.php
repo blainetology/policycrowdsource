@@ -4,16 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <span class="pull-right policy-rating rating_{{round($policy->rating)}}"> &nbsp; RATING &nbsp; </span><br clear="both" />
+            <span class="pull-right policy-rating rating_{{round($policy->rating)}}"> &nbsp; {{$policy->rating_count}} Votes &nbsp; </span><br clear="both" />
             @if(\Auth::check())
             <div class="rating-box policy-rating pull-right text-right" id="ratingBoxPolicy{{$policy->id}}">
-                <a href="javascript:rate_ajax({{$policy->id}},null,-2,'not-support-2')" title="strongly do not support" class="rating-thumb not-support-2"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> &nbsp;
-                <a href="javascript:rate_ajax({{$policy->id}},null,-1,'not-support-1')" title="do not support" class="rating-thumb not-support-1"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> &nbsp;
-                <a href="javascript:rate_ajax({{$policy->id}},null,1,'support-1')" title="support" class="rating-thumb support-1"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a> &nbsp;
-                <a href="javascript:rate_ajax({{$policy->id}},null,2,'support-2')" title="strongly support" class="rating-thumb support-2"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                <a href="javascript:rate_ajax({{$policy->id}},null,-2)" title="strongly do not support" class="rating-thumb rating-2"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> &nbsp;
+                <a href="javascript:rate_ajax({{$policy->id}},null,-1)" title="do not support" class="rating-thumb rating-1"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> &nbsp;
+                <a href="javascript:rate_ajax({{$policy->id}},null,1)" title="support" class="rating-thumb rating1"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a> &nbsp;
+                <a href="javascript:rate_ajax({{$policy->id}},null,2)" title="strongly support" class="rating-thumb rating2"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
             </div>
             @else
-            <div class="rating-box" align="center" style="margin-top:3px;">
+            <div class="rating-box text-right" style="margin-top:3px;">
                 <a href="javascript:showLoginModal()" class="btn btn-xs btn-default">Login to Rate</a>
             </div>
             @endif
@@ -95,16 +95,16 @@
 
 @section('scripts')
 <script type="text/javascript">
-function rate_ajax(pid,sid,rating,which){
+function rate_ajax(pid,sid,rating){
     if(sid){
         $.get('/rate/p/'+pid+'/s/'+sid+'/r/'+rating);
-        $('#ratingBoxSection'+sid+' .rating-thumb').not('.'+which).removeClass('selected').addClass('not-selected');
-        $('#ratingBoxSection'+sid+' .'+which).addClass('selected');
+        $('#ratingBoxSection'+sid+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
+        $('#ratingBoxSection'+sid+' .rating'+rating).addClass('selected');
     }
     else{
         $.get('/rate/p/'+pid+'/r/'+rating);
-        $('#ratingBoxPolicy'+pid+' .rating-thumb').not('.'+which).removeClass('selected').addClass('not-selected');
-        $('#ratingBoxPolicy'+pid+' .'+which).addClass('selected');
+        $('#ratingBoxPolicy'+pid+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
+        $('#ratingBoxPolicy'+pid+' .rating'+rating).addClass('selected');
     }
 }
     

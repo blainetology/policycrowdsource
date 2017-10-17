@@ -61,7 +61,8 @@ class PoliciesController extends Controller
         $data = [
             'policy'        => $policy,
             'sections'      => Policy::sortSections($policy->sections->toArray()),
-            'ratings'       => $ratings
+            'ratings'       => $ratings,
+            'pagetitle'     => $policy->name
         ];
 
         return view('policies.show',$data);

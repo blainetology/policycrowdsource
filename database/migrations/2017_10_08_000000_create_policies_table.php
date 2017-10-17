@@ -24,6 +24,7 @@ class CreatePoliciesTable extends Migration
             $table->integer('public')->index()->default(0);
             $table->integer('published')->index()->default(0);
             $table->decimal('rating',5,2)->default(0);
+            $table->integer('rating_count')->default(0);
             $table->timestamps();
         });
 
@@ -37,6 +38,7 @@ class CreatePoliciesTable extends Migration
             $table->integer('parent_section_id')->index()->nullable();
             $table->integer('display_order')->default(1);
             $table->decimal('rating',5,2)->default(0);
+            $table->integer('rating_count')->default(0);
             $table->timestamps();
         });
 

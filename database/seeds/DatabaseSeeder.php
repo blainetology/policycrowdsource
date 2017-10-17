@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
          $this->call(PoliciesTableSeeder::class);
          $this->call(ConstitutionTableSeeder::class);
          $this->call(MagnaCartaTableSeeder::class);
+         $this->call(ArticlesOfConfederationTableSeeder::class);
          $this->call(RatingsTableSeeder::class);
     }
 }

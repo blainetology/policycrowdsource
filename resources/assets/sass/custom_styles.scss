@@ -15,10 +15,10 @@
 	&.rating_-4{background-color:$color-minus-4;}
 	&.rating_-5{background-color:$color-minus-5;}	
 }
-.not-support-1{color:$color-not-support-1;font-size:12pt;}
-.not-support-2{color:$color-not-support-2;font-size:15pt;}
-.support-1{color:$color-support-1;font-size:12pt;}
-.support-2{color:$color-support-2;font-size:15pt;}
+.rating-1{color:$color-not-support-1;font-size:12pt;}
+.rating-2{color:$color-not-support-2;font-size:15pt;}
+.rating1{color:$color-support-1;font-size:12pt;}
+.rating2{color:$color-support-2;font-size:15pt;}
 .rating-box{
 	padding:0;
 	.rating-thumb.not-selected{color:$color-not-selected;}
@@ -28,8 +28,11 @@
 }
 .section-container{
 	margin-top:3px;
+	padding-top:3px;
+	padding-bottom:3px;
+	padding-right:8px;
 	margin-left:-8px;
-	border-left:6px solid $color-neutral-0;
+	border-left:8px solid $color-neutral-0;
 	&.rating_5{border-left-color:$color-plus-5;}
 	&.rating_4{border-left-color:$color-plus-4;}
 	&.rating_3{border-left-color:$color-plus-3;}
@@ -41,12 +44,13 @@
 	&.rating_-3{border-left-color:$color-minus-3;}
 	&.rating_-4{border-left-color:$color-minus-4;}
 	&.rating_-5{border-left-color:$color-minus-5;}
+	&:hover{background:$policy-section-bg;}
 	.policy-section{
-
+		p{margin:0;}
+		min-height:32px;
 		.rating-box{display:none; vertical-align:middle;}
 
 		&:hover{
-			background:$policy-section-bg;
 			.rating-box{display:block;}
 		}
 	}

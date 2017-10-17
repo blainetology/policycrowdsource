@@ -7,7 +7,7 @@
             <h1>Published Policies</h1>
             <div class="well well-sm">
             @foreach($policies as $policy)
-            	<span class="policy-rating rating_{{round($policy->rating)}}"> &nbsp; </span> &nbsp; <strong><a href="{{ route('policies.show',$policy->id) }}" style="font-size: 14pt;">{{$policy->name}}</a></strong><br/>
+            	<span class="policy-rating rating_{{round($policy->rating)}}"> {{$policy->rating_count}} votes </span> &nbsp; <strong><a href="{{ route('policies.show',$policy->id) }}" style="font-size: 14pt;">{{$policy->name}}</a></strong><br/>
             	&nbsp; &nbsp; {{$policy->short_synopsis}}<br/><br/>
             @endforeach
             </div>

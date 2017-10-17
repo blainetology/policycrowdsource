@@ -11459,22 +11459,22 @@ button.close {
   background-color: #0000fa;
 }
 
-.not-support-1 {
+.rating-1 {
   color: #c86464;
   font-size: 12pt;
 }
 
-.not-support-2 {
+.rating-2 {
   color: #c80000;
   font-size: 15pt;
 }
 
-.support-1 {
+.rating1 {
   color: #64c864;
   font-size: 12pt;
 }
 
-.support-2 {
+.rating2 {
   color: #00c800;
   font-size: 15pt;
 }
@@ -11484,7 +11484,7 @@ button.close {
 }
 
 .rating-box .rating-thumb.not-selected {
-  color: #c8c8c8;
+  color: #b4b4b4;
 }
 
 .rating-box .rating-thumb.selected {
@@ -11492,7 +11492,7 @@ button.close {
 }
 
 .rating-box .rating-thumb:hover {
-  color: #888888;
+  color: #747474;
 }
 
 .rating-box .rating-thumb:focus {
@@ -11501,8 +11501,11 @@ button.close {
 
 .section-container {
   margin-top: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 8px;
   margin-left: -8px;
-  border-left: 6px solid #969696;
+  border-left: 8px solid #969696;
 }
 
 .section-container.rating_5 {
@@ -11549,13 +11552,21 @@ button.close {
   border-left-color: #0000fa;
 }
 
+.section-container:hover {
+  background: rgba(120, 120, 120, 0.12);
+}
+
+.section-container .policy-section {
+  min-height: 32px;
+}
+
+.section-container .policy-section p {
+  margin: 0;
+}
+
 .section-container .policy-section .rating-box {
   display: none;
   vertical-align: middle;
-}
-
-.section-container .policy-section:hover {
-  background: rgba(225, 225, 225, 0.35);
 }
 
 .section-container .policy-section:hover .rating-box {
