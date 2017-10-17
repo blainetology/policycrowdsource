@@ -55,6 +55,9 @@ class PoliciesController extends Controller
     {
         //
         $policy = Policy::find($id);
+        $policy->rating = round($policy->rating);
+        if($policy->rating == -0)
+            $policy->rating = 0;
         $ratings = null;
         if(\Auth::check())
             $ratings = Rating::byUser()->whereIn('section_id',$policy->sections->pluck('id'))->pluck('rating','section_id')->toArray();

@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
          $this->call(MagnaCartaTableSeeder::class);
          $this->call(ArticlesOfConfederationTableSeeder::class);
          $this->call(RatingsTableSeeder::class);
+         $this->call(CommentsTableSeeder::class);
     }
 }
