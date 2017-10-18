@@ -9,7 +9,7 @@ class Policy extends Model
     //
     public $table = 'policies';
 
-    protected $fillable = ['title','content','forked_id','numbering_pattern_id','rfp_id','public','published','short_synopsis','full_synopsis','rating'];
+    protected $fillable = ['title','content','forked_id','numbering_pattern_id','rfp_id','public','published','short_synopsis','full_synopsis','rating','house_policy'];
 
 
     // RELATIONSHIPS

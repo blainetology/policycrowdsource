@@ -23,6 +23,7 @@ class CreatePoliciesTable extends Migration
             $table->integer('rfp_id')->index()->nullable();
             $table->integer('public')->index()->default(0);
             $table->integer('published')->index()->default(0);
+            $table->integer('house_policy')->index()->default(0);
             $table->decimal('rating',5,2)->default(0);
             $table->integer('rating_count')->default(0);
             $table->integer('recalculate')->default(0);
