@@ -18,6 +18,7 @@ class CreateRatingsTable extends Migration
             $table->integer('user_id')->index();
             $table->integer('policy_id')->index()->nullable();
             $table->integer('section_id')->index()->nullable();
+            $table->integer('rfp_id')->index()->nullable();
             $table->integer('political_weight')->default(0);
             $table->integer('rating_count')->nullable();
             $table->integer('rating')->nullable();

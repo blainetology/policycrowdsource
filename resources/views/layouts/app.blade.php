@@ -13,7 +13,9 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600|Montserrat:100,600" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <style type="text/css">
+        .navbar{margin-bottom:0;}
+    </style>
     @yield('scripts')
 
     @yield('styles')
@@ -34,7 +36,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ route('policies.index') }}">
+                    <a class="navbar-brand" href="/">
                         {{ config('app.name') }}
                     </a>
                 </div>
@@ -72,11 +74,39 @@
             </div>
         </nav>
 
+        <div id="content" style="min-height:75vh;">
         @yield('content')
+        </div>
 
-        <br/><br/><br/>
+        <footer style="background: #DDD;">
+        <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <strong>Use the Site</strong><br/>
+                    <a href="{{route('policies.index')}}">Browse Submitted Policies</a><br/>
+                    <a href="#">Draft a Policy</a><br/>
+                    <a href="{{route('rfp.index')}}">View Policy Requests</a><br/>
+                    <a href="{{route('rfp.index')}}">Submit a Policy Request</a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <strong>Legal Stuff</strong><br/>
+                    <a href="#">Terms &amp; Conditions</a><br/>
+                    <a href="#">Our Privacy Policy</a><br/>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <strong>The Company</strong><br/>
+                    <a href="#">About Us</a><br/>
+                    <a href="#">Our Mission</a><br/>
+                    <a href="#">Our Team</a>
+                </div>
+            </div>
+        </div>
+        <br/>
         <div align="center">&copy;{{date('Y')}} Policy Crowdsource, LLC</div>
-        <br/><br/>
+        <br/>
+
+        </footer>
     </div>
 
     <!-- Scripts -->

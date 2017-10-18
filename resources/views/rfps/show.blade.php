@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<br/>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -85,7 +84,6 @@
                     </div>
                 </div>
             @endforeach
-            <br/><br/>
             <pre style="display:none;">
             {!! print_r($sections,true) !!}
             </pre>

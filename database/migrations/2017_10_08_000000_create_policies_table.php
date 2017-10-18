@@ -28,6 +28,7 @@ class CreatePoliciesTable extends Migration
             $table->integer('rating_count')->default(0);
             $table->integer('recalculate')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('sections', function (Blueprint $table) {
@@ -48,6 +49,7 @@ class CreatePoliciesTable extends Migration
         Schema::create('collaborators', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('policy_id')->index();
+            $table->integer('rfp_id')->index();
             $table->integer('user_id')->index();
             $table->integer('accepted')->default(0);
             $table->integer('owner')->default(0);
@@ -65,6 +67,24 @@ class CreatePoliciesTable extends Migration
             $table->string('history_type')->index();
             $table->timestamps();
         });
+
+        Schema::create('rfps', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->text('short_overview')->nullable();
+            $table->longtext('full_details')->nullable();
+            $table->date('submission_start')->index()->nullable();
+            $table->date('submission_cutoff')->index()->nullable();
+            $table->integer('no_expiration')->index()->default(0);
+            $table->integer('public')->index()->default(1);
+            $table->integer('published')->index()->default(0);
+            $table->integer('house_rfp')->index()->default(0);
+            $table->decimal('rating',5,2)->default(0);
+            $table->integer('rating_count')->default(0);
+            $table->integer('recalculate')->default(0);
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -74,6 +94,7 @@ class CreatePoliciesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('rfps');
         Schema::dropIfExists('policies');
         Schema::dropIfExists('sections');
         Schema::dropIfExists('collaborators');

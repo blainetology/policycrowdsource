@@ -17,6 +17,9 @@ class Policy extends Model
     public function sections(){
     	return $this->hasMany('\App\Section')->orderBy('display_order','asc');
     }
+    public function rfp(){
+        return $this->belongsTo('\App\Rfp');
+    }
 
     // SCOPES
 
