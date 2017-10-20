@@ -91,6 +91,7 @@ class RatingsTableSeeder extends Seeder
                 $sectionrow->ratings_minus1=Rating::where('section_id',$sectionrow->id)->where('rating','-1')->count();
                 $sectionrow->ratings_plus1=Rating::where('section_id',$sectionrow->id)->where('rating','1')->count();
                 $sectionrow->ratings_plus2=Rating::where('section_id',$sectionrow->id)->where('rating','2')->count();
+                $sectionrow->ratings_avg=round((($sectionrow->ratings_minus2*-2)+($sectionrow->ratings_minus1*-1)+($sectionrow->ratings_plus1*1)+($sectionrow->ratings_plus2*2))/$sectionrow->rating_count);
     			$sectionrow->save();
             }
 
@@ -134,6 +135,7 @@ class RatingsTableSeeder extends Seeder
             $policyrow->ratings_minus1=Rating::where('policy_id',$policyrow->id)->where('rating','-1')->count();
             $policyrow->ratings_plus1=Rating::where('policy_id',$policyrow->id)->where('rating','1')->count();
             $policyrow->ratings_plus2=Rating::where('policy_id',$policyrow->id)->where('rating','2')->count();
+            $policyrow->ratings_avg=round((($policyrow->ratings_minus2*-2)+($policyrow->ratings_minus1*-1)+($policyrow->ratings_plus1*1)+($policyrow->ratings_plus2*2))/$policyrow->rating_count);
 			$policyrow->save();
         }
 

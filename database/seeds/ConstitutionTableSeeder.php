@@ -31,7 +31,7 @@ class ConstitutionTableSeeder extends Seeder
         \App\Section::create(['title'=>"Article VII - Ratification", 'policy_id'=>20000, 'user_id'=>100000, 'display_order'=>8]); //400007
 
         // Article I
-        \App\Section::create(['title'=>"Section 1", 'content'=>"All legislative Powers herein granted shall be vested in a Congress of the United States, which shall consist of a Senate and House of Representatives.", 'policy_id'=>20000, 'user_id'=>100000, 'parent_section_id'=>400001, 'display_order'=>1]); //400008
+        \App\Section::create(['title'=>"Section 1", 'policy_id'=>20000, 'user_id'=>100000, 'parent_section_id'=>400001, 'display_order'=>1]); //400008
         \App\Section::create(['title'=>"Section 2", 'policy_id'=>20000, 'user_id'=>100000, 'parent_section_id'=>400001, 'display_order'=>2]); //400009
         \App\Section::create(['title'=>"Section 3", 'policy_id'=>20000, 'user_id'=>100000, 'parent_section_id'=>400001, 'display_order'=>3]); //400010
         \App\Section::create(['title'=>"Section 4", 'policy_id'=>20000, 'user_id'=>100000, 'parent_section_id'=>400001, 'display_order'=>4]); //400011
@@ -70,6 +70,8 @@ class ConstitutionTableSeeder extends Seeder
         // Article VII
         \App\Section::create(['content'=>"The Ratification of the Conventions of nine States, shall be sufficient for the Establishment of this Constitution between the States so ratifying the Same.\nThe Word \"the\", being interlined between the seventh and eight Lines of the first Page, The Word \"Thirty\" being partly written on an Erazure in the fifteenth Line of the first Page. The Words \"is tried\" being interlined between the thirty second and thirty third Lines of the first Page and the Word \"the\" being interlined between the forty third and forty fourth Lines of the second Page.", 'policy_id'=>20000, 'user_id'=>100000, 'parent_section_id'=>400007, 'display_order'=>1]); //400008
 
+        // A1S1
+        \App\Section::create([ 'content'=>"All legislative Powers herein granted shall be vested in a Congress of the United States, which shall consist of a Senate and House of Representatives.", 'policy_id'=>20000, 'user_id'=>100000, 'parent_section_id'=>400008, 'display_order'=>1]);
 
         // A1S2
         \App\Section::create(['content'=>"1: The House of Representatives shall be composed of Members chosen every second Year by the People of the several States, and the Electors in each State shall have the Qualifications requisite for Electors of the most numerous Branch of the State Legislature.", 'policy_id'=>20000, 'user_id'=>100000, 'parent_section_id'=>400009, 'display_order'=>1]);

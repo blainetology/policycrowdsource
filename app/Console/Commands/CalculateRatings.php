@@ -60,6 +60,7 @@ class CalculateRatings extends Command
                 $section->ratings_minus1=Rating::where('section_id',$section->id)->where('rating','-1')->count();
                 $section->ratings_plus1=Rating::where('section_id',$section->id)->where('rating','1')->count();
                 $section->ratings_plus2=Rating::where('section_id',$section->id)->where('rating','2')->count();
+                $section->ratings_avg=round((($section->ratings_minus2*-2)+($section->ratings_minus1*-1)+($section->ratings_plus1*1)+($section->ratings_plus2*2))/$section->rating_count);
                 $section->recalculate=null;
                 $section->save();                
             }
@@ -82,6 +83,7 @@ class CalculateRatings extends Command
                 $policy->ratings_minus1=Rating::where('policy_id',$policy->id)->where('rating','-1')->count();
                 $policy->ratings_plus1=Rating::where('policy_id',$policy->id)->where('rating','1')->count();
                 $policy->ratings_plus2=Rating::where('policy_id',$policy->id)->where('rating','2')->count();
+                $policy->ratings_avg=round((($policy->ratings_minus2*-2)+($policy->ratings_minus1*-1)+($policy->ratings_plus1*1)+($policy->ratings_plus2*2))/$policy->rating_count);
                 $policy->recalculate=null;
                 $policy->save();                
             }
