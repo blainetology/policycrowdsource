@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <span class="pull-right policy-rating rating_{{round($policy->rating)}}"> &nbsp; {{$policy->rating_count}} Votes &nbsp; </span><br clear="both" />
+            <span class="pull-right policy-rating rating_{{round($policy->rating)}}" data-container="body" data-toggle="popover" data-placement="bottom" data-content="<i class='fa fa-thumbs-down' aria-hidden='true'></i>"> &nbsp; {{$policy->rating_count}} Votes &nbsp; </span><br clear="both" />
             @if(\Auth::check())
             <div class="rating-box policy-rating pull-right text-right" id="ratingBoxPolicy{{$policy->id}}">
                 <a href="javascript:rate_ajax({{$policy->id}},null,-2)" title="strongly do not support" class="rating-thumb rating-2"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> &nbsp;
@@ -99,7 +99,7 @@
 <script type="text/javascript">
 function rate_ajax(pid,sid,rating){
     if(sid){
-        $.get('/rate/p/'+pid+'/s/'+sid+'/r/'+rating);
+        $.get('/rate/p/'+pid+'/s/'+sid+'/r/'+rating,null,function(html){console.log(html)});
         $('#ratingBoxSection'+sid+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
         $('#ratingBoxSection'+sid+' .rating'+rating).addClass('selected');
     }
@@ -109,6 +109,9 @@ function rate_ajax(pid,sid,rating){
         $('#ratingBoxPolicy'+pid+' .rating'+rating).addClass('selected');
     }
 }
+jQuery(document).ready(function(){
+    $('[data-toggle="popover"]').popover()
+})
     
 </script>
 @append

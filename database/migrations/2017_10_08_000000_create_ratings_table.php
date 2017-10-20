@@ -20,10 +20,9 @@ class CreateRatingsTable extends Migration
             $table->integer('section_id')->index()->nullable();
             $table->integer('rfp_id')->index()->nullable();
             $table->integer('political_weight')->default(0);
-            $table->integer('rating_count')->nullable();
             $table->integer('rating')->nullable();
+            $table->integer('rating_abs_val')->nullable();
             $table->integer('weighted_rating')->nullable();
-            $table->integer('calculated_rating_count')->nullable();
             $table->integer('calculated_rating')->nullable();
             $table->integer('calculated_weighted_rating')->nullable();
             $table->integer('flagged')->default(0);

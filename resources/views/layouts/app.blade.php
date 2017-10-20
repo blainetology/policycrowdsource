@@ -16,6 +16,8 @@
     <style type="text/css">
         .navbar{margin-bottom:0;}
     </style>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
 
     @yield('styles')
@@ -109,7 +111,5 @@
         </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

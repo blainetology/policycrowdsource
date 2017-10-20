@@ -23,6 +23,7 @@
 	padding:0;
 	.rating-thumb.not-selected{color:$color-not-selected;}
 	.rating-thumb.selected{color:$color-selected;}
+	.rating-thumb.calculated{color:$color-calculated;}
 	.rating-thumb:hover{color:darken($color-not-selected,25%);}
 	.rating-thumb:focus{color:$color-selected;}
 }
@@ -48,8 +49,11 @@
 	.policy-section{
 		p{margin:0;}
 		min-height:32px;
-		.rating-box{display:none; vertical-align:middle;}
-
+		.rating-box{
+			display:none; 
+			vertical-align:middle;
+			&.rating-calculated{display:block;}
+		}
 		&:hover{
 			.rating-box{display:block;}
 		}

@@ -11491,6 +11491,10 @@ button.close {
   color: #6688f4;
 }
 
+.rating-box .rating-thumb.calculated {
+  color: #e1af32;
+}
+
 .rating-box .rating-thumb:hover {
   color: #747474;
 }
@@ -11567,6 +11571,10 @@ button.close {
 .section-container .policy-section .rating-box {
   display: none;
   vertical-align: middle;
+}
+
+.section-container .policy-section .rating-box.rating-calculated {
+  display: block;
 }
 
 .section-container .policy-section:hover .rating-box {

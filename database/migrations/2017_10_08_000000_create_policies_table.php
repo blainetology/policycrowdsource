@@ -26,7 +26,11 @@ class CreatePoliciesTable extends Migration
             $table->integer('house_policy')->index()->default(0);
             $table->decimal('rating',5,2)->default(0);
             $table->integer('rating_count')->default(0);
-            $table->integer('recalculate')->default(0);
+            $table->integer('ratings_minus2')->default(0);
+            $table->integer('ratings_minus1')->default(0);
+            $table->integer('ratings_plus1')->default(0);
+            $table->integer('ratings_plus2')->default(0);
+            $table->datetime('recalculate')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -38,11 +42,15 @@ class CreatePoliciesTable extends Migration
             $table->integer('policy_id')->index();
             $table->integer('user_id')->index();
             $table->integer('revision_id')->index()->nullable();
-            $table->integer('parent_section_id')->index()->nullable();
+            $table->integer('parent_section_id')->index()->default(0);
             $table->integer('display_order')->default(1);
             $table->decimal('rating',5,2)->default(0);
             $table->integer('rating_count')->default(0);
-            $table->integer('recalculate')->default(0);
+            $table->integer('ratings_minus2')->default(0);
+            $table->integer('ratings_minus1')->default(0);
+            $table->integer('ratings_plus1')->default(0);
+            $table->integer('ratings_plus2')->default(0);
+            $table->datetime('recalculate')->nullable();
             $table->timestamps();
         });
 
@@ -81,7 +89,11 @@ class CreatePoliciesTable extends Migration
             $table->integer('house_rfp')->index()->default(0);
             $table->decimal('rating',5,2)->default(0);
             $table->integer('rating_count')->default(0);
-            $table->integer('recalculate')->default(0);
+            $table->integer('ratings_minus2')->default(0);
+            $table->integer('ratings_minus1')->default(0);
+            $table->integer('ratings_plus1')->default(0);
+            $table->integer('ratings_plus2')->default(0);
+            $table->datetime('recalculate')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
