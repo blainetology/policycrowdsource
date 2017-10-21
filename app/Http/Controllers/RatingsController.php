@@ -21,7 +21,8 @@ class RatingsController extends Controller
                 $rated->political_weight=\Auth::user()->political_weight;
                 $rated->weighted_rating = $rated->rating*$rated->political_weight;
                 $rated->save();
-                $policy->recalculate=\DB::raw('NOW()');
+                if($policy->recalculate==null)
+                    $policy->recalculate=\DB::raw('NOW()');
                 $policy->save();
             }
         }
@@ -44,7 +45,8 @@ class RatingsController extends Controller
                     $rated->calculated_rating=null;
                     $rated->calculated_weighted_rating=null;
                     $rated->save();
-                    $section->recalculate=\DB::raw('NOW()');
+                    if($section->recalculate==null)
+                        $section->recalculate=\DB::raw('NOW()');
                     $section->save();
                     // if not part of a parent section, updated calculated value of policy
                     if(!$section->parent_section_id){
