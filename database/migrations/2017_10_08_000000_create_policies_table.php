@@ -58,8 +58,8 @@ class CreatePoliciesTable extends Migration
 
         Schema::create('collaborators', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('policy_id')->index();
-            $table->integer('rfp_id')->index();
+            $table->integer('policy_id')->nullable()->index();
+            $table->integer('rfp_id')->nullable()->index();
             $table->integer('user_id')->index();
             $table->integer('accepted')->default(0);
             $table->integer('owner')->default(0);

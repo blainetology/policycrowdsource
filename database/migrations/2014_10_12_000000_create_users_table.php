@@ -25,12 +25,12 @@ class CreateUsersTable extends Migration
             $table->biginteger('google_id')->nullable();
             $table->integer('verified')->default(0);
             $table->string('verify_code')->nullable();
-            $table->integer('admin')->default(0);
-            $table->integer('edit')->default(0);
-            $table->integer('moderate')->default(0);
-            $table->integer('analyze')->default(0);
-            $table->integer('social_media')->default(0);
-            $table->integer('blog')->default(0);
+            //$table->integer('admin')->default(0);
+            //$table->integer('edit')->default(0);
+            //$table->integer('moderate')->default(0);
+            //$table->integer('analyze')->default(0);
+            //$table->integer('social_media')->default(0);
+            //$table->integer('blog')->default(0);
             $table->integer('political_weight')->default(0);
             $table->dateTime('last_login')->nullable();
             $table->integer('login_count')->default(0);
