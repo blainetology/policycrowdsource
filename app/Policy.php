@@ -20,6 +20,9 @@ class Policy extends Model
     public function rfp(){
         return $this->belongsTo('\App\Rfp');
     }
+    public function collaborators(){
+        return hasManyThrough('\App\User')->orderBy('owner','desc')->orderBy('admin','desc')->orderBy('editor','desc')->orderBy('reviewer','desc');
+    }
 
     // SCOPES
 
