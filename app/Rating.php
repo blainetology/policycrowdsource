@@ -39,7 +39,7 @@ class Rating extends Model
             }
         }
         else{
-            $html .= '<h4 class="text-center text-warning">This policy has no ratings yet.</h4>';
+            $html .= '<h4 class="text-center text-warning">This has no ratings yet.</h4>';
         }        
         return $html;
     }

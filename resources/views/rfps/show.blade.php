@@ -20,7 +20,7 @@
                         @endif
                     @endforeach
                     </p>
-                    <p>{{$rfp->full_details}}</p>
+                    <p>{!!$rfp->full_details!!}</p>
                 </div>
                 <div class="col-md-3">
                     <span class="pull-left policy-rating rating_{{round($rfp->rating)}}"> {{number_format($rfp->rating_count,0)}} Votes </span>

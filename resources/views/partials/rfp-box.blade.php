@@ -8,11 +8,12 @@
         <div class="details_section">
             <strong><a href="{{ route('rfp.show',$rfp->id) }}" style="font-size: 16px;">{{$rfp->name}}</a></strong>
             <div class="small text-danger">
-            @if($rfp->no_expiration==1)
-                This RFP always accepts policy proposals
-            @else
-                Submit proposals by {{\Shared\ViewHelpers::date($rfp->submission_cutoff,true)}}
-            @endif
+                @if($rfp->no_expiration==1)
+                    This RFP always accepts policy proposals
+                @else
+                    Submit proposals by {{\Shared\ViewHelpers::date($rfp->submission_cutoff,true)}}
+                @endif
+                <span class="small text-info pull-right">{{ $rfp->submission_count }} submitted</span>
             </div>
             <div class="short_synopsis">{{$rfp->short_overview}}</div>
         </div>
