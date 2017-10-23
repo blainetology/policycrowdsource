@@ -89,9 +89,9 @@ class MagnaCartaTableSeeder extends Seeder
         Section::create(['content'=>"(63) IT IS ACCORDINGLY OUR WISH AND COMMAND that the English Church shall be free, and that men in our kingdom shall have and keep all these liberties, rights, and concessions, well and peaceably in their fullness and entirety for them and their heirs, of us and our heirs, in all things and all places for ever.\n\nBoth we and the barons have sworn that all this shall be observed in good faith and without deceit. Witness the abovementioned people and many others.\n\nGiven by our hand in the meadow that is called Runnymede, between Windsor and Staines, on the fifteenth day of June in the seventeenth year of our reign (i.e. 1215: the new regnal year began on 28 May).", 'policy_id'=>20001, 'user_id'=>100000, 'display_order'=>66]);
 
         // Collaborators
-        Collaborator::create(['policy_id'=>20000,'user_id'=>100002,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>20000,'user_id'=>100003,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>20000,'user_id'=>100004,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20001,'user_id'=>100002,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20001,'user_id'=>100003,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20001,'user_id'=>100004,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
 
     }
 }

@@ -1,8 +1,19 @@
+.policy-well{
+	min-height: 225px; position: relative;
+	.details_section{
+		height:90px; overflow:hidden;
+		.short_synopsis{margin:0; padding:0 0 4px; line-height: 1.3em; font-size:.9em; font-style:italic;}
+	}
+	.btn-view-more{position: absolute; right:10px; bottom:10px;}
+	.policy-rating{position:absolute; left:10px; bottom:10px;}
+	&.rfp-well{background-color:darken($well-bg,4%);}
+}
 .policy-title{margin-top:-36px; font-size:3em; padding-bottom:10px;}
 .policy-rating{
-	font-size:12pt;
+	font-size:12px;
 	color:#FFF;
-	padding:2px 10px;
+	padding:1px 10px;
+	border-radius:3px;
 	&.rating_5{background-color:$color-plus-5;}
 	&.rating_4{background-color:$color-plus-4;}
 	&.rating_3{background-color:$color-plus-3;}
@@ -15,12 +26,13 @@
 	&.rating_-4{background-color:$color-minus-4;}
 	&.rating_-5{background-color:$color-minus-5;}	
 }
-.rating-1{color:$color-not-support-1;font-size:12pt;}
-.rating-2{color:$color-not-support-2;font-size:15pt;}
-.rating1{color:$color-support-1;font-size:12pt;}
-.rating2{color:$color-support-2;font-size:15pt;}
+.rating-1{color:$color-not-support-1;font-size:14px;}
+.rating-2{color:$color-not-support-2;font-size:16px;}
+.rating1{color:$color-support-1;font-size:14px;}
+.rating2{color:$color-support-2;font-size:16px;}
 .rating-box{
 	padding:0;
+	.rating-thumb{margin: 0 2px;}
 	.rating-thumb.not-selected{color:$color-not-selected;}
 	.rating-thumb.selected{color:$color-selected;}
 	.rating-thumb.calculated{color:$color-calculated;}

@@ -8,4 +8,11 @@ class Collaborator extends Model
 {
     //
     protected $fillable = ['policy_id','rfp_id','user_id','accepted','owner','admin','editor','viewer'];
+
+    // RELATIONSHIPS
+
+    public function user(){
+    	return $this->belongsTo('\App\User');
+    }
+
 }

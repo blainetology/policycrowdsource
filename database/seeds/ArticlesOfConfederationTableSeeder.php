@@ -80,9 +80,9 @@ class ArticlesOfConfederationTableSeeder extends Seeder
         Section::create(['content'=>"And Whereas it hath pleased the Great Governor of the World to incline the hearts of the legislatures we respectively represent in congress, to approve of, and to authorize us to ratify the said articles of confederation and perpetual union, Know Ye, that we, the undersigned delegates, by virtue of the power and authority to us given for that purpose, do, by these presents, in the name and in behalf of our respective constituents, fully and entirely ratify and confirm each and every of the said articles of confederation and perpetual union, and all and singular the matters and things therein contained. And we do further solemnly plight and engage the faith of our respective constituents, that they shall abide by the determinations of the united states in congress assembled, on all questions, which by the said confederation are submitted to them. And that the articles thereof shall be inviolably observed by the states we respectively represent, and that the union shall be perpetual. In Witness whereof, we have hereunto set our hands, in Congress. Done at Philadelphia, in the State of Pennsylvania, the ninth Day of July, in the Year of our Lord one Thousand seven Hundred and Seventy eight, and in the third year of the Independence of America.", 'policy_id'=>20002, 'parent_section_id'=>402013, 'user_id'=>100000, 'display_order'=>2]);
 
         // Collaborators
-        Collaborator::create(['policy_id'=>20000,'user_id'=>100004,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>20000,'user_id'=>100006,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>20000,'user_id'=>100008,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20002,'user_id'=>100004,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20002,'user_id'=>100006,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20002,'user_id'=>100008,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
 
     }
 }

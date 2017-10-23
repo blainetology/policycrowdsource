@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Rating;
 use App\Section;
 use App\Policy;
+use App\Rfp;
 use App\User;
 
 class RatingsTableSeeder extends Seeder
@@ -16,8 +17,10 @@ class RatingsTableSeeder extends Seeder
     public function run()
     {
         //
+
+        // Seed Policy & Section ratings
         foreach(Policy::all() as $policyrow){
-        	echo " - ".$policyrow->name." ratings \n";
+        	echo " - ".$policyrow->name." policy ratings \n";
             $ratings_array = [];
             $parents = [];
             // figure out the parent sectiond ids
@@ -99,20 +102,20 @@ class RatingsTableSeeder extends Seeder
             echo " --- individual policy user ratings\n";
     		foreach($allusers as $user){
     			if(rand(1,5)!=3){
-	                $ratingstotal = Rating::where('user_id',$user->id)->whereIn('section_id',Section::where('policy_id',$policyrow->id)->whereNull('parent_section_id')->pluck('id'))->sum('rating');
-	                $ratingscount = Rating::where('user_id',$user->id)->whereIn('section_id',Section::where('policy_id',$policyrow->id)->whereNull('parent_section_id')->pluck('id'))->count();
+	                $ratingstotal = Rating::where('user_id',$user->id)->whereIn('section_id',Section::where('policy_id',$policyrow->id)->topLevel()->pluck('id'))->sum('rating');
+	                $ratingscount = Rating::where('user_id',$user->id)->whereIn('section_id',Section::where('policy_id',$policyrow->id)->topLevel()->pluck('id'))->count();
                     if($ratingscount==0)
                         $rating=0;
                     else
                         $rating = $ratingstotal/$ratingscount;
-	                if($rating==1)
-	                    $rating=-2;
-	                elseif($rating==2)
-	                    $rating=-1;
-	                elseif($rating==3)
-	                    $rating=1;
-	                else
-	                    $rating=2;
+                    if($rating<-1)
+                        $rating=-2;
+                    elseif($rating<0)
+                        $rating=-1;
+                    elseif($rating>1)
+                        $rating=2;
+                    else
+                        $rating=1;
 	                Rating::create(['user_id'=>$user->id,'policy_id'=>$policyrow->id,'political_weight'=>$user->political_weight,'rating'=>$rating,'rating_abs_val'=>abs($rating),'weighted_rating'=>($user->political_weight*$rating)]);
 	            }
     		}
@@ -139,6 +142,45 @@ class RatingsTableSeeder extends Seeder
 			$policyrow->save();
         }
 
+        foreach(Rfp::all() as $rfprow){
+            echo " - ".$rfprow->name." RFP ratings \n";
+            echo " --- overall RFP ratings\n";
+            foreach($allusers as $user){
+                if(rand(1,5)!=3){
+                    $rating = rand(1,4);
+                    if($rating==1)
+                        $rating=-2;
+                    elseif($rating==2)
+                        $rating=-1;
+                    elseif($rating==3)
+                        $rating=1;
+                    else
+                        $rating=2;
+                    Rating::create(['user_id'=>$user->id,'rfp_id'=>$rfprow->id,'political_weight'=>$user->political_weight,'rating'=>$rating,'rating_abs_val'=>abs($rating),'weighted_rating'=>($user->political_weight*$rating)]);
+                }
+            }
+            echo " --- overall RFP ratings\n";
+            $ratingstotal = Rating::where('rfp_id',$rfprow->id)->sum('weighted_rating');
+            $ratingscount = Rating::where('rfp_id',$rfprow->id)->sum('rating_abs_val');
+            echo $ratingstotal." / ".$ratingscount."\n";
+            if($ratingscount==0)
+                $rating=0;
+            else
+                $rating = $ratingstotal/$ratingscount;
+            if($rating > 5)
+                $rating = 5;
+            elseif($rating < -5)
+                $rating = -5;
+            $rfprow->rating=$rating;
+            $rfprow->rating_count=Rating::where('rfp_id',$rfprow->id)->count();
+            $rfprow->ratings_minus2=Rating::where('rfp_id',$rfprow->id)->where('rating','-2')->count();
+            $rfprow->ratings_minus1=Rating::where('rfp_id',$rfprow->id)->where('rating','-1')->count();
+            $rfprow->ratings_plus1=Rating::where('rfp_id',$rfprow->id)->where('rating','1')->count();
+            $rfprow->ratings_plus2=Rating::where('rfp_id',$rfprow->id)->where('rating','2')->count();
+            $rfprow->ratings_avg=round((($rfprow->ratings_minus2*-2)+($rfprow->ratings_minus1*-1)+($rfprow->ratings_plus1*1)+($rfprow->ratings_plus2*2))/$rfprow->rating_count);
+            $rfprow->save();
+
+        }
 
     }
 }

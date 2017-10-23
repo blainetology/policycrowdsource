@@ -59,13 +59,19 @@ class RFPsController extends Controller
         $rfp->rating = round($rfp->rating);
         if($rfp->rating == -0)
             $rfp->rating = 0;
-        $rating = null;
-        if(\Auth::check())
-            $rating = Rating::byUser()->where('rfp_id',$rfp->id)->pluck('rating','rfp_id')->toArray();
+        $ratings = null;
+        if(\Auth::check()){
+            $ratingsresults = Rating::byUser()->where('rfp_id',$rfp->id)->get();
+            if($ratingsresults->count()>0){
+                $ratings=[];
+                foreach($ratingsresults as $rating)
+                    $ratings[$rating->rfp_id]=['rating'=>$rating->rating,'calculated_rating'=>$rating->calculated_rating];
+            }
+        }
         $data = [
-            'rfp'        => $rfp,
+            'rfp'           => $rfp,
             'ratings'       => $ratings,
-            'pagetitle'     => $rfp->name.' | '
+            'pagetitle'     => $rfp->name
         ];
 
         return view('rfps.show',$data);

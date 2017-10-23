@@ -36,6 +36,15 @@ class User extends Authenticatable
         return $name;
     }
 
+    public function full_name(){
+        $name = "";
+        if(!empty($this->first_name))
+            $name .= $this->first_name;
+        if(!empty($this->last_name))
+            $name .= " ".$this->last_name;
+        return $name;
+    }
+
     public function short_name(){
         $name = "";
         if(!empty($this->first_name))

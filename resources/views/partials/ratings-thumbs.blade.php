@@ -1,10 +1,12 @@
 @if(\Auth::check())
-<?php $calculated=rand(-2,2); ?>
-<div class="rating-box text-right" id="ratingBoxSection{{$sid}}">
-    <a href="javascript:rate_ajax({{$pid}},{{$sid}},-2)" title="{{!empty($calculated) && $calculated==-2 ? 'calculated - ' : ''}} strongly do not support" class="rating-thumb rating-2 {{!empty($rated) && $rated==-2 ? 'selected' : ''}} {{!empty($rated) && $rated!=-2 ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==-2 ? 'calculated' : ''}}"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> &nbsp;
-    <a href="javascript:rate_ajax({{$pid}},{{$sid}},-1)" title="{{!empty($calculated) && $calculated==-1 ? 'calculated - ' : ''}} do not support" class="rating-thumb rating-1 {{!empty($rated) && $rated==-1 ? 'selected' : ''}} {{!empty($rated) && $rated!=-1 ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==-1 ? 'calculated' : ''}}"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> &nbsp;
-    <a href="javascript:rate_ajax({{$pid}},{{$sid}},1)" title="{{!empty($calculated) && $calculated==1 ? 'calculated - ' : ''}} support" class="rating-thumb rating1 {{!empty($rated) && $rated==1 ? 'selected' : ''}} {{!empty($rated) && $rated!=1 ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==1 ? 'calculated' : ''}}"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a> &nbsp;
-    <a href="javascript:rate_ajax({{$pid}},{{$sid}},2)" title="{{!empty($calculated) && $calculated==2 ? 'calculated - ' : ''}} strongly support" class="rating-thumb rating2 {{!empty($rated) && $rated==2 ? 'selected' : ''}} {{!empty($rated) && $rated!=2 ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==2 ? 'calculated' : ''}}"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+<?php
+$rated=$rating['rating'];
+$calculated=$rating['calculated_rating'];
+?>
+<div class="rating-box text-right visible-sm visible-xs" id="ratingBoxSection{{$sid}}">
+	@foreach(\App\Rating::$thumbs as $value=>$thumb)
+    <a href="javascript:rate_ajax({{$pid}},{{$sid}},$value)" title="{{!empty($calculated) && $calculated==$value ? 'calculated - ' : ''}} {[$thumb[0]]}" class="rating-thumb rating{{$value}} {{!empty($rated) && $rated==$value ? 'selected' : ''}} {{!empty($rated) && $rated!=$value ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==$value ? 'calculated' : ''}}"><i class="fa {{$thumb[1]}}" aria-hidden="true"></i></a>
+    @endforeach
 </div>
 @else
 <div class="rating-box text-right" id="ratingBoxSection{{$sid}}" style="margin-top:3px;">

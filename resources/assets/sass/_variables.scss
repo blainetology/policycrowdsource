@@ -10,18 +10,40 @@ $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
 // Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+$brand-primary: #246;
+$brand-info: #3097D1;
+$brand-success: #00c800;
+$brand-warning: #edad00;
+$brand-danger: #c80000;
+
+// States
+$state-success-text:             $brand-success !default;
+$state-success-bg:               lighten(desaturate($brand-success,40%),25%) !default;
+$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%) !default;
+
+$state-info-text:                $brand-info !default;
+$state-info-bg:                  lighten($brand-info,25%) !default;
+$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%) !default;
+
+$state-warning-text:             $brand-warning !default;
+$state-warning-bg:               lighten($brand-warning,25%) !default;
+$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+
+$state-danger-text:              $brand-danger !default;
+$state-danger-bg:                lighten($brand-danger,25%) !default;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+
+// Wells
+$well-bg: #EEE;
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
+$font-family-sans-serif: Arial, "Raleway", sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
-$text-color: #636b6f;
+$text-color: #444444;
+$link-color: lighten($brand-primary,20%) !default;
+$link-hover-color: darken($link-color, 10%) !default;
 
 // Navbar
 $navbar-default-bg: #fff;
@@ -55,9 +77,9 @@ $color-minus-4: rgb(50,50,250);
 $color-minus-5: rgb(0,0,250); 
 
 $color-support-2: rgb(0,200,0);
-$color-support-1: rgb(100,200,100);
-$color-not-support-1: rgb(200,100,100);
+$color-support-1: lighten(desaturate($color-support-2,70%),30%);
 $color-not-support-2: rgb(200,0,0);
+$color-not-support-1: lighten(desaturate($color-not-support-2,70%),30%);
 
 $color-selected: rgb(102,136,244);
 $color-not-selected: rgb(180,180,180);

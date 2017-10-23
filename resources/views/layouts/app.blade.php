@@ -49,6 +49,16 @@
                         &nbsp;
                     </ul>
 
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="{{route('policies.index')}}">Browse Policies</a>
+                        </li>
+                        <li>
+                            <a href="{{route('rfp.index')}}">Requests for Policies</a>
+                        </li>
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -62,6 +72,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{route('accountsettings')}}">Settings</a></li>
+                                    <li><a href="{{route('accountmypolicies')}}">My Policies</a></li>
+                                    <li><a href="{{route('accountmyrfps')}}">My RFPs</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -80,7 +93,7 @@
         @yield('content')
         </div>
 
-        <footer style="background: #DDD;">
+        <footer class="bg-primary">
         <br/>
         <div class="container">
             <div class="row">

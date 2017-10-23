@@ -21,13 +21,19 @@ class Policy extends Model
         return $this->belongsTo('\App\Rfp');
     }
     public function collaborators(){
-        return hasManyThrough('\App\User')->orderBy('owner','desc')->orderBy('admin','desc')->orderBy('editor','desc')->orderBy('reviewer','desc');
+        return $this->hasMany('\App\Collaborator')->with('user')->orderBy('owner','desc')->orderBy('admin','desc')->orderBy('editor','desc')->orderBy('reviewer','desc');
     }
 
     // SCOPES
 
     public function scopeViewable($query){
         return $query->where('published',1)->where('public',1);
+    }
+    public function scopeHouse($query){
+        return $query->where('house_policy',1);
+    }
+    public function scopeUserSubmitted($query){
+        return $query->where('house_policy',0);
     }
     public function scopePublished($query){
         return $query->where('published',1);
@@ -40,6 +46,12 @@ class Policy extends Model
     }
     public function scopePrivate($query){
         return $query->where('public',0);
+    }
+    public function scopeUserCollaboratingOn($query){
+        return $query->whereIn('id',\App\Collaborator::where('user_id',\Auth::user()->id)->whereNotNull('policy_id')->pluck('policy_id'));
+    }
+    public function scopeUserRatedBy($query){
+        return $query->whereIn('id',\App\Rating::where('user_id',\Auth::user()->id)->whereNotNull('policy_id')->pluck('policy_id'));
     }
 
     // STATIC METHODS

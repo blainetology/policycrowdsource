@@ -22,15 +22,15 @@ class UsersTableSeeder extends Seeder
         \App\User::create(['first_name'=>'Austin', 'last_name'=>'Baker','email'=>'austinmbaker@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
         \App\User::create(['first_name'=>'Garett', 'last_name'=>'Bingham','email'=>'jebmotherboard@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
 
-        $first_names = ['John','Jane','Bill','Mary','Steve','Angie','Michael','Sarah','Richard','Carly'];
-        $last_names = ['Smith','Jones','Miller','Hernandez','Roosevelt','Morgan','Johnson','Goldberg','Rodriguez','Page'];
+        $first_names = ['John','Jane','Bill','Mary','Steve','Angie','Michael','Sarah','Richard','Charlotte','Bob','Elizabeth','Jacques','Meredith'];
+        $last_names = ['Smith','Jones','Miller','Hernandez','Roosevelt','Morgan','Johnson','Goldberg','Rodriguez','Page','Gonzalez','Carter','Clinton','Lincoln'];
 
-        for($x=0;$x<10;$x++){
-            for($y=0;$y<10;$y++){
-                $weight = rand(-4,4);
-                $rand = rand(10,50);
-                \App\User::create(['first_name'=>$first_names[$x], 'last_name'=>$last_names[$y],'email'=>$first_names[$x].$last_names[$y].$rand.'@fakegmail123.com','password'=>\Hash::make('temp123'),'political_weight'=>$weight,'last_login'=>\DB::raw("ADDDATE(NOW(),2)"),'login_count'=>0]);
-            }
+        for($x=100;$x<400;$x++){
+            $firstname=$first_names[rand(0,13)];
+            $lastname=$last_names[rand(0,13)];
+            $weight = rand(-4,4);
+            $rand = rand(10,50);
+            \App\User::create(['first_name'=>$firstname, 'last_name'=>$lastname,'email'=>$firstname.$lastname.$x.'@fakegmail123.com','password'=>\Hash::make('temp123'),'political_weight'=>$weight,'last_login'=>\DB::raw("ADDDATE(NOW(),2)"),'login_count'=>0]);
         }
     }
 }
