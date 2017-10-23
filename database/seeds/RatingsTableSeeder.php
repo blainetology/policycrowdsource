@@ -19,7 +19,7 @@ class RatingsTableSeeder extends Seeder
         //
 
         // Seed Policy & Section ratings
-        foreach(Policy::all() as $policyrow){
+        foreach(Policy::where('id','!=',20007)->get() as $policyrow){
         	echo " - ".$policyrow->name." policy ratings \n";
             $ratings_array = [];
             $parents = [];

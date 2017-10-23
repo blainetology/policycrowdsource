@@ -86,6 +86,7 @@ class CreatePoliciesTable extends Migration
             $table->date('submission_start')->index()->nullable();
             $table->date('submission_cutoff')->index()->nullable();
             $table->integer('no_expiration')->index()->default(0);
+            $table->integer('submission_count')->default(0);
             $table->integer('public')->index()->default(1);
             $table->integer('published')->index()->default(0);
             $table->integer('house_rfp')->index()->default(0);

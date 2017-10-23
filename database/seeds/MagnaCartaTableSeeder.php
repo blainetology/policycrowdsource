@@ -92,6 +92,7 @@ class MagnaCartaTableSeeder extends Seeder
         Collaborator::create(['policy_id'=>20001,'user_id'=>100002,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         Collaborator::create(['policy_id'=>20001,'user_id'=>100003,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         Collaborator::create(['policy_id'=>20001,'user_id'=>100004,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20001,'user_id'=>101000,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
 
     }
 }

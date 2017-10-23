@@ -41,5 +41,20 @@ class PoliciesTableSeeder extends Seeder
         Section::create(['content'=>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 'policy_id'=>20005, 'user_id'=>100000, 'display_order'=>2]); //400000
         Collaborator::create(['policy_id'=>20005,'user_id'=>100001,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         Collaborator::create(['policy_id'=>20005,'user_id'=>100002,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+
+
+        Policy::create(['name'=>'School Board Policies', 'short_synopsis'=>'Establishing new policies for school board meetings.','full_synopsis'=>'Establishing new policies for school board meetings, for both audience participation and from the board members.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30003]);
+        Section::create(['content'=>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.", 'policy_id'=>20006, 'user_id'=>100000, 'display_order'=>1]); //400000
+        Section::create(['content'=>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 'policy_id'=>20006, 'user_id'=>100000, 'display_order'=>2]); //400000
+        Collaborator::create(['policy_id'=>20006,'user_id'=>rand(100001,100003),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20006,'user_id'=>rand(10010,100020),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20006,'user_id'=>rand(10021,100030),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+
+        Policy::create(['name'=>'PTA Bylaws', 'short_synopsis'=>'Establishing new policies and procedures for the local school PTA','full_synopsis'=>'Establishing new policies and procedures for the local elementary school\'s Parent Teacher Association, including member expectations and procedures for working with the administration.', 'published'=>1, 'public'=>1, 'house_policy'=>0]);
+        Section::create(['content'=>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.", 'policy_id'=>20007, 'user_id'=>100000, 'display_order'=>1]); //400000
+        Section::create(['content'=>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 'policy_id'=>20007, 'user_id'=>100000, 'display_order'=>2]); //400000
+        Collaborator::create(['policy_id'=>20007,'user_id'=>rand(100001,100003),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20007,'user_id'=>rand(10010,100020),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20007,'user_id'=>rand(10021,100030),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
     }
 }

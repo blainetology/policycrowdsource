@@ -83,6 +83,7 @@ class ArticlesOfConfederationTableSeeder extends Seeder
         Collaborator::create(['policy_id'=>20002,'user_id'=>100004,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         Collaborator::create(['policy_id'=>20002,'user_id'=>100006,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         Collaborator::create(['policy_id'=>20002,'user_id'=>100008,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>20002,'user_id'=>101000,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
 
     }
 }
