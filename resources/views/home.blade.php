@@ -74,7 +74,7 @@
     </div>
 </div>
 
-@if($my_policies->count()>0)
+@if(isset($my_policies) && $my_policies->count()>0)
 <div class="container-fluid bg-success">
     <div class="container">
         <div class="row">
