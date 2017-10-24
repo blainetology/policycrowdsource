@@ -12,26 +12,26 @@ $panel-inner-border: $laravel-border-color;
 // Brands
 $brand-primary: #246;
 $brand-info: #3097D1;
-$brand-success: #00c800;
-$brand-warning: #edad00;
+$brand-success: #1fc31f;
+$brand-warning: #f6a802;
 $brand-danger: #c80000;
 
 // States
 $state-success-text:             $brand-success !default;
-$state-success-bg:               lighten(desaturate($brand-success,40%),25%) !default;
-$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%) !default;
+$state-success-bg:               lighten(desaturate($brand-success,10%),40%) !default;
+$state-success-border:           $state-success-bg !default;
 
 $state-info-text:                $brand-info !default;
-$state-info-bg:                  lighten($brand-info,25%) !default;
-$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%) !default;
+$state-info-bg:                  lighten(desaturate($brand-info,10%),40%) !default;
+$state-info-border:              $state-info-bg !default;
 
 $state-warning-text:             $brand-warning !default;
-$state-warning-bg:               lighten($brand-warning,25%) !default;
-$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+$state-warning-bg:               lighten(desaturate($brand-warning,10%),40%) !default;
+$state-warning-border:           $state-warning-bg !default;
 
 $state-danger-text:              $brand-danger !default;
-$state-danger-bg:                lighten($brand-danger,25%) !default;
-$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+$state-danger-bg:                lighten(desaturate($brand-danger,10%),40%) !default;
+$state-danger-border:            $state-danger-bg !default;
 
 // Wells
 $well-bg: #EEE;
