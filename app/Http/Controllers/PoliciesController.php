@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Policy;
 use App\Section;
 use App\Rating;
+use App\Collaborator;
 
 class PoliciesController extends Controller
 {
@@ -19,7 +20,8 @@ class PoliciesController extends Controller
         //
         $policies = Policy::viewable()->get();
         $data = [
-            'policies'  => $policies
+            'policies'  => $policies,
+            'pagetitle' => 'Browse Policies'
         ];
         return view('policies.index',$data);
     }
@@ -32,6 +34,12 @@ class PoliciesController extends Controller
     public function create()
     {
         //
+        if(!\Auth::check())
+            return redirect()->route('policies.index');
+        $data = [
+            'pagetitle' => 'Draft a Policy'
+        ];
+        return view('policies.create',$data);
     }
 
     /**
@@ -43,6 +51,11 @@ class PoliciesController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->get('policy');
+        $policy = Policy::create($input);
+        $policy_id=$policy->id;
+        Collaborator::create(['policy_id'=>$policy_id,'user_id'=>\Auth::user()->id,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        return redirect()->route('policies.edit',$policy_id);
     }
 
     /**
@@ -86,6 +99,13 @@ class PoliciesController extends Controller
     public function edit($id)
     {
         //
+        if(!\Auth::check())
+            return redirect()->route('policies.index');
+        $data = [
+            'pagetitle' => 'Draft a Policy',
+            'policy'    => Policy::find($id)
+        ];
+        return view('policies.create',$data);
     }
 
     /**
