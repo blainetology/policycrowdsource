@@ -1,42 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12" id="homepageslide">
-            <br/><br/><br/><br/>
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                    <div class="well">
-                        <h3 class="text-center text-primary">{{config('app.description')}}</h3>
-                        <br/>
-                        <div class="row">
-                            <div class="col-lg-10 col-lg-offset-1">
-                                <div class="input-group">
-                                    <input type="text" class="form-control input-primary" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button">Go!</button>
-                                    </span>
-                                </div><!-- /input-group -->
-                            </div><!-- /.col-lg-6 -->
-                        </div><!-- /.row -->
-                        <br/>
-                        <div class="row">
-                            <div class="col-lg-12 text-center hidden-xs">
-                                <a href="{{route('policies.index')}}" class="btn btn-info">Browse Policies</a> &nbsp; 
-                                <a href="#" class="btn btn-warning">Draft a Policy</a> &nbsp; 
-                                <a href="#" class="btn btn-success">Submit a RFP</a>
-                            </div>
-                            <div class="col-lg-12 text-center hidden-sm hidden-md hidden-lg">
-                                <a href="{{route('policies.index')}}" class="btn btn-sm btn-info">View Policies</a> 
-                                <a href="#" class="btn btn-sm btn-warning">Draft Policy</a>
-                                <a href="#" class="btn btn-sm btn-success">Submit RFP</a>
-                            </div>
-                        </div>
-                        <br/>
+<div class="container-fluid" id="homepageslide">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
 
+                <div class="hidden-xs hidden-sm"><br/><br/><br/><br/></div>
+                <div class="hidden-xs"><br/><br/><br/><br/></div>
+                <div><br/><br/><br/><br/></div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <div class="well">
+                            <h3 class="text-center text-primary">{{config('app.description')}}</h3>
+                            <br/>
+                            <div class="row">
+                                <div class="col-lg-10 col-lg-offset-1">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-primary" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="button">Go!</button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </div><!-- /.col-lg-6 -->
+                            </div><!-- /.row -->
+                            <br/>
+                            <div class="row">
+                                <div class="col-lg-12 text-center hidden-xs">
+                                    <a href="{{route('policies.index')}}" class="btn btn-info">Browse Policies</a> &nbsp; 
+                                    <a href="#" class="btn btn-warning">Draft a Policy</a> &nbsp; 
+                                    <a href="#" class="btn btn-success">Submit a RFP</a>
+                                </div>
+                                <div class="col-lg-12 text-center hidden-sm hidden-md hidden-lg">
+                                    <a href="{{route('policies.index')}}" class="btn btn-sm btn-info">View Policies</a> 
+                                    <a href="#" class="btn btn-sm btn-warning">Draft Policy</a>
+                                    <a href="#" class="btn btn-sm btn-success">Submit RFP</a>
+                                </div>
+                            </div>
+                            <br/>
+
+                        </div>
                     </div>
                 </div>
+
+                <div class="hidden-xs hidden-sm"><br/><br/><br/><br/></div>
+                <div class="hidden-xs"><br/><br/><br/><br/></div>
+                <div><br/><br/><br/><br/></div>
+
             </div>
         </div>
     </div>
@@ -109,6 +120,6 @@
 
 @section('styles')
 <style type="text/css">
-    #homepageslide{background:url(/images/homepagebg.jpg) center center no-repeat; background-size: cover; height:70vh; min-height: 400px;}
+    #homepageslide{background:url(/images/homepagebg.jpg) center center no-repeat; background-size: cover; }
 </style>
 @append
