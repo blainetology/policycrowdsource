@@ -1,4 +1,4 @@
-<div class="col-md-4 col-sm-6">
+<div class="col-lg-3 col-md-4 col-sm-6">
     <div class="well well-sm policy-well">
         <?php 
             $policy->rating = round($policy->rating);
@@ -6,7 +6,7 @@
                 $policy->rating = 0;
         ?>
         <div class="details_section">
-            <strong><a href="{{ route('policies.show',$policy->id) }}" style="font-size: 16px;">{{$policy->name}}</a></strong>
+            <strong><a href="{{ route('policies.show',$policy->id) }}">{{$policy->name}}</a></strong>
             <div class="short_synopsis">{{$policy->short_synopsis}}</div>
         </div>
         <div class="small">

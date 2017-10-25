@@ -6,7 +6,7 @@
                 $rfp->rating = 0;
         ?>
         <div class="details_section">
-            <strong><a href="{{ route('rfp.show',$rfp->id) }}" style="font-size: 16px;">{{$rfp->name}}</a></strong>
+            <strong><a href="{{ route('rfp.show',$rfp->id) }}">{{$rfp->name}}</a></strong>
             <div class="small text-danger">
                 @if($rfp->no_expiration==1)
                     This RFP always accepts policy proposals

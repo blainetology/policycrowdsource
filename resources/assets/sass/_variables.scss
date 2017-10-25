@@ -64,17 +64,17 @@ $panel-default-heading-bg: #fff;
 $policy-section-bg: rgba(120,120,120,.12);
 
 // Ratings Colors
-$color-plus-5: rgb(250,0,0); 
-$color-plus-4: rgb(250,50,50); 
-$color-plus-3: rgb(225,75,75); 
-$color-plus-2: rgb(200,100,100); 
-$color-plus-1: rgb(175,125,125); 
-$color-neutral-0: rgb(150,150,150); 
-$color-minus-1: rgb(125,125,175); 
-$color-minus-2: rgb(100,100,200); 
-$color-minus-3: rgb(75,75,225); 
-$color-minus-4: rgb(50,50,250); 
-$color-minus-5: rgb(0,0,250); 
+$color-plus-5: rgb(255,0,0); 
+$color-plus-4: desaturate($color-plus-5,20%); 
+$color-plus-3: desaturate($color-plus-5,40%); 
+$color-plus-2: desaturate($color-plus-5,60%); 
+$color-plus-1: desaturate($color-plus-5,80%); 
+$color-neutral-0: desaturate($color-plus-5,100%); 
+$color-minus-5: rgb(0,0,255); 
+$color-minus-4: desaturate($color-minus-5,20%); 
+$color-minus-3: desaturate($color-minus-5,40%); 
+$color-minus-2: desaturate($color-minus-5,60%); 
+$color-minus-1: desaturate($color-minus-5,80%); 
 
 $color-support-2: rgb(0,200,0);
 $color-support-1: lighten(desaturate($color-support-2,70%),30%);
