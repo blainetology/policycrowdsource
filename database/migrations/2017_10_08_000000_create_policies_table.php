@@ -24,6 +24,9 @@ class CreatePoliciesTable extends Migration
             $table->integer('public')->index()->default(0);
             $table->integer('published')->index()->default(0);
             $table->integer('house_policy')->index()->default(0);
+            $table->integer('starter_policy')->index()->default(0);
+            $table->integer('section_count')->default(0);
+            $table->integer('top_section_count')->default(0);
             $table->decimal('rating',5,2)->default(0);
             $table->integer('rating_count')->default(0);
             $table->integer('ratings_minus2')->default(0);
@@ -40,10 +43,14 @@ class CreatePoliciesTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->longtext('content')->nullable();
+            $table->string('staged_title')->nullable();
+            $table->longtext('staged_content')->nullable();
             $table->integer('policy_id')->index();
             $table->integer('user_id')->index();
             $table->integer('revision_id')->index()->nullable();
             $table->integer('parent_section_id')->index()->default(0);
+            $table->integer('starter_policy')->index()->default(0);
+            $table->integer('section_count')->default(0);
             $table->integer('display_order')->default(1);
             $table->decimal('rating',5,2)->default(0);
             $table->integer('rating_count')->default(0);
@@ -90,6 +97,7 @@ class CreatePoliciesTable extends Migration
             $table->integer('public')->index()->default(1);
             $table->integer('published')->index()->default(0);
             $table->integer('house_rfp')->index()->default(0);
+            $table->integer('starter_rfp')->index()->default(0);
             $table->decimal('rating',5,2)->default(0);
             $table->integer('rating_count')->default(0);
             $table->integer('ratings_minus2')->default(0);

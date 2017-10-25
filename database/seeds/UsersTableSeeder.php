@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
         $prefixes = ["","O'","Mc","","Mac","La",""];
         $last_names = ['Smith','Jones','Miller','Hernandez','Roosevelt','Morgan','Johnson','Goldberg','Rodriguez','Page','Gonzalez','Carter','Clinton','Lincoln','Banner','Stark','Baker','Rodriguez'];
 
-        for($x=100;$x<400;$x++){
+        for($x=100;$x<200;$x++){
             $firstname=$first_names[rand(0,17)];
             $lastname=$prefixes[rand(0,6)].$last_names[rand(0,17)];
             $weight = rand(-4,4);
