@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
         $data = [
             "house_policies" => Policy::where('house_policy',1)->viewable()->take(3)->inRandomOrder()->get(),
-            "submitted_policies" => Policy::where('house_policy',0)->viewable()->take(3)->inRandomOrder()->get(),
+            "submitted_policies" => Policy::where('house_policy',0)->viewable()->take(6)->inRandomOrder()->get(),
             "rfps" => Rfp::viewable()->take(6)->inRandomOrder()->get()
         ];
         if(\Auth::check())

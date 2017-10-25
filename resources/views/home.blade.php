@@ -102,6 +102,15 @@
 </div>
 @endif
 
+<div class="container-fluid bg-info" id="filler2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" style="height:350px;">
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid bg-warning">
     <div class="container">
         <div class="row">
@@ -120,6 +129,7 @@
 
 @section('styles')
 <style type="text/css">
-    #homepageslide{background:url(/images/homepagebg.jpg) center center no-repeat; background-size: cover; }
+    #homepageslide{background:url(/images/homepagebg.jpg) center center no-repeat fixed; background-size: cover; }
+    #filler2{background:url(/images/homepagebg4.jpg) center center no-repeat fixed; background-size: cover; }
 </style>
 @append

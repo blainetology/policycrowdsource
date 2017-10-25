@@ -15,7 +15,10 @@ class Policy extends Model
     // RELATIONSHIPS
 
     public function sections(){
-    	return $this->hasMany('\App\Section')->orderBy('display_order','asc');
+        return $this->hasMany('\App\Section')->orderBy('display_order','asc');
+    }
+    public function topLevelSections(){
+    	return $this->hasMany('\App\Section')->where('parent_section_id',0)->orderBy('display_order','asc');
     }
     public function rfp(){
         return $this->belongsTo('\App\Rfp');
@@ -28,6 +31,9 @@ class Policy extends Model
 
     public function scopeViewable($query){
         return $query->where('published',1)->where('public',1);
+    }
+    public function scopeStarter($query){
+        return $query->where('starter_policy',1);
     }
     public function scopeHouse($query){
         return $query->where('house_policy',1);
