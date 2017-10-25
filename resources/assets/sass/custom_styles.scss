@@ -1,20 +1,21 @@
-.rating_5{background-color:$color-plus-5;}
-.rating_4{background-color:$color-plus-4;}
-.rating_3{background-color:$color-plus-3;}
-.rating_2{background-color:$color-plus-2;}
-.rating_1{background-color:$color-plus-1;}
-.rating_0{background-color:$color-neutral-0;}
-.rating_-1{background-color:$color-minus-1;}
-.rating_-2{background-color:$color-minus-2;}
-.rating_-3{background-color:$color-minus-3;}
-.rating_-4{background-color:$color-minus-4;}
-.rating_-5{background-color:$color-minus-5;}	
+h1,h2,h3,h4{
+	font-family: 'Oswald', sans-serif;
+	small{font-family: Arial, sans-serif;}
+}
+.navbar-brand{
+	font-family: 'Oswald', sans-serif;
+	color:#FFF !important;
+	font-size:20px;
+	text-transform:uppercase;
+}
 
 .policy-well{
-	min-height: 225px; position: relative;
+	min-height: 225px; 
+	position: relative;
 	.details_section{
 		height:90px; overflow:hidden;
 		.short_synopsis{margin:0; padding:0 0 4px; line-height: 1.3em; font-size:.9em; font-style:italic;}
+		.title{font-family: 'Oswald', sans-serif; font-size:16px;}
 	}
 	.btn-view-more{position: absolute; right:10px; bottom:10px;}
 	.policy-rating{position:absolute; left:10px; bottom:10px;}
@@ -90,4 +91,18 @@
 	&:hover{border-color:#222;color:#FFF;text-decoration:none;}
 	&:first-of-type{width:66px;}
 	&:last-of-type{width:66px;}
+}
+
+.policy-rating, .setting-rating{
+	&.rating_5{background-color:$color-plus-5;}
+	&.rating_4{background-color:$color-plus-4;}
+	&.rating_3{background-color:$color-plus-3;}
+	&.rating_2{background-color:$color-plus-2;}
+	&.rating_1{background-color:$color-plus-1;}
+	&.rating_0{background-color:$color-neutral-0;}
+	&.rating_-1{background-color:$color-minus-1;}
+	&.rating_-2{background-color:$color-minus-2;}
+	&.rating_-3{background-color:$color-minus-3;}
+	&.rating_-4{background-color:$color-minus-4;}
+	&.rating_-5{background-color:$color-minus-5;}	
 }

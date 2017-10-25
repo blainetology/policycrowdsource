@@ -11,7 +11,7 @@
     <title>{{!empty($pagetitle) ? $pagetitle.' | ' : ''}}{{config('app.name')}}</title>
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600|Montserrat:100,400,600,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&amp;subset=cyrillic,latin-ext" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style type="text/css">
         .navbar{margin-bottom:0;}

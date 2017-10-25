@@ -11400,48 +11400,25 @@ button.close {
   clip: auto;
 }
 
-.rating_5 {
-  background-color: red;
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Oswald', sans-serif;
 }
 
-.rating_4 {
-  background-color: #e61a1a;
+h1 small,
+h2 small,
+h3 small,
+h4 small {
+  font-family: Arial, sans-serif;
 }
 
-.rating_3 {
-  background-color: #cc3333;
-}
-
-.rating_2 {
-  background-color: #b34d4d;
-}
-
-.rating_1 {
-  background-color: #996666;
-}
-
-.rating_0 {
-  background-color: #807f7f;
-}
-
-.rating_-1 {
-  background-color: #666699;
-}
-
-.rating_-2 {
-  background-color: #4d4db3;
-}
-
-.rating_-3 {
-  background-color: #3333cc;
-}
-
-.rating_-4 {
-  background-color: #1a1ae6;
-}
-
-.rating_-5 {
-  background-color: blue;
+.navbar-brand {
+  font-family: 'Oswald', sans-serif;
+  color: #FFF !important;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 
 .policy-well {
@@ -11460,6 +11437,11 @@ button.close {
   line-height: 1.3em;
   font-size: .9em;
   font-style: italic;
+}
+
+.policy-well .details_section .title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
 }
 
 .policy-well .btn-view-more {
@@ -11649,5 +11631,60 @@ button.close {
 
 .setting-rating:last-of-type {
   width: 66px;
+}
+
+.policy-rating.rating_5,
+.setting-rating.rating_5 {
+  background-color: red;
+}
+
+.policy-rating.rating_4,
+.setting-rating.rating_4 {
+  background-color: #e61a1a;
+}
+
+.policy-rating.rating_3,
+.setting-rating.rating_3 {
+  background-color: #cc3333;
+}
+
+.policy-rating.rating_2,
+.setting-rating.rating_2 {
+  background-color: #b34d4d;
+}
+
+.policy-rating.rating_1,
+.setting-rating.rating_1 {
+  background-color: #996666;
+}
+
+.policy-rating.rating_0,
+.setting-rating.rating_0 {
+  background-color: #807f7f;
+}
+
+.policy-rating.rating_-1,
+.setting-rating.rating_-1 {
+  background-color: #666699;
+}
+
+.policy-rating.rating_-2,
+.setting-rating.rating_-2 {
+  background-color: #4d4db3;
+}
+
+.policy-rating.rating_-3,
+.setting-rating.rating_-3 {
+  background-color: #3333cc;
+}
+
+.policy-rating.rating_-4,
+.setting-rating.rating_-4 {
+  background-color: #1a1ae6;
+}
+
+.policy-rating.rating_-5,
+.setting-rating.rating_-5 {
+  background-color: blue;
 }
 
