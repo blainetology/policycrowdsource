@@ -8,15 +8,14 @@
             <h1>{{$rfp->name}}<br/><small>{!!$rfp->short_overview!!}</small></h1>
             <p class="small">
             <strong>Prepared and Submitted By:</strong> 
-            @foreach($rfp->collaborators as $cindex=>$collaborator)
-                @if($cindex<$rfp->collaborators->count()-1 && $rfp->collaborators->count()>2)
-                    {{$collaborator->user->full_name()}},  
-                @elseif($cindex<$rfp->collaborators->count()-1)
-                    {{$collaborator->user->full_name()}}  
-                @else 
-                    &amp; {{$collaborator->user->full_name()}} 
-                @endif
-            @endforeach
+                <?php 
+                $collabs=[]; 
+                foreach($rfp->collaborators as $cindex=>$collaborator){
+                    if($collaborator->user)
+                        $collabs[]=$collaborator->user->full_name();
+                }
+                ?>
+                {{implode(', ',$collabs)}} 
             </p>
         </div>
         <div class="col-md-3">
@@ -24,10 +23,10 @@
                 <span class="pull-left policy-rating rating_{{round($rfp->rating)}}"> {{number_format($rfp->rating_count,0)}} Votes </span>
                 <div class="rating-box policy-rating pull-right text-right" id="ratingBoxRfp{{$rfp->id}}">
                 @if(\Auth::check())
-                    <a href="javascript:rate_ajax({{$rfp->id}},null,-2)" title="strongly do not support" class="rating-thumb rating-2"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> 
-                    <a href="javascript:rate_ajax({{$rfp->id}},null,-1)" title="do not support" class="rating-thumb rating-1"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> 
-                    <a href="javascript:rate_ajax({{$rfp->id}},null,1)" title="support" class="rating-thumb rating1"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a> 
-                    <a href="javascript:rate_ajax({{$rfp->id}},null,2)" title="strongly support" class="rating-thumb rating2"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                    <a href="javascript:rate_ajax({{$rfp->id}},-2)" title="strongly do not support" class="rating-thumb rating-2"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> 
+                    <a href="javascript:rate_ajax({{$rfp->id}},-1)" title="do not support" class="rating-thumb rating-1"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> 
+                    <a href="javascript:rate_ajax({{$rfp->id}},1)" title="support" class="rating-thumb rating1"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a> 
+                    <a href="javascript:rate_ajax({{$rfp->id}},2)" title="strongly support" class="rating-thumb rating2"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
                 @else
                     <a href="javascript:showLoginModal()" class="btn btn-xs btn-default">Login to Rate</a>
                 @endif

@@ -34,8 +34,9 @@ class PoliciesController extends Controller
     public function create()
     {
         //
-        if(!\Auth::check())
-            return redirect()->route('policies.index');
+        if (\Auth::guest())
+            return redirect()->guest('login');
+
         $data = [
             'pagetitle' => 'Draft a Policy'
         ];
@@ -66,6 +67,8 @@ class PoliciesController extends Controller
      */
     public function show($id)
     {
+        if(\Auth::guest())
+            \Session::put('url.intended', url()->current());  
         //
         $policy = Policy::find($id);
         $policy->rating = round($policy->rating);

@@ -8,7 +8,7 @@ class Rating extends Model
 {
     //
 
-    protected $fillable = ['user_id','policy_id','section_id','rating','rating_abs_val','auto_tallied','political_weight','weighted_rating'];
+    protected $fillable = ['user_id','rfp_id','policy_id','section_id','rating','rating_abs_val','auto_tallied','political_weight','weighted_rating'];
 
     // SCOPES
 

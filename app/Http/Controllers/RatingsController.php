@@ -3,12 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rfp;
 use App\Policy;
 use App\Section;
 use App\Rating;
 
 class RatingsController extends Controller
 {
+    public function raterfp($rid,$rating)
+    {
+        //
+        if(\Auth::check()){
+            $rfp = Rfp::find($rid);
+            if($rfp){                
+                $rated = Rating::firstOrNew(['user_id'=>\Auth::user()->id,'rfp_id'=>$rfp->id]);
+                $rated->rating=$rating;
+                $rated->rating_abs_val=abs($rating);
+                $rated->political_weight=\Auth::user()->political_weight;
+                $rated->weighted_rating = $rated->rating*$rated->political_weight;
+                $rated->save();
+                if($rfp->recalculate==null)
+                    $rfp->recalculate=\DB::raw('NOW()');
+                $rfp->save();
+            }
+        }
+
+    }
     public function ratepolicy($pid,$rating)
     {
         //
@@ -17,7 +37,7 @@ class RatingsController extends Controller
             if($policy){                
                 $rated = Rating::firstOrNew(['user_id'=>\Auth::user()->id,'policy_id'=>$policy->id]);
                 $rated->rating=$rating;
-                $rated->rating_count=abs($rating);
+                $rated->rating_abs_val=abs($rating);
                 $rated->political_weight=\Auth::user()->political_weight;
                 $rated->weighted_rating = $rated->rating*$rated->political_weight;
                 $rated->save();

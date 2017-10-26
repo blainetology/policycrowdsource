@@ -7,16 +7,15 @@
         <div class="col-md-9">
             <h1>{{$policy->name}}</h1>
             <p class="small">
-            <strong>Prepared by:</strong> 
-            @foreach($policy->collaborators as $cindex=>$collaborator)
-                @if($cindex<$policy->collaborators->count()-1 && $policy->collaborators->count()>2)
-                    {{$collaborator->user->full_name()}},  
-                @elseif($cindex<$policy->collaborators->count()-1)
-                    {{$collaborator->user->full_name()}}  
-                @else 
-                    &amp; {{$collaborator->user->full_name()}} 
-                @endif
-            @endforeach
+                <strong>Prepared by:</strong> 
+                <?php 
+                $collabs=[]; 
+                foreach($policy->collaborators as $cindex=>$collaborator){
+                    if($collaborator->user)
+                        $collabs[]=$collaborator->user->full_name();
+                }
+                ?>
+                {{implode(', ',$collabs)}} 
             </p>
             <p>{{$policy->full_synopsis}}</p>
         </div>

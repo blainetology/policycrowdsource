@@ -20,7 +20,7 @@
         <div class="small">
         {!!\App\Rating::getPolicyThumbs($rfp)!!}
         </div>
-        <span class="policy-rating rating_{{$rfp->rating}}"> {{number_format($rfp->rating_count+2000000,0)}} votes </span>
+        <span class="policy-rating rating_{{$rfp->rating}}"> {{number_format($rfp->rating_count,0)}} votes </span>
         <div class="text-right"><a href="{{ route('rfp.show',$rfp->id) }}" class="btn btn-xs btn-primary btn-view-more">read more <span class="glyphicon glyphicon-triangle-right"></span></a></div>
     </div>
 </div>

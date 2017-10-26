@@ -7,6 +7,7 @@ use App\Rfp;
 use App\Policy;
 use App\Section;
 use App\Rating;
+use App\Collaborator;
 
 class RFPsController extends Controller
 {
@@ -33,6 +34,13 @@ class RFPsController extends Controller
     public function create()
     {
         //
+        if(\Auth::guest())
+            return redirect()->guest('login');
+
+        $data = [
+            'pagetitle' => 'Draft a RFP'
+        ];
+        return view('rfps.create',$data);
     }
 
     /**
@@ -44,6 +52,11 @@ class RFPsController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->get('rfp');
+        $rfp = Rfp::create($input);
+        $rfp_id=$rfp->id;
+        Collaborator::create(['rfp_id'=>$rfp_id,'user_id'=>\Auth::user()->id,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        return redirect()->route('accountmyrfps');
     }
 
     /**
@@ -55,6 +68,9 @@ class RFPsController extends Controller
     public function show($id)
     {
         //
+        if(\Auth::guest())
+            \Session::put('url.intended', url()->current());  
+
         $rfp = Rfp::find($id);
         $rfp->rating = round($rfp->rating);
         if($rfp->rating == -0)

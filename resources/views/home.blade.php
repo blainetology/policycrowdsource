@@ -29,13 +29,13 @@
                             <div class="row">
                                 <div class="col-lg-12 text-center hidden-xs">
                                     <a href="{{route('policies.index')}}" class="btn btn-info">Browse Policies</a> &nbsp; 
-                                    <a href="#" class="btn btn-warning">Draft a Policy</a> &nbsp; 
-                                    <a href="#" class="btn btn-success">Submit a RFP</a>
+                                    <a href="{{route('policies.create')}}" class="btn btn-warning">Draft a Policy</a> &nbsp; 
+                                    <a href="{{route('rfp.create')}}" class="btn btn-success">Submit a RFP</a>
                                 </div>
                                 <div class="col-lg-12 text-center hidden-sm hidden-md hidden-lg">
                                     <a href="{{route('policies.index')}}" class="btn btn-sm btn-info">View Policies</a> 
-                                    <a href="#" class="btn btn-sm btn-warning">Draft Policy</a>
-                                    <a href="#" class="btn btn-sm btn-success">Submit RFP</a>
+                                    <a href="{{route('policies.create')}}" class="btn btn-sm btn-warning">Draft Policy</a>
+                                    <a href="{{route('rfp.create')}}" class="btn btn-sm btn-success">Submit RFP</a>
                                 </div>
                             </div>
                             <br/>

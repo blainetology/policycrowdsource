@@ -11596,7 +11596,7 @@ h4 small {
 }
 
 .section-container .policy-section:hover .rating-box {
-  display: block;
+  display: block !important;
 }
 
 .setting-rating {

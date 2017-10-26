@@ -20,6 +20,7 @@ Route::resource('rfp','RFPsController');
 
 Route::group(['middleware'=>['auth']],function(){
 
+	Route::get('/rate/r/{rid}/r/{rating}',['as'=>'raterfp','uses'=>'RatingsController@raterfp']);
 	Route::get('/rate/p/{pid}/r/{rating}',['as'=>'ratepolicy','uses'=>'RatingsController@ratepolicy']);
 	Route::get('/rate/p/{pid}/s/{sid}/r/{rating}',['as'=>'ratesection','uses'=>'RatingsController@ratesection']);
 

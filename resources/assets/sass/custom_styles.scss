@@ -69,7 +69,7 @@ h1,h2,h3,h4{
 			&.rating-calculated{display:block;}
 		}
 		&:hover{
-			.rating-box{display:block;}
+			.rating-box{display:block !important;}
 		}
 	}
 }

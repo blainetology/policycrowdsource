@@ -9,7 +9,7 @@
         <div class="col-lg-2 text-right">
             @if(\Auth::check())
             <br/>
-            <a href="{{route('policies.create')}}" class="btn btn-success pull-right">Draft Policy</a>
+            <a href="{{route('policies.create')}}" class="btn btn-warning pull-right">Draft a Policy</a>
             @endif
         </div>
     </div>
