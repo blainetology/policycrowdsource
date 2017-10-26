@@ -31,7 +31,7 @@
           @endif
           <br/>
           <h4>Political Leaning</h4>
-          <div class="small" style="line-height:1.3;">In order to properly rank and gauge the ideaological support of each policy, we ask that you specify how you see yourself on the political spectrum. This information will not be seen or used by other people.</div>
+          <div class="small" style="line-height:1.3;">In order to properly rank and gauge the ideaological support of each policy, we ask that you specify how you see yourself on the political spectrum. This information will not be viewed by {{config('app.name')}} or used by other people.</div>
           <div style="padding:10px 0 0; height: 36px;">
           <a href="#" class="rating_-4 setting-rating {{\Auth::user()->political_weight==-4 ? 'selected' : ''}}">liberal</a>
           <a href="#" class="rating_-3 setting-rating {{\Auth::user()->political_weight==-3 ? 'selected' : ''}}">&nbsp;</a>
