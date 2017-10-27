@@ -77,12 +77,10 @@ class RFPsController extends Controller
             $rfp->rating = 0;
         $ratings = null;
         if(\Auth::check()){
-            $ratingsresults = Rating::byUser()->where('rfp_id',$rfp->id)->get();
-            if($ratingsresults->count()>0){
-                $ratings=[];
-                foreach($ratingsresults as $rating)
-                    $ratings[$rating->rfp_id]=['rating'=>$rating->rating,'calculated_rating'=>$rating->calculated_rating];
-            }
+            $ratings=['rfp'=>null];
+            $ratingsresult = Rating::byUser()->where('rfp_id',$rfp->id)->first();
+            if($ratingsresult)
+                $ratings['rfp']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
         }
         $data = [
             'rfp'           => $rfp,

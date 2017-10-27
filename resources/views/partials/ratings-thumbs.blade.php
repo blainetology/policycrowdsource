@@ -5,7 +5,7 @@ $calculated=$rating['calculated_rating'];
 ?>
 <div class="rating-box text-right visible-sm visible-xs" id="ratingBoxSection{{$sid}}">
 	@foreach(\App\Rating::$thumbs as $value=>$thumb)
-    <a href="javascript:rate_ajax({{$pid}},{{$sid}},$value)" title="{{!empty($calculated) && $calculated==$value ? 'calculated - ' : ''}} {[$thumb[0]]}" class="rating-thumb rating{{$value}} {{!empty($rated) && $rated==$value ? 'selected' : ''}} {{!empty($rated) && $rated!=$value ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==$value ? 'calculated' : ''}}"><i class="fa {{$thumb[1]}}" aria-hidden="true"></i></a>
+    <a href="javascript:rate_ajax({{$pid}},{{$sid}},{{$value}})" title="{{!empty($calculated) && $calculated==$value ? 'calculated - ' : ''}} {{$thumb[0]}}" class="rating-thumb rating{{$value}} {{!empty($rated) && $rated==$value ? 'selected' : ''}} {{!empty($rated) && $rated!=$value ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==$value ? 'calculated' : ''}}"><i class="fa {{$thumb[1]}}" aria-hidden="true"></i></a>
     @endforeach
 </div>
 @else

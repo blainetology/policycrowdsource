@@ -5,6 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
+            <strong class="label label-sm label-success">Request for Policy</strong>
             <h1>{{$rfp->name}}<br/><small>{!!$rfp->short_overview!!}</small></h1>
             <p class="small">
             <strong>Prepared and Submitted By:</strong> 
@@ -23,10 +24,15 @@
                 <span class="pull-left policy-rating rating_{{round($rfp->rating)}}"> {{number_format($rfp->rating_count,0)}} Votes </span>
                 <div class="rating-box policy-rating pull-right text-right" id="ratingBoxRfp{{$rfp->id}}">
                 @if(\Auth::check())
-                    <a href="javascript:rate_ajax({{$rfp->id}},-2)" title="strongly do not support" class="rating-thumb rating-2"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> 
-                    <a href="javascript:rate_ajax({{$rfp->id}},-1)" title="do not support" class="rating-thumb rating-1"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a> 
-                    <a href="javascript:rate_ajax({{$rfp->id}},1)" title="support" class="rating-thumb rating1"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a> 
-                    <a href="javascript:rate_ajax({{$rfp->id}},2)" title="strongly support" class="rating-thumb rating2"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                    <?php 
+                    if($ratings['rfp']){
+                        $rated=$ratings['rfp']['rating'];
+                        $calculated=$ratings['rfp']['calculated_rating'];
+                    }
+                    ?>
+                    @foreach(\App\Rating::$thumbs as $value=>$thumb)
+                    <a href="javascript:rate_ajax({{$rfp->id}},{{$value}})" title="{{!empty($calculated) && $calculated==$value ? 'calculated - ' : ''}} {{$thumb[0]}}" class="rating-thumb rating{{$value}} {{!empty($rated) && $rated==$value ? 'selected' : ''}} {{!empty($rated) && $rated!=$value ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==$value ? 'calculated' : ''}}"><i class="fa {{$thumb[1]}}" aria-hidden="true"></i></a>
+                    @endforeach
                 @else
                     <a href="javascript:showLoginModal()" class="btn btn-xs btn-default">Login to Rate</a>
                 @endif
