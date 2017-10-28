@@ -60,7 +60,16 @@ class CalculateRatings extends Command
                 $section->ratings_minus1=Rating::where('section_id',$section->id)->where('rating','-1')->count();
                 $section->ratings_plus1=Rating::where('section_id',$section->id)->where('rating','1')->count();
                 $section->ratings_plus2=Rating::where('section_id',$section->id)->where('rating','2')->count();
-                $section->ratings_avg=round((($section->ratings_minus2*-2)+($section->ratings_minus1*-1)+($section->ratings_plus1*1)+($section->ratings_plus2*2))/$section->rating_count);
+                $ratings_avg = (($section->ratings_minus2*-2)+($section->ratings_minus1*-1)+($section->ratings_plus1*1)+($section->ratings_plus2*2))/$section->rating_count;
+                if($ratings_avg<-1)
+                    $ratings_avg=-2;
+                elseif($ratings_avg<0)
+                    $ratings_avg=-1;
+                elseif($ratings_avg>1)
+                    $ratings_avg=2;
+                else
+                    $ratings_avg=1;
+                $section->ratings_avg=$ratings_avg;
                 $section->recalculate=null;
                 $section->save();                
             }
@@ -83,7 +92,17 @@ class CalculateRatings extends Command
                 $policy->ratings_minus1=Rating::where('policy_id',$policy->id)->where('rating','-1')->count();
                 $policy->ratings_plus1=Rating::where('policy_id',$policy->id)->where('rating','1')->count();
                 $policy->ratings_plus2=Rating::where('policy_id',$policy->id)->where('rating','2')->count();
-                $policy->ratings_avg=round((($policy->ratings_minus2*-2)+($policy->ratings_minus1*-1)+($policy->ratings_plus1*1)+($policy->ratings_plus2*2))/$policy->rating_count);
+                $ratings_avg = (($policy->ratings_minus2*-2)+($policy->ratings_minus1*-1)+($policy->ratings_plus1*1)+($policy->ratings_plus2*2))/$policy->rating_count;
+                if($ratings_avg<-1)
+                    $ratings_avg=-2;
+                elseif($ratings_avg<0)
+                    $ratings_avg=-1;
+                elseif($ratings_avg>1)
+                    $ratings_avg=2;
+                else
+                    $ratings_avg=1;
+                $policy->ratings_avg=$ratings_avg;
+                $policy->ratings_total=($policy->ratings_minus2*-2)+($policy->ratings_minus1*-1)+($policy->ratings_plus1*1)+($policy->ratings_plus2*2);
                 $policy->recalculate=null;
                 $policy->save();                
             }
@@ -106,6 +125,17 @@ class CalculateRatings extends Command
                 $rfp->ratings_minus1=Rating::where('rfp_id',$rfp->id)->where('rating','-1')->count();
                 $rfp->ratings_plus1=Rating::where('rfp_id',$rfp->id)->where('rating','1')->count();
                 $rfp->ratings_plus2=Rating::where('rfp_id',$rfp->id)->where('rating','2')->count();
+                $ratings_avg = (($rfp->ratings_minus2*-2)+($rfp->ratings_minus1*-1)+($rfp->ratings_plus1*1)+($rfp->ratings_plus2*2))/$rfp->rating_count;
+                if($ratings_avg<-1)
+                    $ratings_avg=-2;
+                elseif($ratings_avg<0)
+                    $ratings_avg=-1;
+                elseif($ratings_avg>1)
+                    $ratings_avg=2;
+                else
+                    $ratings_avg=1;
+                $rfp->ratings_avg=$ratings_avg;
+                $rfp->ratings_total=($rfp->ratings_minus2*-2)+($rfp->ratings_minus1*-1)+($rfp->ratings_plus1*1)+($rfp->ratings_plus2*2);
                 $rfp->recalculate=null;
                 $rfp->save();                
             }

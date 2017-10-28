@@ -29,7 +29,14 @@ class UsersTableSeeder extends Seeder
         for($x=100;$x<400;$x++){
             $firstname=$first_names[rand(0,17)];
             $lastname=$prefixes[rand(0,6)].$last_names[rand(0,17)];
-            $weight = rand(-4,4);
+            $weight = rand(-5,5);
+            if($weight==0){
+                $check = rand(1,2);
+                if($check==1)
+                    $weight=-1;
+                else
+                    $weight=1;
+            }
             $rand = rand(10,50);
             \App\User::create(['first_name'=>$firstname, 'last_name'=>$lastname,'email'=>$firstname.$lastname.$x.'@fakegmail123.com','password'=>\Hash::make('temp123'),'political_weight'=>$weight,'last_login'=>\DB::raw("ADDDATE(NOW(),2)"),'login_count'=>0]);
         }

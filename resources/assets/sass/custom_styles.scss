@@ -66,7 +66,7 @@ h1,h2,h3,h4{
 		.rating-box{
 			display:none; 
 			vertical-align:middle;
-			&.rating-calculated{display:block;}
+			&.rating-calculated{display:block !important;}
 		}
 		&:hover{
 			.rating-box{display:block !important;}
@@ -75,22 +75,20 @@ h1,h2,h3,h4{
 }
 
 .setting-rating{
-	padding:6px 3px;
 	box-sizing:border-box;
-	height:36px;
-	min-width:52px;
-	font-size:10px; 
+	height:42px;
+	width:76px;
+	max-width:9.3%;
+	font-size:10px;
+	line-height:12px; 
 	border-top:4px solid $well-bg;
 	border-bottom:4px solid $well-bg;
 	text-align:center;
 	display:inline-block;
 	color:#FFF;
-	float:left;
-	margin-right:1px;
+	margin:0 1px;
 	&.selected{border-color:#000;}
 	&:hover{border-color:#222;color:#FFF;text-decoration:none;}
-	&:first-of-type{width:66px;}
-	&:last-of-type{width:66px;}
 }
 
 .policy-rating, .setting-rating{

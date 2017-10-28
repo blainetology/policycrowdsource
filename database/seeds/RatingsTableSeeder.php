@@ -104,6 +104,7 @@ class RatingsTableSeeder extends Seeder
                 else
                     $ratings_avg=1;
                 $sectionrow->ratings_avg=$ratings_avg;
+                $sectionrow->ratings_total=($sectionrow->ratings_minus2*-2)+($sectionrow->ratings_minus1*-1)+($sectionrow->ratings_plus1*1)+($sectionrow->ratings_plus2*2);
     			$sectionrow->save();
             }
 
@@ -157,6 +158,7 @@ class RatingsTableSeeder extends Seeder
             else
                 $ratings_avg=1;
             $policyrow->ratings_avg=$ratings_avg;
+            $policyrow->ratings_total=($policyrow->ratings_minus2*-2)+($policyrow->ratings_minus1*-1)+($policyrow->ratings_plus1*1)+($policyrow->ratings_plus2*2);
 			$policyrow->save();
         }
 
@@ -195,7 +197,17 @@ class RatingsTableSeeder extends Seeder
             $rfprow->ratings_minus1=Rating::where('rfp_id',$rfprow->id)->where('rating','-1')->count();
             $rfprow->ratings_plus1=Rating::where('rfp_id',$rfprow->id)->where('rating','1')->count();
             $rfprow->ratings_plus2=Rating::where('rfp_id',$rfprow->id)->where('rating','2')->count();
-            $rfprow->ratings_avg=round((($rfprow->ratings_minus2*-2)+($rfprow->ratings_minus1*-1)+($rfprow->ratings_plus1*1)+($rfprow->ratings_plus2*2))/$rfprow->rating_count);
+            $ratings_avg = (($rfprow->ratings_minus2*-2)+($rfprow->ratings_minus1*-1)+($rfprow->ratings_plus1*1)+($rfprow->ratings_plus2*2))/$rfprow->rating_count;
+            if($ratings_avg<-1)
+                $ratings_avg=-2;
+            elseif($ratings_avg<0)
+                $ratings_avg=-1;
+            elseif($ratings_avg>1)
+                $ratings_avg=2;
+            else
+                $ratings_avg=1;
+            $rfprow->ratings_avg=$ratings_avg;
+            $rfprow->ratings_total=($rfprow->ratings_minus2*-2)+($rfprow->ratings_minus1*-1)+($rfprow->ratings_plus1*1)+($rfprow->ratings_plus2*2);
             $rfprow->save();
 
         }

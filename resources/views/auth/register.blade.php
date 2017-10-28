@@ -12,7 +12,7 @@
     <hr/>
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -90,17 +90,14 @@
                         <h4 class="text-primary">Political Leaning</h4>
                         <div class="well">
                             <input type="hidden" name="political_weight" id="political_weight" value="0"/>
-                            <div class="small" style="line-height:1.3;">In order to properly rank and gauge the ideaological support of each policy, we ask that you specify how you see yourself on the political spectrum. This information will not be viewed by {{config('app.name')}} or used by other people.</div>
-                            <div style="padding:10px 0 0; height: 36px;">
-                                <a href="javascript:setPoliWeight(-4)" class="rating_-4 setting-rating">liberal</a>
-                                <a href="javascript:setPoliWeight(-3)" class="rating_-3 setting-rating">&nbsp;</a>
-                                <a href="javascript:setPoliWeight(-2)" class="rating_-2 setting-rating">&nbsp;</a>
-                                <a href="javascript:setPoliWeight(-1)" class="rating_-1 setting-rating">&nbsp;</a>
-                                <a href="javascript:setPoliWeight(0)" class="rating_0 setting-rating">moderate</a>
-                                <a href="javascript:setPoliWeight(1)" class="rating_1 setting-rating">&nbsp;</a>
-                                <a href="javascript:setPoliWeight(2)" class="rating_2 setting-rating">&nbsp;</a>
-                                <a href="javascript:setPoliWeight(3)" class="rating_3 setting-rating">&nbsp;</a>
-                                <a href="javascript:setPoliWeight(4)" class="rating_4 setting-rating">conservative</a>
+                            <div class="small" style="line-height:1.3;">In order to properly rank and gauge the ideaological support of each policy, we ask that you specify how you see yourself on the political spectrum. This information will not be viewed by {{config('app.name')}} staff or used by other people.</div>
+                            <div style="padding:10px 0 0; max-width: 480px; margin:0 auto;" align="center">
+                                <span class="pull-left text-left" style="width:115px;">Liberal</span>
+                                <span class="pull-right text-right" style="width:115px;">Conservative</span>
+                                <span class="" style="width:115px;">Moderate</span>
+                                <br/>
+                                <a href="javascript:setPoliWeight(-5)" class="rating_-5 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(-4)" class="rating_-4 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(-3)" class="rating_-3 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(-2)" class="rating_-2 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(-1)" class="rating_-1 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(1)" class="rating_1 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(2)" class="rating_2 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(3)" class="rating_3 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(4)" class="rating_4 setting-rating">&nbsp;</a><a href="javascript:setPoliWeight(5)" class="rating_5 setting-rating">&nbsp;</a>
+                                <br clear="all">
                             </div>
                         </div>
                         <br/>

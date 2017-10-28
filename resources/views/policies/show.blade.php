@@ -123,7 +123,9 @@ function rate_ajax(pid,sid,rating){
     if(sid){
         $.get('/rate/p/'+pid+'/s/'+sid+'/r/'+rating,null,function(html){console.log(html)});
         $('#ratingBoxSection'+sid+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
+        $('#ratingBoxSection'+sid+' .rating'+rating).removeClass('calculated');
         $('#ratingBoxSection'+sid+' .rating'+rating).addClass('selected');
+        $('#ratingBoxSection'+sid).removeClass('rating-calculated');
     }
     else{
         $.get('/rate/p/'+pid+'/r/'+rating);

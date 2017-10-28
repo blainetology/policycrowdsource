@@ -31,18 +31,17 @@
           @endif
           <br/>
           <h4>Political Leaning</h4>
-          <div class="small" style="line-height:1.3;">In order to properly rank and gauge the ideaological support of each policy, we ask that you specify how you see yourself on the political spectrum. This information will not be viewed by {{config('app.name')}} or used by other people.</div>
-          <div style="padding:10px 0 0; height: 36px;">
-          <a href="#" class="rating_-4 setting-rating {{\Auth::user()->political_weight==-4 ? 'selected' : ''}}">liberal</a>
-          <a href="#" class="rating_-3 setting-rating {{\Auth::user()->political_weight==-3 ? 'selected' : ''}}">&nbsp;</a>
-          <a href="#" class="rating_-2 setting-rating {{\Auth::user()->political_weight==-2 ? 'selected' : ''}}">&nbsp;</a>
-          <a href="#" class="rating_-1 setting-rating {{\Auth::user()->political_weight==-1 ? 'selected' : ''}}">&nbsp;</a>
-          <a href="#" class="rating_0 setting-rating {{\Auth::user()->political_weight==0 ? 'selected' : ''}}">moderate</a>
-          <a href="#" class="rating_1 setting-rating {{\Auth::user()->political_weight==1 ? 'selected' : ''}}">&nbsp;</a>
-          <a href="#" class="rating_2 setting-rating {{\Auth::user()->political_weight==2 ? 'selected' : ''}}">&nbsp;</a>
-          <a href="#" class="rating_3 setting-rating {{\Auth::user()->political_weight==3 ? 'selected' : ''}}">&nbsp;</a>
-          <a href="#" class="rating_4 setting-rating {{\Auth::user()->political_weight==4 ? 'selected' : ''}}">conservative</a>
+          <input type="hidden" name="political_weight" id="political_weight" value="0"/>
+          <div class="small" style="line-height:1.3;">In order to properly rank and gauge the ideaological support of each policy, we ask that you specify how you see yourself on the political spectrum. This information will not be viewed by {{config('app.name')}} staff or used by other people.</div>
+          <div style="padding:10px 0 0; width: 90%; margin:0 auto;" align="center">
+              <span class="pull-left text-left" style="width:115px;">Liberal</span>
+              <span class="pull-right text-right" style="width:115px;">Conservative</span>
+              <span class="" style="width:115px;">Moderate</span>
+              <br/>
+              <a href="javascript:setPoliWeight(-5)" class="rating_-5 setting-rating {{\Auth::user()->political_weight==-5 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(-4)" class="rating_-4 setting-rating {{\Auth::user()->political_weight==-4 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(-3)" class="rating_-3 setting-rating {{\Auth::user()->political_weight==-3 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(-2)" class="rating_-2 setting-rating {{\Auth::user()->political_weight==-2 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(-1)" class="rating_-1 setting-rating {{\Auth::user()->political_weight==-1 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(1)" class="rating_1 setting-rating {{\Auth::user()->political_weight==1 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(2)" class="rating_2 setting-rating {{\Auth::user()->political_weight==2 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(3)" class="rating_3 setting-rating {{\Auth::user()->political_weight==3 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(4)" class="rating_4 setting-rating {{\Auth::user()->political_weight==4 ? 'selected' : ''}}">&nbsp;</a><a href="javascript:setPoliWeight(5)" class="rating_5 setting-rating {{\Auth::user()->political_weight==5 ? 'selected' : ''}}">&nbsp;</a>
+              <br clear="all">
           </div>
+
           <br/>
           <br/>
           <div class="form-group">
