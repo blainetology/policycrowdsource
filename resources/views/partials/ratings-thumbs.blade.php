@@ -1,13 +1,13 @@
-@if(\Auth::check())
-<?php
-$rated=$rating['rating'];
-$calculated=$rating['calculated_rating'];
-?>
 @if(empty($comments))
 <div class="small text-right"><a href="javascript:show_section_comments({{$sid}})">No Comments</a></div>
 @else
 <div class="small text-right"><a href="javascript:show_section_comments({{$sid}})">{{$comments}} Comment{{$comments!=1 ? 's' : ''}}</a></div>
 @endif
+@if(\Auth::check())
+<?php
+$rated=$rating['rating'];
+$calculated=$rating['calculated_rating'];
+?>
 <div class="clear-fix"></div>
 <div class="rating-box text-right visible-sm visible-xs {{!empty($calculated) && $rated!=$calculated ? 'rating-calculated' : ''}}" id="ratingBoxSection{{$sid}}">
 	@foreach(\App\Rating::$thumbs as $value=>$thumb)
