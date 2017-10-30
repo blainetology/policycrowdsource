@@ -88,6 +88,7 @@ class PoliciesController extends Controller
             }
         }
         $data = [
+            //'policyescaped' => Policy::where('id',$id)->with('topLevelSectionsNested')->first(),
             'policy'        => $policy,
             'sections'      => Policy::sortSections($policy->sections->toArray()),
             'ratings'       => $ratings,

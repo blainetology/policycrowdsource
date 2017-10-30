@@ -12,7 +12,11 @@ class Section extends Model
     // RELATIONSHIPS
 
     public function subsections(){
-    	return $this->hasMany('\App\Section','parent_section_id');
+    	return $this->hasMany('\App\Section','parent_section_id')->with('subsections');
+    }
+
+    public function comments(){
+        return $this->hasMany('\App\Comment')->with('user')->orderBy('created_at','asc');
     }
 
     // SCOPES

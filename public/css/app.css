@@ -11575,11 +11575,11 @@ h4 small {
 }
 
 .section-container:hover {
-  background: rgba(120, 120, 120, 0.12);
+  background: rgba(90, 90, 90, 0.06);
 }
 
 .section-container .policy-section {
-  min-height: 32px;
+  min-height: 34px;
 }
 
 .section-container .policy-section p {
@@ -11678,5 +11678,16 @@ h4 small {
 .policy-rating.rating_-5,
 .setting-rating.rating_-5 {
   background-color: blue;
+}
+
+.comments-div {
+  padding: 5px 20px;
+  margin-bottom: 5px;
+  display: none;
+}
+
+.comments-div .comment-div {
+  padding: 5px;
+  margin-bottom: 5px;
 }
 

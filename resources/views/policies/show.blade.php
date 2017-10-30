@@ -55,74 +55,6 @@
     <div id="subSections0">
         @include('policies.sections',['sections'=>$sections])         
     </div>
-    <pre class="hidden">
-    {{print_r($sections,true)}}
-    </pre>
-    @foreach($sections as $section1)
-        <div id="section-container-{{$section1['id']}}" class="section-container rating_{{round($section1['rating'])}} row hidden">
-            <div class="col-md-12">
-                <div class="row policy-section" id="section-{{$section1['id']}}">
-                    <div class="col-md-10">
-                        @if(!empty($section1['title']))
-                            <h2>{{$section1['title']}}</h2>
-                        @endif
-                        @if(!empty($section1['content']))
-                            <p>{!!nl2br($section1['content'])!!}</p>
-                        @endif
-                    </div>
-                    <div class="col-md-2">
-                       @include('partials.ratings-thumbs', ['pid'=>$policy->id,'sid'=>$section1['id'], 'rating'=>\App\Rating::getSectionRating($section1['id'],$ratings['sections'])])
-                    </div>
-                </div>
-                @if(!empty($section1['sections']))
-                    <div id="sub-sections-{{$section1['id']}}">
-                        @foreach($section1['sections'] as $section2)
-                            <div id="section-container-{{$section2['id']}}" class="section-container rating_{{round($section2['rating'])}} row">
-                                <div class="col-md-12">
-                                    <div class="row policy-section" id="section-{{$section2['id']}}">
-                                        <div class="col-md-10">
-                                            @if(!empty($section2['title']))
-                                                <h3>{{$section2['title']}}</h3>
-                                            @endif
-                                            @if(!empty($section2['content']))
-                                                <p>{!!nl2br($section2['content'])!!}</p>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-2">
-                                          @include('partials.ratings-thumbs',['pid'=>$policy->id, 'sid'=>$section2['id'], 'rating'=>\App\Rating::getSectionRating($section2['id'],$ratings['sections'])])
-                                        </div>
-                                    </div>
-                                    @if(!empty($section2['sections']))
-                                        <div id="sub-sections-{{$section2['id']}}">
-                                            @foreach($section2['sections'] as $section3)
-                                                <div id="section-container-{{$section3['id']}}" class="section-container rating_{{round($section3['rating'])}} row">
-                                                    <div class="col-md-12">
-                                                        <div class="row policy-section" id="section-{{$section3['id']}}">
-                                                            <div class="col-md-10">
-                                                                @if(!empty($section3['title']))
-                                                                    <h4>{{$section3['title']}}</h4>
-                                                                @endif
-                                                                @if(!empty($section3['content']))
-                                                                    <p>{!!nl2br($section3['content'])!!}</p>
-                                                                @endif
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                               @include('partials.ratings-thumbs',['pid'=>$policy->id, 'sid'=>$section3['id'], 'rating'=>\App\Rating::getSectionRating($section3['id'],$ratings['sections'])])
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-        </div>
-    @endforeach
     <br/><br/>
 
 </div>
@@ -136,6 +68,9 @@ function get_policy_sections(parent_id){
     $.get('/policies/sections/{{$policy->id}}/'+parent_id,null,function(html){
         $('#subSections'+parent_id).html(html);
     });
+}
+function show_section_comments(section_id){
+    $('#commentsBox'+section_id).slideDown(500);
 }
 function rate_ajax(pid,sid,rating){
     if(sid){

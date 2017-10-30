@@ -62,7 +62,7 @@ h1,h2,h3,h4{
 	&:hover{background:$policy-section-bg;}
 	.policy-section{
 		p{margin:0;}
-		min-height:32px;
+		min-height:34px;
 		.rating-box{
 			display:none; 
 			vertical-align:middle;
@@ -103,4 +103,14 @@ h1,h2,h3,h4{
 	&.rating_-3{background-color:$color-minus-3;}
 	&.rating_-4{background-color:$color-minus-4;}
 	&.rating_-5{background-color:$color-minus-5;}	
+}
+
+.comments-div{
+	padding:5px 20px; 
+	margin-bottom:5px;
+	display:none;
+	.comment-div{
+		padding:5px; 
+		margin-bottom:5px;
+	}
 }
