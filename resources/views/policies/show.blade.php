@@ -5,7 +5,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-            <strong class="label label-sm label-info">Submitted Policy</strong>
+            <strong class="label label-sm label-info">
+            @if($policy->starter_policy==1)
+            Example Policy
+            @else
+            Submitted Policy
+            @endif
+            </strong>
             <h1>{{$policy->name}}</h1>
             <p class="small">
                 <strong>Prepared by:</strong> 
@@ -46,8 +52,14 @@
         </div>
     </div>
     <hr class="clearfix" />
+    <div id="subSections0">
+        @include('policies.sections',['sections'=>$sections])         
+    </div>
+    <pre class="hidden">
+    {{print_r($sections,true)}}
+    </pre>
     @foreach($sections as $section1)
-        <div id="section-container-{{$section1['id']}}" class="section-container rating_{{round($section1['rating'])}} row">
+        <div id="section-container-{{$section1['id']}}" class="section-container rating_{{round($section1['rating'])}} row hidden">
             <div class="col-md-12">
                 <div class="row policy-section" id="section-{{$section1['id']}}">
                     <div class="col-md-10">
@@ -119,9 +131,33 @@
 
 @section('scripts')
 <script type="text/javascript">
+function get_policy_sections(parent_id){
+    $('#subSections'+parent_id).html('Loading...').css({borderBottom:'8px solid #F00',padding:'15px 0',marginBottom:'16px'});
+    $.get('/policies/sections/{{$policy->id}}/'+parent_id,null,function(html){
+        $('#subSections'+parent_id).html(html);
+    });
+}
 function rate_ajax(pid,sid,rating){
     if(sid){
-        $.get('/rate/p/'+pid+'/s/'+sid+'/r/'+rating,null,function(html){console.log(html)});
+        $.get('/rate/p/'+pid+'/s/'+sid+'/r/'+rating,null,function(data){
+            console.log(data);
+            if(data['calculated']){
+                if(data['calculated'][2]=='section'){
+                    $('#ratingBoxSection'+data['calculated'][0]+' .rating-thumb').removeClass('calculated');
+                    if(data['calculated'][1]){
+                        $('#ratingBoxSection'+data['calculated'][0]).addClass('rating-calculated');
+                        $('#ratingBoxSection'+data['calculated'][0]+' .rating'+data['calculated'][1]).addClass('calculated');
+                    }
+                    else
+                        $('#ratingBoxSection'+data['calculated'][0]).removeClass('rating-calculated');
+                }
+                else if(data['calculated'][2]=='policy'){
+                    $('#ratingBoxPolicy'+data['calculated'][0]+' .rating-thumb').removeClass('calculated');
+                    if(data['calculated'][1])
+                        $('#ratingBoxPolicy'+data['calculated'][0]+' .rating'+data['calculated'][1]).addClass('calculated');
+                }
+            }
+        });
         $('#ratingBoxSection'+sid+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
         $('#ratingBoxSection'+sid+' .rating'+rating).removeClass('calculated');
         $('#ratingBoxSection'+sid+' .rating'+rating).addClass('selected');
@@ -134,8 +170,9 @@ function rate_ajax(pid,sid,rating){
     }
 }
 jQuery(document).ready(function(){
-    $('[data-toggle="popover"]').popover()
-})
+    $('[data-toggle="popover"]').popover();
+    //get_policy_sections(0);
+});
     
 </script>
 @append

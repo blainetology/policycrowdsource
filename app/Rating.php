@@ -34,7 +34,7 @@ class Rating extends Model
             $thumbs = self::$thumbs;
             krsort($thumbs);
             foreach($thumbs as $value=>$thumb){
-                ${$thumb[2]} = round($policy->{'ratings_'.$thumb[2]}/$policy->rating_count*100);
+                ${$thumb[2]} = round($policy->{'ratings_'.$thumb[2]}/$policy->rating_count*100,1);
                 $html .= '<i class="fa '.$thumb[1].' rating-thumb rating'.$value.'" aria-hidden="true" style="width:30px; margin-top:1px;"></i>'.${$thumb[2]}.'% '.$thumb[0].'<br/>';
             }
         }

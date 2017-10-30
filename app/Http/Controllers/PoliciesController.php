@@ -137,4 +137,36 @@ class PoliciesController extends Controller
     {
         //
     }
+
+    public function getsubsections($pid,$sid){
+
+        $policy = Policy::find($pid);
+        if(!$policy)
+            return redirect()->route('home');
+        $sections = Section::where('policy_id',$policy->id)->where('parent_section_id',$sid)->orderBy('display_order','asc')->get();
+        $policy->rating = round($policy->rating);
+        if($policy->rating == -0)
+            $policy->rating = 0;
+        $ratings = null;
+        if(\Auth::check()){
+            $ratings=['policy'=>null,'sections'=>null];
+            $ratingsresult = Rating::byUser()->where('policy_id',$policy->id)->first();
+            if($ratingsresult)
+                $ratings['policy']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
+            $ratingsresults = Rating::byUser()->whereIn('section_id',$sections->pluck('id'))->get();
+            if($ratingsresults->count()>0){
+                $ratings['sections']=[];
+                foreach($ratingsresults as $rating)
+                    $ratings['sections'][$rating->section_id]=['rating'=>$rating->rating,'calculated_rating'=>$rating->calculated_rating];
+            }
+        }
+        $data = [
+            'policy'        => $policy,
+            'sections'      => $sections,
+            'ratings'       => $ratings,
+            'pagetitle'     => $policy->name
+        ];
+
+        return view('policies.section',$data);
+    }
 }

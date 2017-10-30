@@ -7,6 +7,7 @@ use App\Rfp;
 use App\Policy;
 use App\Section;
 use App\Rating;
+use App\User;
 
 class AccountController extends Controller
 {
@@ -20,19 +21,26 @@ class AccountController extends Controller
         return view('account.settings',$data);
     }
 
-    public function updatesettings(Request $request, $id){
-        //
+    public function updatesettings(Request $request){
         $user = \Auth::user();
-        $user->fill($request->toArray());
-        $user->save();
-
-        if(!empty($request->password) && !empty($request->password2) && $request->password==$request->password2){
-            $user->password = \Hash::make($request->password);
-            $user->save();
+        if($request->action=='settings'){
+            $emailcheck = User::where('email',$request->email)->where('id','!=',\Auth::user()->id)->count();
+            if($emailcheck>0)
+                return redirect()->route('accountsettings');
+            $user->fill($request->toArray());
+            $request->session()->flash('success', 'Settings Updated');
         }
-
-        //Log::user($user->id,'settings');
-        return redirect('/');
+        if($request->action=='password'){
+            if(!empty($request->password) && !empty($request->password_confirm) && $request->password==$request->password_confirm){
+                $user->password = \Hash::make($request->password);
+                $request->session()->flash('success', 'Password Updated');
+            }
+            else{
+                $request->session()->flash('error', 'Invalid Password. Try again.');                
+            }
+        }
+        $user->save();
+        return redirect()->route('accountsettings');
     }
 
     public function mypolicies(){

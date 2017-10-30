@@ -55,7 +55,7 @@ class RatingsController extends Controller
     public function ratesection($pid,$sid,$rating)
     {
         //
-        $response = [];
+        $response = ['calculated'=>null];
         if(\Auth::check()){
             $policy = Policy::find($pid);
             if($policy){
@@ -95,12 +95,13 @@ class RatingsController extends Controller
                                 $rated->calculated_rating=$rating;
                                 $rated->calculated_weighted_rating=($rating*\Auth::user()->political_weight);
                                 $rated->save();
-                                $response['calculated']=[$policy->id,$rated];
+                                $response['calculated']=[$policy->id,$rated->calculated_rating,'policy'];
                             }
                             else{
                                 $rated->calculated_rating=null;
                                 $rated->calculated_weighted_rating=null;
                                 $rated->save();                                
+                                $response['calculated']=[$policy->id,null,'policy'];
                             }
                         }
                     }
@@ -128,12 +129,13 @@ class RatingsController extends Controller
                                 $rated->calculated_rating=$rating;
                                 $rated->calculated_weighted_rating=($rating*\Auth::user()->political_weight);
                                 $rated->save();
-                                $response['calculated']=[$parentsection->id,$rated];
+                                $response['calculated']=[$parentsection->id,$rated->calculated_rating,'section'];
                             }
                             else{
                                 $rated->calculated_rating=null;
                                 $rated->calculated_weighted_rating=null;
                                 $rated->save();                                
+                                $response['calculated']=[$parentsection->id,null,'section'];
                             }
                         }
                     }

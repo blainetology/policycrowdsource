@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('policies/sections/{pid}/{sid}',['as'=>'getpolicysections','uses'=>'PoliciesController@getsubsections']);
 Route::resource('policies','PoliciesController');
 Route::resource('rfp','RFPsController');
 
@@ -25,6 +26,7 @@ Route::group(['middleware'=>['auth']],function(){
 	Route::get('/rate/p/{pid}/s/{sid}/r/{rating}',['as'=>'ratesection','uses'=>'RatingsController@ratesection']);
 
 	Route::get('/account/settings',['as'=>'accountsettings','uses'=>'AccountController@settings']);
+	Route::post('/account/settings',['as'=>'accountsettings','uses'=>'AccountController@updatesettings']);
 	Route::get('/account/mypolicies',['as'=>'accountmypolicies','uses'=>'AccountController@mypolicies']);
 	Route::get('/account/myrfps',['as'=>'accountmyrfps','uses'=>'AccountController@myrfps']);
 	Route::get('/account/ratedpolicies',['as'=>'accountratedpolicies','uses'=>'AccountController@ratedpolicies']);

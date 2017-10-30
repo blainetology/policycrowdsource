@@ -9,9 +9,17 @@
     <div class="col-lg-9">
       <h2>My Settings</h2>
 
+      @if($flash = session()->pull('success'))
+        <div class="alert alert-success">{{$flash}}</div>
+      @endif
+      @if($flash = session()->pull('error'))
+        <div class="alert alert-danger">{{$flash}}</div>
+      @endif
+
       <div class="well">
         <h4>Update Information</h4>
-        <form method="POST" role="form">
+        {{Form::open(['route'=>'accountsettings','method'=>'POST'])}}
+          <input type="hidden" name="action" value="settings" />
          	@if(!empty($user->facebook_id)) 
            	<small><em>Your name and email address are maintained by <a href="https://www.facebook.com/people/@/{{ $user->facebook_id }}" target="_blank">Facebook</a> and cannot be changed here.</em></small><br/><br/>
           	<h4>{{ $user->first_name }} {{ $user->last_name }}<br/>{{ $user->email }}</h4><br/><br/>
@@ -31,7 +39,7 @@
           @endif
           <br/>
           <h4>Political Leaning</h4>
-          <input type="hidden" name="political_weight" id="political_weight" value="0"/>
+          <input type="hidden" name="political_weight" id="political_weight" value="{{\Auth::user()->political_weight}}"/>
           <div class="small" style="line-height:1.3;">In order to properly rank and gauge the ideaological support of each policy, we ask that you specify how you see yourself on the political spectrum. This information will not be viewed by {{config('app.name')}} staff or used by other people.</div>
           <div style="padding:10px 0 0; width: 90%; margin:0 auto;" align="center">
               <span class="pull-left text-left" style="width:115px;">Liberal</span>
@@ -47,8 +55,8 @@
           <div class="form-group">
             <input type="submit" value="update information" class="btn btn-md btn-primary" />
           </div>
+        {{Form::close()}}
 
-        </form>
       </div>
 
 
@@ -59,19 +67,20 @@
         @if(!empty($submit_message)){
           <p><em>{{ $submit_message }}</em></p>
         @endif
-        <form method="POST" role="form">
+        {{Form::open(['route'=>'accountsettings','method'=>'POST'])}}
+          <input type="hidden" name="action" value="password" />
 			    <div class="form-group">
             <label for="password">New Password</label>
-            <input type="password" name="password" id="password" placeholder="new password" class="form-control" required />
+            <input type="password" name="password" id="password" placeholder="new password" class="form-control"  />
   				</div>
 			    <div class="form-group">
             <label for="password_confirm">New Password</label>
-            <input type="password" name="password_confirm" id="password_confirm" placeholder="confirm password" class="form-control" required />
+            <input type="password" name="password_confirm" id="password_confirm" placeholder="confirm password" class="form-control"  />
 			  	</div>
 			    <div class="form-group">
             <input type="submit" value="update password" class="btn btn-md btn-primary" />
 			   	</div>
-        </form>
+        {{Form::close()}}
       </div>
 
 
@@ -83,3 +92,13 @@
 	</div>
 </div>
 @stop
+
+@section('scripts')
+<script type="text/javascript">
+    function setPoliWeight(weight){
+        $('#political_weight').val(weight);
+        $('.setting-rating.selected').removeClass('selected');
+        $('.setting-rating.rating_'+weight).addClass('selected');
+    }
+</script>
+@append
