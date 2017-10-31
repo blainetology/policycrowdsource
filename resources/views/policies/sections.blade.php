@@ -12,7 +12,7 @@
                     @include('partials/comments',['comments'=>\App\Comment::forSection($section['id'])->with('user')->get(),'section_id'=>$section['id']])
                 </div>
                 <div class="col-md-2">
-                   @include('partials.ratings-thumbs', ['pid'=>$policy->id,'sid'=>$section['id'], 'rating'=>\App\Rating::getSectionRating($section['id'],$ratings['sections']),'comments'=>\App\Comment::forSection($section['id'])->count()])
+                   @include('partials.ratings-thumbs', ['pid'=>$policy->id,'sid'=>$section['id'], 'rating'=>\App\Rating::getSectionRating($section['id'],$ratings['sections']),'comments'=>$section['comments_count']])
                 </div>
             </div>
             <div id="subSections{{$section['id']}}">

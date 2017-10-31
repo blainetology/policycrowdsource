@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('user_id')->index();
             $table->integer('policy_id')->index()->nullable();
             $table->integer('section_id')->index()->nullable();
+            $table->integer('rfp_id')->index()->nullable();
             $table->text('comment')->nullable();
             $table->integer('flagged')->default(0);
             $table->integer('banned')->default(0);

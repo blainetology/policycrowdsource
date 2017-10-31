@@ -20,6 +20,9 @@ class Rfp extends Model
     public function collaborators(){
         return $this->hasMany('\App\Collaborator')->with('user')->orderBy('owner','desc')->orderBy('admin','desc')->orderBy('editor','desc')->orderBy('reviewer','desc');
     }
+    public function comments(){
+        return $this->hasMany('\App\Comment')->with('user')->orderBy('created_at','asc');
+    }
 
     // SCOPES
 

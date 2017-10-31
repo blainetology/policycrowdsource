@@ -35,6 +35,7 @@ class CreatePoliciesTable extends Migration
             $table->integer('ratings_plus2')->default(0);
             $table->integer('ratings_avg')->default(0);
             $table->integer('ratings_total')->default(0);
+            $table->integer('comments_count')->default(0);
             $table->datetime('recalculate')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -61,6 +62,7 @@ class CreatePoliciesTable extends Migration
             $table->integer('ratings_plus2')->default(0);
             $table->integer('ratings_avg')->default(0);
             $table->integer('ratings_total')->default(0);
+            $table->integer('comments_count')->default(0);
             $table->datetime('recalculate')->nullable();
             $table->timestamps();
         });
@@ -108,6 +110,7 @@ class CreatePoliciesTable extends Migration
             $table->integer('ratings_plus2')->default(0);
             $table->integer('ratings_avg')->default(0);
             $table->integer('ratings_total')->default(0);
+            $table->integer('comments_count')->default(0);
             $table->datetime('recalculate')->nullable();
             $table->timestamps();
             $table->softDeletes();
