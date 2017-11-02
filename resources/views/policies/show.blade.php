@@ -104,6 +104,16 @@ function rate_ajax(pid,sid,rating){
         $('#ratingBoxPolicy'+pid+' .rating'+rating).addClass('selected');
     }
 }
+function postsectioncomment(e, textarea, sid){
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if(code == 13)
+        $.post('/comment/section/'+sid,{'section_id':sid, 'comment':textarea.value},function(html){$('#commentsList'+sid).append(html);});
+}
+function postpolicycomment(e, textarea, pid){
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if(code == 13)
+        $.post('/comment/policy/'+pid,{'section_id':sid, 'comment':textarea.value},function(html){});
+}
 jQuery(document).ready(function(){
     $('[data-toggle="popover"]').popover();
     //get_policy_sections(0);

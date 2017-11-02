@@ -8,5 +8,5 @@
 		</div>
 	@endforeach
 	</div>
-	{{Form::textarea('commentInput'.$section_id,null,['class'=>'form-control comment-input','aria-label'=>'leave a comment','placeholder'=>'leave a comment...','rows'=>2,'maxlength'=>400])}}
+	{{Form::textarea('commentInput'.$section_id,null,['class'=>'form-control comment-input','aria-label'=>'leave a comment','placeholder'=>'leave a comment...','rows'=>2,'maxlength'=>400, 'onKeyPress'=>"postsectioncomment(event, this, $section_id)"])}}
 </div>

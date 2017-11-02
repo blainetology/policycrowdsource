@@ -19,6 +19,10 @@ Route::get('policies/sections/{pid}/{sid}',['as'=>'getpolicysections','uses'=>'P
 Route::resource('policies','PoliciesController');
 Route::resource('rfp','RFPsController');
 
+Route::get('/comment/policy/{pid}',['as'=>'commentpolicy','uses'=>'CommentsController@getpolicy']);
+Route::get('/comment/section/{sid}',['as'=>'commentsection','uses'=>'CommentsController@getsection']);
+Route::get('/comment/rfp/{rid}',['as'=>'commentrfp','uses'=>'CommentsController@getrfp']);
+
 Route::group(['middleware'=>['auth']],function(){
 
 	Route::get('/rate/r/{rid}/r/{rating}',['as'=>'raterfp','uses'=>'RatingsController@raterfp']);
@@ -31,5 +35,9 @@ Route::group(['middleware'=>['auth']],function(){
 	Route::get('/account/myrfps',['as'=>'accountmyrfps','uses'=>'AccountController@myrfps']);
 	Route::get('/account/ratedpolicies',['as'=>'accountratedpolicies','uses'=>'AccountController@ratedpolicies']);
 	Route::get('/account/ratedrfps',['as'=>'accountratedrfps','uses'=>'AccountController@ratedrfps']);
+
+	Route::post('/comment/policy/{pid}',['as'=>'commentpolicy','uses'=>'CommentsController@postpolicy']);
+	Route::post('/comment/section/{sid}',['as'=>'commentsection','uses'=>'CommentsController@postsection']);
+	Route::post('/comment/rfp/{rid}',['as'=>'commentrfp','uses'=>'CommentsController@postrfp']);
 
 });
