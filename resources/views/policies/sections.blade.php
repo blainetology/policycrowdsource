@@ -1,5 +1,5 @@
 @foreach($sections as $section)
-    <div id="sectionContainer{{$section['id']}}" class="section-container rating_{{round($section['rating'])}} row">
+    <div id="sectionContainer{{$section['id']}}" class="section-container rating_{{round($section['political_rating'])}} row">
         <div class="col-md-12">
             <div class="row policy-section" data-section="{{$section['id']}}" id="section{{$section['id']}}">
                 <div class="col-md-10">

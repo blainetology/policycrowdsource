@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-3">
             <div class="well well-sm">
-                <span class="pull-left policy-rating rating_{{round($policy->rating)}}"> {{number_format($policy->rating_count,0)}} Votes </span>
+                <span class="pull-left policy-rating rating_{{round($policy->rating)}}"> {{number_format($policy->ratings_count,0)}} Votes </span>
                 <div class="rating-box policy-rating pull-right text-right" id="ratingBoxPolicy{{$policy->id}}">
                 @if(\Auth::check())
                     <?php 
@@ -75,7 +75,6 @@ function show_section_comments(section_id){
 function rate_ajax(pid,sid,rating){
     if(sid){
         $.get('/rate/p/'+pid+'/s/'+sid+'/r/'+rating,null,function(data){
-            console.log(data);
             if(data['calculated']){
                 if(data['calculated'][2]=='section'){
                     $('#ratingBoxSection'+data['calculated'][0]+' .rating-thumb').removeClass('calculated');
@@ -94,8 +93,7 @@ function rate_ajax(pid,sid,rating){
             }
         });
         $('#ratingBoxSection'+sid+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
-        $('#ratingBoxSection'+sid+' .rating'+rating).removeClass('calculated');
-        $('#ratingBoxSection'+sid+' .rating'+rating).addClass('selected');
+        $('#ratingBoxSection'+sid+' .rating'+rating).removeClass('calculated').addClass('selected');
         $('#ratingBoxSection'+sid).removeClass('rating-calculated');
     }
     else{
@@ -107,12 +105,12 @@ function rate_ajax(pid,sid,rating){
 function postsectioncomment(e, textarea, sid){
     var code = (e.keyCode ? e.keyCode : e.which);
     if(code == 13)
-        $.post('/comment/section/'+sid,{'section_id':sid, 'comment':textarea.value},function(html){$('#commentsList'+sid).append(html);});
+        axios.post('/comment/section/'+sid,{section_id:sid, comment:textarea.value}).then(function(response){ $('#commentsList'+sid).append(response.data); }).catch(function(error){ console.log(error); });
 }
 function postpolicycomment(e, textarea, pid){
     var code = (e.keyCode ? e.keyCode : e.which);
     if(code == 13)
-        $.post('/comment/policy/'+pid,{'section_id':sid, 'comment':textarea.value},function(html){});
+        axios.post('/comment/policy/'+pid,{policy_id:pid, comment:textarea.value}).then(function(response){ $('#commentsList'+sid).append(response.data); }).catch(function(error){ console.log(error); });
 }
 jQuery(document).ready(function(){
     $('[data-toggle="popover"]').popover();

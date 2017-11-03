@@ -11,31 +11,30 @@ use App\Comment;
 
 class CommentsController extends Controller
 {
-    public function postpolicy(Request $request, $pid)
-    {
-        //
-        if(\Auth::check()){
-            return "posted";
-        }
 
+    public function getpolicy($pid){
+        return "got";
     }
 
-    public function postsection(Request $request, $sid)
-    {
-        //
-        if(\Auth::check()){
-            return "posted";
-        }
-
+    public function getsection($sid){
+        return "got";
     }
 
-    public function postrfp(Request $request, $rid)
-    {
-        //
-        if(\Auth::check()){
-            return "posted";
-        }
+    public function getrfp($rid){
+        return "got";
+    }
 
+
+    public function postpolicy(Request $request, $pid){
+        return "posted";
+    }
+
+    public function postsection(Request $request, $sid){
+        return "posted";
+    }
+
+    public function postrfp(Request $request, $rid){
+        return "posted";
     }
 
 }

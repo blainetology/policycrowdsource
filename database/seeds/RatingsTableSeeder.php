@@ -88,13 +88,13 @@ class RatingsTableSeeder extends Seeder
     				$rating = 5;
     			elseif($rating < -5)
     				$rating = -5;
-    			$sectionrow->rating=$rating;
-                $sectionrow->rating_count=Rating::where('section_id',$sectionrow->id)->count();
+    			$sectionrow->political_rating=$rating;
+                $sectionrow->ratings_count=Rating::where('section_id',$sectionrow->id)->count();
                 $sectionrow->ratings_minus2=Rating::where('section_id',$sectionrow->id)->where('rating','-2')->count();
                 $sectionrow->ratings_minus1=Rating::where('section_id',$sectionrow->id)->where('rating','-1')->count();
                 $sectionrow->ratings_plus1=Rating::where('section_id',$sectionrow->id)->where('rating','1')->count();
                 $sectionrow->ratings_plus2=Rating::where('section_id',$sectionrow->id)->where('rating','2')->count();
-                $ratings_avg = (($sectionrow->ratings_minus2*-2)+($sectionrow->ratings_minus1*-1)+($sectionrow->ratings_plus1*1)+($sectionrow->ratings_plus2*2))/$sectionrow->rating_count;
+                $ratings_avg = (($sectionrow->ratings_minus2*-2)+($sectionrow->ratings_minus1*-1)+($sectionrow->ratings_plus1*1)+($sectionrow->ratings_plus2*2))/$sectionrow->ratings_count;
                 if($ratings_avg<-1)
                     $ratings_avg=-2;
                 elseif($ratings_avg<0)
@@ -142,13 +142,13 @@ class RatingsTableSeeder extends Seeder
 				$rating = 5;
 			elseif($rating < -5)
 				$rating = -5;
-			$policyrow->rating=$rating;
-            $policyrow->rating_count=Rating::where('policy_id',$policyrow->id)->count();
+			$policyrow->political_rating=$rating;
+            $policyrow->ratings_count=Rating::where('policy_id',$policyrow->id)->count();
             $policyrow->ratings_minus2=Rating::where('policy_id',$policyrow->id)->where('rating','-2')->count();
             $policyrow->ratings_minus1=Rating::where('policy_id',$policyrow->id)->where('rating','-1')->count();
             $policyrow->ratings_plus1=Rating::where('policy_id',$policyrow->id)->where('rating','1')->count();
             $policyrow->ratings_plus2=Rating::where('policy_id',$policyrow->id)->where('rating','2')->count();
-            $ratings_avg = (($policyrow->ratings_minus2*-2)+($policyrow->ratings_minus1*-1)+($policyrow->ratings_plus1*1)+($policyrow->ratings_plus2*2))/$policyrow->rating_count;
+            $ratings_avg = (($policyrow->ratings_minus2*-2)+($policyrow->ratings_minus1*-1)+($policyrow->ratings_plus1*1)+($policyrow->ratings_plus2*2))/$policyrow->ratings_count;
             if($ratings_avg<-1)
                 $ratings_avg=-2;
             elseif($ratings_avg<0)
@@ -191,13 +191,13 @@ class RatingsTableSeeder extends Seeder
                 $rating = 5;
             elseif($rating < -5)
                 $rating = -5;
-            $rfprow->rating=$rating;
-            $rfprow->rating_count=Rating::where('rfp_id',$rfprow->id)->count();
+            $rfprow->political_rating=$rating;
+            $rfprow->ratings_count=Rating::where('rfp_id',$rfprow->id)->count();
             $rfprow->ratings_minus2=Rating::where('rfp_id',$rfprow->id)->where('rating','-2')->count();
             $rfprow->ratings_minus1=Rating::where('rfp_id',$rfprow->id)->where('rating','-1')->count();
             $rfprow->ratings_plus1=Rating::where('rfp_id',$rfprow->id)->where('rating','1')->count();
             $rfprow->ratings_plus2=Rating::where('rfp_id',$rfprow->id)->where('rating','2')->count();
-            $ratings_avg = (($rfprow->ratings_minus2*-2)+($rfprow->ratings_minus1*-1)+($rfprow->ratings_plus1*1)+($rfprow->ratings_plus2*2))/$rfprow->rating_count;
+            $ratings_avg = (($rfprow->ratings_minus2*-2)+($rfprow->ratings_minus1*-1)+($rfprow->ratings_plus1*1)+($rfprow->ratings_plus2*2))/$rfprow->ratings_count;
             if($ratings_avg<-1)
                 $ratings_avg=-2;
             elseif($ratings_avg<0)

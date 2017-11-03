@@ -27,8 +27,8 @@ class CreatePoliciesTable extends Migration
             $table->integer('starter_policy')->index()->default(0);
             $table->integer('section_count')->default(0);
             $table->integer('top_section_count')->default(0);
-            $table->decimal('rating',5,2)->default(0);
-            $table->integer('rating_count')->default(0);
+            $table->decimal('political_rating',5,2)->default(0);
+            $table->integer('ratings_count')->default(0);
             $table->integer('ratings_minus2')->default(0);
             $table->integer('ratings_minus1')->default(0);
             $table->integer('ratings_plus1')->default(0);
@@ -54,8 +54,8 @@ class CreatePoliciesTable extends Migration
             $table->integer('starter_policy')->index()->default(0);
             $table->integer('section_count')->default(0);
             $table->integer('display_order')->default(1);
-            $table->decimal('rating',5,2)->default(0);
-            $table->integer('rating_count')->default(0);
+            $table->decimal('political_rating',5,2)->default(0);
+            $table->integer('ratings_count')->default(0);
             $table->integer('ratings_minus2')->default(0);
             $table->integer('ratings_minus1')->default(0);
             $table->integer('ratings_plus1')->default(0);
@@ -102,8 +102,8 @@ class CreatePoliciesTable extends Migration
             $table->integer('published')->index()->default(0);
             $table->integer('house_rfp')->index()->default(0);
             $table->integer('starter_rfp')->index()->default(0);
-            $table->decimal('rating',5,2)->default(0);
-            $table->integer('rating_count')->default(0);
+            $table->decimal('political_rating',5,2)->default(0);
+            $table->integer('ratings_count')->default(0);
             $table->integer('ratings_minus2')->default(0);
             $table->integer('ratings_minus1')->default(0);
             $table->integer('ratings_plus1')->default(0);

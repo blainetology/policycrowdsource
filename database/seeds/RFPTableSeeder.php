@@ -43,7 +43,7 @@ class RFPTableSeeder extends Seeder
             $details = "";
             for($y=1;$y<=rand(3,8);$y++)
                 $details .= "Objective $y:<br/>".$content[rand(0,14)]."<br/><br/>";
-        	$rfp = Rfp::create(['name'=>$prefixes[$x].' RFP','short_overview'=>'short overview of '.$prefixes[$x].' RFP'.' with quick details about the objective','full_details'=>"A much longer explanation of the RFP and what is expected in a response, including specific items that need to be addressed.<br/><br/>".$details,'public'=>1,'published'=>1,'rating'=>rand(-3,3),'rating_count'=>rand(50,70), 'submission_start'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")"), 'submission_cutoff'=>\DB::raw("ADDDATE(NOW(),".rand(10,30).")")]);
+        	$rfp = Rfp::create(['name'=>$prefixes[$x].' RFP','short_overview'=>'short overview of '.$prefixes[$x].' RFP'.' with quick details about the objective','full_details'=>"A much longer explanation of the RFP and what is expected in a response, including specific items that need to be addressed.<br/><br/>".$details,'public'=>1,'published'=>1, 'submission_start'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")"), 'submission_cutoff'=>\DB::raw("ADDDATE(NOW(),".rand(10,30).")")]);
             Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>(100000+rand(0,1)),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
             Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>(100001+rand(2,4)),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
             Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>(100002+rand(5,7)),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);

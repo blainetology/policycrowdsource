@@ -9,7 +9,7 @@ class Rfp extends Model
     //
     public $table = 'rfps';
 
-    protected $fillable = ['name','short_overview','full_details','submission_start','submission_cutoff','no_expiration','public','published','house_rfp','rating','rating_count'];
+    protected $fillable = ['name','short_overview','full_details','submission_start','submission_cutoff','no_expiration','public','published','house_rfp','political_rating','ratings_count'];
 
 
     // RELATIONSHIPS
