@@ -104,8 +104,12 @@ function rate_ajax(pid,sid,rating){
 }
 function postsectioncomment(e, textarea, sid){
     var code = (e.keyCode ? e.keyCode : e.which);
-    if(code == 13)
-        axios.post('/comment/section/'+sid,{section_id:sid, comment:textarea.value}).then(function(response){ $('#commentsList'+sid).append(response.data); }).catch(function(error){ console.log(error); });
+    if(code == 13){
+        var comment = textarea.value.replace(/(\r\n|\n|\r)/gm,"");
+        console.log(comment);
+        textarea.value = comment;
+        axios.post('/comment/section/'+sid,{section_id:sid, comment:comment}).then(function(response){ $('#commentsList'+sid).append(response.data); textarea.value="" }).catch(function(error){ console.log(error); });
+    }
 }
 function postpolicycomment(e, textarea, pid){
     var code = (e.keyCode ? e.keyCode : e.which);

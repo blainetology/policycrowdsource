@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Policy;
 use App\Section;
 use App\Collaborator;
+use App\User;
 
 class PoliciesTableSeeder extends Seeder
 {
@@ -39,106 +40,25 @@ class PoliciesTableSeeder extends Seeder
         DB::update("ALTER TABLE sections AUTO_INCREMENT = 403000;");
 
         $policy = Policy::create(['name'=>'Heathcare Reform', 'short_synopsis'=>'Repeal and replacement of the Affordable Care Act','full_synopsis'=>'A formal replacement for the Affordable Care Act. The first step will be to completely repeal the Act. Then the replacement will be established.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30001]);
-        for($x=1;$x<=rand(2,8);$x++){
-            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
-            $sections2num=rand(0,5);
-            if($sections2num>0){
-                for($y=1;$y<=rand(1,6);$y++){
-                    $section2 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
-                    $sections3num=rand(0,3);
-                    if($sections3num>0){
-                        for($z=1;$z<=rand(2,4);$z++){
-                            $section3 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section2->id, 'user_id'=>100000, 'display_order'=>$z]); //400000
-                        }
-                    }
-                }
-            }
-        }
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>100001,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>100003,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>100010,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-
+        $this->createSections($policy,$content);
 
         $policy = Policy::create(['name'=>'Gun Control Overhaul', 'short_synopsis'=>'Establishing limits on certain kind of firearms and establishing a national background check system','full_synopsis'=>'Establishing limits on certain kind of firearms, specifically assault rifles, and banning the sale of accessories that can be used to adapt semi-automatic to act as an automatic. This also establishes a national background check system to provide for approvals within minutes, thereby eliminating the gun show loophole.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30002]);
-        for($x=1;$x<=rand(2,8);$x++){
-            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
-            $sections2num=rand(0,5);
-            if($sections2num>0){
-                for($y=1;$y<=rand(1,6);$y++){
-                    $section2 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
-                    $sections3num=rand(0,3);
-                    if($sections3num>0){
-                        for($z=1;$z<=rand(2,4);$z++){
-                            $section3 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section2->id, 'user_id'=>100000, 'display_order'=>$z]); //400000
-                        }
-                    }
-                }
-            }
-        }
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>100011,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>100013,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>100015,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-
+        $this->createSections($policy,$content);
 
         $policy = Policy::create(['name'=>'Local Townhomes CC&amp;R', 'short_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions','full_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions for the local Townhomes Homeowners Association. The current ones are too limiting.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30002]);
-        for($x=1;$x<=rand(2,8);$x++){
-            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
-            $sections2num=rand(0,5);
-            if($sections2num>0){
-                for($y=1;$y<=rand(1,6);$y++){
-                    $section2 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
-                    $sections3num=rand(0,3);
-                    if($sections3num>0){
-                        for($z=1;$z<=rand(2,4);$z++){
-                            $section3 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section2->id, 'user_id'=>100000, 'display_order'=>$z]); //400000
-                        }
-                    }
-                }
-            }
-        }
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>100001,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>100002,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-
+        $this->createSections($policy,$content);
 
         $policy = Policy::create(['name'=>'School Board Policies', 'short_synopsis'=>'Establishing new policies for school board meetings.','full_synopsis'=>'Establishing new policies for school board meetings, for both audience participation and from the board members.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30003]);
-        for($x=1;$x<=rand(2,8);$x++){
-            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
-            $sections2num=rand(0,5);
-            if($sections2num>0){
-                for($y=1;$y<=rand(1,6);$y++){
-                    $section2 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
-                    $sections3num=rand(0,3);
-                    if($sections3num>0){
-                        for($z=1;$z<=rand(2,4);$z++){
-                            $section3 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section2->id, 'user_id'=>100000, 'display_order'=>$z]); //400000
-                        }
-                    }
-                }
-            }
-        }
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100001,100003),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(10010,100020),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(10021,100030),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        $this->createSections($policy,$content);
 
         $policy = Policy::create(['name'=>'PTA Bylaws', 'short_synopsis'=>'Establishing new policies and procedures for the local school PTA','full_synopsis'=>'Establishing new policies and procedures for the local elementary school\'s Parent Teacher Association, including member expectations and procedures for working with the administration.', 'published'=>1, 'public'=>1, 'house_policy'=>0]);
-        for($x=1;$x<=rand(2,8);$x++){
-            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
-            $sections2num=rand(0,5);
-            if($sections2num>0){
-                for($y=1;$y<=rand(1,6);$y++){
-                    $section2 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
-                    $sections3num=rand(0,3);
-                    if($sections3num>0){
-                        for($z=1;$z<=rand(1,3);$z++){
-                            $section3 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section2->id, 'user_id'=>100000, 'display_order'=>$z]); //400000
-                        }
-                    }
-                }
-            }
-        }
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100001,100003),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(10010,100020),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(10021,100030),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        $this->createSections($policy,$content);
+
+        $policy = Policy::create(['name'=>'Citywide Curfew', 'short_synopsis'=>'Establishing curfews for minors at different age groups','full_synopsis'=>'Establishing curfews for unaccompanied minors. Different age groups will have different curfew times.', 'published'=>1, 'public'=>1, 'house_policy'=>0]);
+        $this->createSections($policy,$content);
+
+        $policy = Policy::create(['name'=>'Zoning Laws', 'short_synopsis'=>'Establishing zoning laws for future development in the city','full_synopsis'=>'Updating the zoning laws in the city for all future development. This includes establishing commercial, manufacturing, public-use, and housing sections.', 'published'=>1, 'public'=>1, 'house_policy'=>0]);
+        $this->createSections($policy,$content);
 
 
         // update the sections counts
@@ -151,5 +71,32 @@ class PoliciesTableSeeder extends Seeder
             $section->section_count = Section::where('parent_section_id',$section->id)->count();
             $section->save();
         }
+    }
+
+    protected function createSections($policy,$content){
+        for($x=1;$x<=rand(1,6);$x++){
+            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
+            $sections2num=rand(0,5);
+            if($sections2num>0){
+                for($y=1;$y<=rand(1,4);$y++){
+                    $section2 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
+                    $sections3num=rand(0,3);
+                    if($sections3num>0){
+                        for($z=1;$z<=rand(2,4);$z++){
+                            $section3 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section2->id, 'user_id'=>100000, 'display_order'=>$z]); //400000
+                        }
+                    }
+                }
+            }
+        }
+        $user = User::where('email','test@testgmail.com')->first();
+        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100001,100004),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100010,100030),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100031,100050),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100051,100070),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100071,100090),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        if(rand(1,2)==1 && $user)
+            Collaborator::create(['policy_id'=>$policy->id,'user_id'=>$user->id,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+
     }
 }

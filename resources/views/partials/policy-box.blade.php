@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-4 col-sm-6">
+<div class="col-md-4 col-sm-6">
     <div class="well well-sm policy-well">
         <?php 
             $policy->political_rating = round($policy->political_rating);

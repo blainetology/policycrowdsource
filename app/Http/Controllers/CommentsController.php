@@ -30,7 +30,18 @@ class CommentsController extends Controller
     }
 
     public function postsection(Request $request, $sid){
-        return "posted";
+        if(!empty($sid) && !empty($request->section_id) && $request->section_id==$sid){
+            $section = Section::find($sid);
+            if($section){
+                $comment = Comment::create(['user_id'=>\Auth::user()->id,'section_id'=>$section->id,'comment'=>trim($request->comment)]);
+                if($comment){
+                    $section->comments_count=Comment::where('section_id',$section->id)->count();
+                    $section->save();
+                    return view('partials.comment',['comment'=>$comment]);
+                }
+            }
+        }
+        return "";
     }
 
     public function postrfp(Request $request, $rid){
