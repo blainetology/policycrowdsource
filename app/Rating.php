@@ -16,6 +16,9 @@ class Rating extends Model
         return $query->where('user_id',\Auth::user()->id);
     }
 
+    public function scopeActive($query){
+        return $query->where('user_active',1)->where('banned',0)->where('flagged',0);
+    }
 
     // STATIC METHODS
     

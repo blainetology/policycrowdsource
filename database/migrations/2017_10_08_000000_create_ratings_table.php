@@ -25,6 +25,7 @@ class CreateRatingsTable extends Migration
             $table->integer('weighted_rating')->nullable();
             $table->integer('calculated_rating')->nullable();
             $table->integer('calculated_weighted_rating')->nullable();
+            $table->integer('user_active')->index()->default(1);
             $table->integer('flagged')->default(0);
             $table->integer('banned')->default(0);
             $table->timestamps();
