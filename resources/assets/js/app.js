@@ -7,8 +7,8 @@
 
 require('./bootstrap');
 
-require('./policies');
-
+var PCApp = require('./policies');
+window.PCApp = PCApp;
 //window.Vue = require('vue');
 
 /**

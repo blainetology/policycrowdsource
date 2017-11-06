@@ -26,11 +26,22 @@ class CommentsController extends Controller
 
 
     public function postpolicy(Request $request, $pid){
-        return "posted";
+        if(!empty($pid) && !empty($request->id) && !empty($request->type) && $request->type=='policy' && $request->id==$pid){
+            $policy = Policy::find($pid);
+            if($policy){
+                $comment = Comment::create(['user_id'=>\Auth::user()->id,'policy_id'=>$policy->id,'comment'=>trim($request->comment)]);
+                if($comment){
+                    $policy->comments_count=Comment::where('policy_id',$policy->id)->count();
+                    $policy->save();
+                    return view('partials.comment',['comment'=>$comment]);
+                }
+            }
+        }
+        return "";
     }
 
     public function postsection(Request $request, $sid){
-        if(!empty($sid) && !empty($request->section_id) && $request->section_id==$sid){
+        if(!empty($sid) && !empty($request->id) && !empty($request->type) && $request->type=='section' && $request->id==$sid){
             $section = Section::find($sid);
             if($section){
                 $comment = Comment::create(['user_id'=>\Auth::user()->id,'section_id'=>$section->id,'comment'=>trim($request->comment)]);

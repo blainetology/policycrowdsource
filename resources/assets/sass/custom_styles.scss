@@ -9,7 +9,7 @@ h1,h2,h3,h4{
 	text-transform:uppercase;
 }
 
-.policy-well{
+.document-well{
 	min-height: 225px; 
 	position: relative;
 	.details_section{
@@ -18,11 +18,11 @@ h1,h2,h3,h4{
 		.title{font-family: 'Oswald', sans-serif; font-size:16px;}
 	}
 	.btn-view-more{position: absolute; right:10px; bottom:10px;}
-	.policy-rating{position:absolute; left:10px; bottom:10px;}
+	.document-rating{position:absolute; left:10px; bottom:10px;}
 	&.rfp-well{background-color:darken($well-bg,4%);}
 }
-.policy-title{margin-top:-36px; font-size:3em; padding-bottom:10px;}
-.policy-rating{
+.document-title{margin-top:-36px; font-size:3em; padding-bottom:10px;}
+.document-rating{
 	font-size:12px;
 	color:#FFF;
 	padding:1px 10px;
@@ -41,6 +41,10 @@ h1,h2,h3,h4{
 	.rating-thumb:hover{color:darken($color-not-selected,25%);}
 	.rating-thumb:focus{color:$color-selected;}
 }
+a.comment-icon,a.comment-icon:hover{
+	text-decoration:none;
+	font-weight:900;
+} 
 .section-container{
 	margin-top:3px;
 	padding-top:3px;
@@ -60,7 +64,7 @@ h1,h2,h3,h4{
 	&.rating_-4{border-left-color:$color-minus-4;}
 	&.rating_-5{border-left-color:$color-minus-5;}
 	&:hover{background:$policy-section-bg-hover;}
-	.policy-section{
+	.document-section{
 		p{margin:0;}
 		min-height:46px;
 		.rating-box{
@@ -91,7 +95,7 @@ h1,h2,h3,h4{
 	&:hover{border-color:#222;color:#FFF;text-decoration:none;}
 }
 
-.policy-rating, .setting-rating{
+.document-rating, .setting-rating{
 	&.rating_5{background-color:$color-plus-5;}
 	&.rating_4{background-color:$color-plus-4;}
 	&.rating_3{background-color:$color-plus-3;}
@@ -109,6 +113,10 @@ h1,h2,h3,h4{
 	padding:5px 10px 5px 30px; 
 	margin-bottom:5px;
 	display:none;
+	.comment-label{
+		font-size:16px;
+		margin-bottom:2px;
+	}
 	.comment-div{
 		padding:5px; 
 		margin-bottom:5px;

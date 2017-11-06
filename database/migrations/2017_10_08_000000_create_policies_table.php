@@ -47,7 +47,8 @@ class CreatePoliciesTable extends Migration
             $table->longtext('content')->nullable();
             $table->string('staged_title')->nullable();
             $table->longtext('staged_content')->nullable();
-            $table->integer('policy_id')->index();
+            $table->integer('policy_id')->index()->nullable();
+            $table->integer('rfp_id')->index()->nullable();
             $table->integer('user_id')->index();
             $table->integer('revision_id')->index()->nullable();
             $table->integer('parent_section_id')->index()->default(0);

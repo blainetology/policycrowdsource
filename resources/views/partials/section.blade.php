@@ -16,7 +16,7 @@
             </div>
             <div id="subSections{{$section->id}}">
                 @if($section->subsections->count()>0)
-                    <a href="javascript:get_policy_sections({{$section->id}})">show sections</a> 
+                    <a href="javascript:get_sections({{$section->id}})">show sections</a> 
                 @endif
             </div>
         </div>

@@ -25,101 +25,49 @@
                 {{implode(', ',$collabs)}} 
             </p>
             <p>{{$policy->full_synopsis}}</p>
+            @include('partials/comments',['comments'=>\App\Comment::forPolicy($policy->id)->with('user')->get(),'type'=>'policy','id'=>$policy->id])
         </div>
         <div class="col-md-3">
             <div class="well well-sm">
-                <span class="pull-left policy-rating rating_{{round($policy->rating)}}"> {{number_format($policy->ratings_count,0)}} Votes </span>
-                <div class="rating-box policy-rating pull-right text-right" id="ratingBoxPolicy{{$policy->id}}">
-                @if(\Auth::check())
-                    <?php 
-                    if($ratings['policy']){
-                        $rated=$ratings['policy']['rating'];
-                        $calculated=$ratings['policy']['calculated_rating'];
-                    }
-                    ?>
-                    @foreach(\App\Rating::$thumbs as $value=>$thumb)
-                    <a href="javascript:rate_ajax({{$policy->id}},null,{{$value}})" title="{{!empty($calculated) && $calculated==$value ? 'calculated - ' : ''}} {{$thumb[0]}}" class="rating-thumb rating{{$value}} {{!empty($rated) && $rated==$value ? 'selected' : ''}} {{!empty($rated) && $rated!=$value ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==$value ? 'calculated' : ''}}"><i class="fa {{$thumb[1]}}" aria-hidden="true"></i></a>
-                    @endforeach
-                @else
-                    <a href="javascript:showLoginModal()" class="btn btn-xs btn-default">Login to Rate</a>
-                @endif
+                <span class="pull-left document-rating policy-rating rating_{{round($policy->rating)}}"> {{number_format($policy->ratings_count,0)}} Votes </span>
+                &nbsp; &nbsp; 
+                <a href="javascript:PCApp.show_comments('policy',{{$policy->id}})" class="comment-icon" title="{{$policy->comments->count()>0 ? 'View Comments' : 'Leave a Comment'}}"> {!!$policy->comments->count() > 0 ? '<i class="fa fa-comment" aria-hidden="true"></i> <i class="fa fa-caret-right" aria-hidden="true"></i>' : '<i class="fa fa-comment-o" aria-hidden="true"></i> <i class="fa fa-plus" aria-hidden="true"></i>'!!}</a>   
+                <div class="rating-box document-rating pull-right text-right" id="ratingBoxPolicy{{$policy->id}}">
+                    @if(\Auth::check())
+                        <?php 
+                        if($ratings['document']){
+                            $rated=$ratings['document']['rating'];
+                            $calculated=$ratings['document']['calculated_rating'];
+                        }
+                        ?>
+                        @foreach(\App\Rating::$thumbs as $value=>$thumb)
+                        <a href="javascript:PCApp.rate_ajax('policy',{{$policy->id}},null,{{$value}})" title="{{!empty($calculated) && $calculated==$value ? 'calculated - ' : ''}} {{$thumb[0]}}" class="rating-thumb rating{{$value}} {{!empty($rated) && $rated==$value ? 'selected' : ''}} {{!empty($rated) && $rated!=$value ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==$value ? 'calculated' : ''}}"><i class="fa {{$thumb[1]}}" aria-hidden="true"></i></a>
+                        @endforeach
+                    @else
+                        <a href="javascript:showLoginModal()" class="btn btn-xs btn-default">Login to Rate</a>
+                    @endif
                 </div>
                 <br clear="both"/>
                 <div style="padding:6px 0 0;">
-                    {!!\App\Rating::getPolicyThumbs($policy)!!}
+                    {!!\App\Rating::getThumbs($policy)!!}
                 </div>
             </div>
         </div>
     </div>
     <hr class="clearfix" />
     <div id="subSections0">
-        @include('policies.sections',['sections'=>$sections])         
+        @include('partials.sections',['sections'=>$sections,'document'=>$policy])         
     </div>
     <br/><br/>
 
 </div>
-@include('auth.login-modal')
 @endsection
 
 @section('scripts')
 <script type="text/javascript">
-function get_policy_sections(parent_id){
-    $('#subSections'+parent_id).html('Loading...').css({borderBottom:'8px solid #F00',padding:'15px 0',marginBottom:'16px'});
-    $.get('/policies/sections/{{$policy->id}}/'+parent_id,null,function(html){
-        $('#subSections'+parent_id).html(html);
-    });
-}
-function show_section_comments(section_id){
-    $('#commentsBox'+section_id).slideDown(500);
-}
-function rate_ajax(pid,sid,rating){
-    if(sid){
-        $.get('/rate/p/'+pid+'/s/'+sid+'/r/'+rating,null,function(data){
-            if(data['calculated']){
-                if(data['calculated'][2]=='section'){
-                    $('#ratingBoxSection'+data['calculated'][0]+' .rating-thumb').removeClass('calculated');
-                    if(data['calculated'][1]){
-                        $('#ratingBoxSection'+data['calculated'][0]).addClass('rating-calculated');
-                        $('#ratingBoxSection'+data['calculated'][0]+' .rating'+data['calculated'][1]).addClass('calculated');
-                    }
-                    else
-                        $('#ratingBoxSection'+data['calculated'][0]).removeClass('rating-calculated');
-                }
-                else if(data['calculated'][2]=='policy'){
-                    $('#ratingBoxPolicy'+data['calculated'][0]+' .rating-thumb').removeClass('calculated');
-                    if(data['calculated'][1])
-                        $('#ratingBoxPolicy'+data['calculated'][0]+' .rating'+data['calculated'][1]).addClass('calculated');
-                }
-            }
-        });
-        $('#ratingBoxSection'+sid+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
-        $('#ratingBoxSection'+sid+' .rating'+rating).removeClass('calculated').addClass('selected');
-        $('#ratingBoxSection'+sid).removeClass('rating-calculated');
-    }
-    else{
-        $.get('/rate/p/'+pid+'/r/'+rating);
-        $('#ratingBoxPolicy'+pid+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
-        $('#ratingBoxPolicy'+pid+' .rating'+rating).addClass('selected');
-    }
-}
-function postsectioncomment(e, textarea, sid){
-    var code = (e.keyCode ? e.keyCode : e.which);
-    if(code == 13){
-        var comment = textarea.value.replace(/(\r\n|\n|\r)/gm,"");
-        console.log(comment);
-        textarea.value = comment;
-        axios.post('/comment/section/'+sid,{section_id:sid, comment:comment}).then(function(response){ $('#commentsList'+sid).append(response.data); textarea.value="" }).catch(function(error){ console.log(error); });
-    }
-}
-function postpolicycomment(e, textarea, pid){
-    var code = (e.keyCode ? e.keyCode : e.which);
-    if(code == 13)
-        axios.post('/comment/policy/'+pid,{policy_id:pid, comment:textarea.value}).then(function(response){ $('#commentsList'+sid).append(response.data); }).catch(function(error){ console.log(error); });
-}
 jQuery(document).ready(function(){
     $('[data-toggle="popover"]').popover();
-    //get_policy_sections(0);
-});
-    
+    //get_document_sections(0);
+});   
 </script>
 @append

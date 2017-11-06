@@ -1,5 +1,5 @@
 <div class="col-md-4 col-sm-6">
-    <div class="well well-sm policy-well rfp-well">
+    <div class="well well-sm document-well rfp-well">
         <?php 
             $rfp->political_rating = round($rfp->political_rating);
             if($rfp->political_rating == -0)
@@ -18,9 +18,9 @@
             <div class="short_synopsis">{{$rfp->short_overview}}</div>
         </div>
         <div class="small">
-        {!!\App\Rating::getPolicyThumbs($rfp)!!}
+        {!!\App\Rating::getThumbs($rfp)!!}
         </div>
-        <span class="policy-rating rating_{{$rfp->political_rating}}"> {{number_format($rfp->ratings_count,0)}} votes </span>
+        <span class="document-rating rating_{{$rfp->political_rating}}"> {{number_format($rfp->ratings_count,0)}} votes </span>
         <div class="text-right"><a href="{{ route('rfp.show',$rfp->id) }}" class="btn btn-xs btn-primary btn-view-more">read more <span class="glyphicon glyphicon-triangle-right"></span></a></div>
     </div>
 </div>

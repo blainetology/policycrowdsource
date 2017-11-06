@@ -76,10 +76,10 @@ class PoliciesController extends Controller
             $policy->rating = 0;
         $ratings = null;
         if(\Auth::check()){
-            $ratings=['policy'=>null,'sections'=>null];
+            $ratings=['document'=>null,'sections'=>null];
             $ratingsresult = Rating::byUser()->where('policy_id',$policy->id)->first();
             if($ratingsresult)
-                $ratings['policy']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
+                $ratings['document']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
             $ratingsresults = Rating::byUser()->whereIn('section_id',$policy->sections->pluck('id'))->get();
             if($ratingsresults->count()>0){
                 $ratings['sections']=[];
@@ -90,7 +90,8 @@ class PoliciesController extends Controller
         $data = [
             //'policyescaped' => Policy::where('id',$id)->with('topLevelSectionsNested')->first(),
             'policy'        => $policy,
-            'sections'      => Policy::sortSections($policy->sections->toArray()),
+            'doctype'       => 'policy',
+            'sections'      => Section::sortSections($policy->sections->toArray()),
             'ratings'       => $ratings,
             'pagetitle'     => $policy->name
         ];

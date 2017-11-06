@@ -14,6 +14,15 @@ class Rfp extends Model
 
     // RELATIONSHIPS
 
+    public function sections(){
+        return $this->hasMany('\App\Section')->with('comments')->orderBy('display_order','asc');
+    }
+    public function topLevelSections(){
+        return $this->hasMany('\App\Section')->where('parent_section_id',0)->orderBy('display_order','asc');
+    }
+    public function topLevelSectionsNested(){
+        return $this->hasMany('\App\Section')->where('parent_section_id',0)->orderBy('display_order','asc')->with('subsections');
+    }
     public function policies(){
     	return $this->hasMany('\App\Policy');
     }

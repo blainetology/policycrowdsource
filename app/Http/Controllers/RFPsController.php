@@ -77,13 +77,21 @@ class RFPsController extends Controller
             $rfp->rating = 0;
         $ratings = null;
         if(\Auth::check()){
-            $ratings=['rfp'=>null];
+            $ratings=['document'=>null,'sections'=>null];
             $ratingsresult = Rating::byUser()->where('rfp_id',$rfp->id)->first();
             if($ratingsresult)
-                $ratings['rfp']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
+                $ratings['document']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
+            $ratingsresults = Rating::byUser()->whereIn('section_id',$rfp->sections->pluck('id'))->get();
+            if($ratingsresults->count()>0){
+                $ratings['sections']=[];
+                foreach($ratingsresults as $rating)
+                    $ratings['sections'][$rating->section_id]=['rating'=>$rating->rating,'calculated_rating'=>$rating->calculated_rating];
+            }
         }
         $data = [
             'rfp'           => $rfp,
+            'doctype'       => 'rfp',
+            'sections'      => Section::sortSections($rfp->sections->toArray()),
             'ratings'       => $ratings,
             'pagetitle'     => $rfp->name
         ];

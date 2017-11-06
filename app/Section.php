@@ -25,4 +25,20 @@ class Section extends Model
         return $query->where('parent_section_id',0);
     }
 
+    // STATIC METHODS
+
+    public static function sortSections($basesections,$parent_id=null){
+        $sections = [];
+        foreach($basesections as $section){
+            if($section['parent_section_id'] == $parent_id){
+                $sections[$section['display_order']] = $section;
+            }
+        }
+        if(!empty($sections)){
+            foreach($sections as $secID => $section)
+                $sections[$secID]['sections']=self::sortSections($basesections,$section['id']);
+        }
+        return $sections;
+    }
+
 }

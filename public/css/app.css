@@ -11421,17 +11421,17 @@ h4 small {
   text-transform: uppercase;
 }
 
-.policy-well {
+.document-well {
   min-height: 225px;
   position: relative;
 }
 
-.policy-well .details_section {
+.document-well .details_section {
   height: 90px;
   overflow: hidden;
 }
 
-.policy-well .details_section .short_synopsis {
+.document-well .details_section .short_synopsis {
   margin: 0;
   padding: 0 0 4px;
   line-height: 1.3em;
@@ -11439,34 +11439,34 @@ h4 small {
   font-style: italic;
 }
 
-.policy-well .details_section .title {
+.document-well .details_section .title {
   font-family: 'Oswald', sans-serif;
   font-size: 16px;
 }
 
-.policy-well .btn-view-more {
+.document-well .btn-view-more {
   position: absolute;
   right: 10px;
   bottom: 10px;
 }
 
-.policy-well .policy-rating {
+.document-well .document-rating {
   position: absolute;
   left: 10px;
   bottom: 10px;
 }
 
-.policy-well.rfp-well {
+.document-well.rfp-well {
   background-color: #e4e4e4;
 }
 
-.policy-title {
+.document-title {
   margin-top: -36px;
   font-size: 3em;
   padding-bottom: 10px;
 }
 
-.policy-rating {
+.document-rating {
   font-size: 12px;
   color: #FFF;
   padding: 1px 10px;
@@ -11519,6 +11519,12 @@ h4 small {
 
 .rating-box .rating-thumb:focus {
   color: #6688f4;
+}
+
+a.comment-icon,
+a.comment-icon:hover {
+  text-decoration: none;
+  font-weight: 900;
 }
 
 .section-container {
@@ -11578,24 +11584,24 @@ h4 small {
   background: rgba(90, 90, 90, 0.07);
 }
 
-.section-container .policy-section {
+.section-container .document-section {
   min-height: 46px;
 }
 
-.section-container .policy-section p {
+.section-container .document-section p {
   margin: 0;
 }
 
-.section-container .policy-section .rating-box {
+.section-container .document-section .rating-box {
   display: none;
   vertical-align: middle;
 }
 
-.section-container .policy-section .rating-box.rating-calculated {
+.section-container .document-section .rating-box.rating-calculated {
   display: block !important;
 }
 
-.section-container .policy-section:hover .rating-box {
+.section-container .document-section:hover .rating-box {
   display: block !important;
 }
 
@@ -11625,57 +11631,57 @@ h4 small {
   text-decoration: none;
 }
 
-.policy-rating.rating_5,
+.document-rating.rating_5,
 .setting-rating.rating_5 {
   background-color: red;
 }
 
-.policy-rating.rating_4,
+.document-rating.rating_4,
 .setting-rating.rating_4 {
   background-color: #e41b1b;
 }
 
-.policy-rating.rating_3,
+.document-rating.rating_3,
 .setting-rating.rating_3 {
   background-color: #c93636;
 }
 
-.policy-rating.rating_2,
+.document-rating.rating_2,
 .setting-rating.rating_2 {
   background-color: #af5050;
 }
 
-.policy-rating.rating_1,
+.document-rating.rating_1,
 .setting-rating.rating_1 {
   background-color: #946b6b;
 }
 
-.policy-rating.rating_0,
+.document-rating.rating_0,
 .setting-rating.rating_0 {
   background-color: #807f7f;
 }
 
-.policy-rating.rating_-1,
+.document-rating.rating_-1,
 .setting-rating.rating_-1 {
   background-color: #6b6b94;
 }
 
-.policy-rating.rating_-2,
+.document-rating.rating_-2,
 .setting-rating.rating_-2 {
   background-color: #5050af;
 }
 
-.policy-rating.rating_-3,
+.document-rating.rating_-3,
 .setting-rating.rating_-3 {
   background-color: #3636c9;
 }
 
-.policy-rating.rating_-4,
+.document-rating.rating_-4,
 .setting-rating.rating_-4 {
   background-color: #1b1be4;
 }
 
-.policy-rating.rating_-5,
+.document-rating.rating_-5,
 .setting-rating.rating_-5 {
   background-color: blue;
 }
@@ -11684,6 +11690,11 @@ h4 small {
   padding: 5px 10px 5px 30px;
   margin-bottom: 5px;
   display: none;
+}
+
+.comments-div .comment-label {
+  font-size: 16px;
+  margin-bottom: 2px;
 }
 
 .comments-div .comment-div {

@@ -4,7 +4,9 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\Rfp;
+use App\Section;
 use App\Collaborator;
+use App\User;
 
 class RFPTableSeeder extends Seeder
 {
@@ -44,11 +46,20 @@ class RFPTableSeeder extends Seeder
             for($y=1;$y<=rand(3,8);$y++)
                 $details .= "Objective $y:<br/>".$content[rand(0,14)]."<br/><br/>";
         	$rfp = Rfp::create(['name'=>$prefixes[$x].' RFP','short_overview'=>'short overview of '.$prefixes[$x].' RFP'.' with quick details about the objective','full_details'=>"A much longer explanation of the RFP and what is expected in a response, including specific items that need to be addressed.<br/><br/>".$details,'public'=>1,'published'=>1, 'submission_start'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")"), 'submission_cutoff'=>\DB::raw("ADDDATE(NOW(),".rand(10,30).")")]);
-            Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>(100000+rand(0,1)),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-            Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>(100001+rand(2,4)),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-            Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>(100002+rand(5,7)),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+            $this->createSections($rfp,$content);
             $rfp->submission_count=$rfp->policies->count();
             $rfp->save();
         }
+    }
+    protected function createSections($rfp,$content){
+        for($x=1;$x<=rand(3,6);$x++){
+            $section = Section::create(['title'=>'Objective '.$x, 'content'=>$content[rand(0,14)], 'rfp_id'=>$rfp->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
+        }
+        $user = User::where('email','test@testgmail.com')->first();
+        Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>rand(100001,100004),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>rand(100010,100030),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>rand(100031,100050),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        if(rand(1,2)==1 && $user)
+            Collaborator::create(['rfp_id'=>$rfp->id,'user_id'=>$user->id,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
     }
 }

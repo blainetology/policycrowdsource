@@ -30,7 +30,7 @@ class Rating extends Model
         return null;        
     }
 
-    public static function getPolicyThumbs($policy){
+    public static function getThumbs($policy){
         $html = "";
 
         if($policy->ratings_count>0){

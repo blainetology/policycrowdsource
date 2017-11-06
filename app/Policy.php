@@ -66,20 +66,4 @@ class Policy extends Model
         return $query->whereIn('id',\App\Rating::where('user_id',\Auth::user()->id)->whereNotNull('policy_id')->pluck('policy_id'));
     }
 
-    // STATIC METHODS
-
-    public static function sortSections($basesections,$parent_id=null){
-    	$sections = [];
-		foreach($basesections as $section){
-			if($section['parent_section_id'] == $parent_id){
-				$sections[$section['display_order']] = $section;
-			}
-		}
-		if(!empty($sections)){
-			foreach($sections as $secID => $section)
-				$sections[$secID]['sections']=self::sortSections($basesections,$section['id']);
-		}
-    	return $sections;
-    }
-
 }

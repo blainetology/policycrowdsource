@@ -63,7 +63,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('login') }}" style="padding:10px;"><span class="btn btn-sm btn-success">Login</span></a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
@@ -123,6 +123,8 @@
 
         </footer>
     </div>
+
+    @include('auth.login-modal')
 
 </body>
 </html>
