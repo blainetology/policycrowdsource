@@ -50,8 +50,8 @@ a.comment-icon,a.comment-icon:hover{
 	padding-top:3px;
 	padding-bottom:3px;
 	padding-right:0px;
-	margin-left:-8px;
-	border-left:8px solid $color-neutral-0;
+	margin-left:-10px;
+	border-left:6px solid $color-neutral-0;
 	&.rating_5{border-left-color:$color-plus-5;}
 	&.rating_4{border-left-color:$color-plus-4;}
 	&.rating_3{border-left-color:$color-plus-3;}
@@ -66,7 +66,7 @@ a.comment-icon,a.comment-icon:hover{
 	&:hover{background:$policy-section-bg-hover;}
 	.document-section{
 		p{margin:0;}
-		min-height:46px;
+		min-height:26px;
 		.rating-box{
 			display:none; 
 			vertical-align:middle;
@@ -75,6 +75,7 @@ a.comment-icon,a.comment-icon:hover{
 		&:hover{
 			.rating-box{display:block !important;}
 		}
+		h1,h2,h3,h4{margin:8px 0 6px;}
 	}
 }
 
@@ -121,6 +122,12 @@ a.comment-icon,a.comment-icon:hover{
 		padding:5px; 
 		margin-bottom:5px;
 		background:$comment-bg-hover;
-		border-radius:3px;
+		border-radius:4px;
 	}
+}
+
+.form-control{
+	border-color:$comment-bg-hover;
+	background:lighten($comment-bg-hover,25%);
+	box-shadow:none;
 }

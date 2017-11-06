@@ -95,13 +95,13 @@ class RatingsController extends Controller
                                 $rated->calculated_rating=$rating;
                                 $rated->calculated_weighted_rating=($rating*\Auth::user()->political_weight);
                                 $rated->save();
-                                $response['calculated']=[$policy->id,$rated->calculated_rating,'policy'];
+                                $response['calculated']=[$policy->id,$rated->calculated_rating,'document'];
                             }
                             else{
                                 $rated->calculated_rating=null;
                                 $rated->calculated_weighted_rating=null;
                                 $rated->save();                                
-                                $response['calculated']=[$policy->id,null,'policy'];
+                                $response['calculated']=[$policy->id,null,'document'];
                             }
                         }
                     }

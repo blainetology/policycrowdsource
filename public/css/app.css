@@ -11532,8 +11532,8 @@ a.comment-icon:hover {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-right: 0px;
-  margin-left: -8px;
-  border-left: 8px solid #807f7f;
+  margin-left: -10px;
+  border-left: 6px solid #807f7f;
 }
 
 .section-container.rating_5 {
@@ -11585,7 +11585,7 @@ a.comment-icon:hover {
 }
 
 .section-container .document-section {
-  min-height: 46px;
+  min-height: 26px;
 }
 
 .section-container .document-section p {
@@ -11603,6 +11603,13 @@ a.comment-icon:hover {
 
 .section-container .document-section:hover .rating-box {
   display: block !important;
+}
+
+.section-container .document-section h1,
+.section-container .document-section h2,
+.section-container .document-section h3,
+.section-container .document-section h4 {
+  margin: 8px 0 6px;
 }
 
 .setting-rating {
@@ -11701,6 +11708,13 @@ a.comment-icon:hover {
   padding: 5px;
   margin-bottom: 5px;
   background: rgba(120, 150, 180, 0.2);
-  border-radius: 3px;
+  border-radius: 4px;
+}
+
+.form-control {
+  border-color: rgba(120, 150, 180, 0.2);
+  background: rgba(202, 214, 226, 0.2);
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 

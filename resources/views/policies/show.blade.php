@@ -32,7 +32,7 @@
                 <span class="pull-left document-rating policy-rating rating_{{round($policy->rating)}}"> {{number_format($policy->ratings_count,0)}} Votes </span>
                 &nbsp; &nbsp; 
                 <a href="javascript:PCApp.show_comments('policy',{{$policy->id}})" class="comment-icon" title="{{$policy->comments->count()>0 ? 'View Comments' : 'Leave a Comment'}}"> {!!$policy->comments->count() > 0 ? '<i class="fa fa-comment" aria-hidden="true"></i> <i class="fa fa-caret-right" aria-hidden="true"></i>' : '<i class="fa fa-comment-o" aria-hidden="true"></i> <i class="fa fa-plus" aria-hidden="true"></i>'!!}</a>   
-                <div class="rating-box document-rating pull-right text-right" id="ratingBoxPolicy{{$policy->id}}">
+                <div class="rating-box document-rating pull-right text-right" id="ratingBoxDocument{{$policy->id}}">
                     @if(\Auth::check())
                         <?php 
                         if($ratings['document']){

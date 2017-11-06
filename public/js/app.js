@@ -31728,8 +31728,8 @@ function PCAppFunctions() {
 		} else {
 			if (type == 'rfp') url = '/rate/r/' + id + '/r/' + rating;else url = '/rate/p/' + id + '/r/' + rating;
 			$.get(url);
-			$('#ratingBoxDocument' + pid + ' .rating-thumb').not('.rating' + rating).removeClass('selected').addClass('not-selected');
-			$('#ratingBoxDocument' + pid + ' .rating' + rating).addClass('selected');
+			$('#ratingBoxDocument' + id + ' .rating-thumb').not('.rating' + rating).removeClass('selected').addClass('not-selected');
+			$('#ratingBoxDocument' + id + ' .rating' + rating).addClass('selected');
 		}
 	};
 	this.post_comment = function (e, textarea, type, id) {

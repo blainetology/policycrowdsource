@@ -63,11 +63,3 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-@section('scripts')
-<script type="text/javascript">
-function showLoginModal(){
-  $('#loginModal').modal('show');
-}
-</script>
-@append

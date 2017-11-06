@@ -25,7 +25,7 @@
                 <span class="pull-left document-rating rfp-rating rating_{{round($rfp->rating)}}"> {{number_format($rfp->ratings_count,0)}} Votes </span>
                 &nbsp; &nbsp; 
                 <a href="javascript:PCApp.show_comments('rfp',{{$rfp->id}})" class="comment-icon" title="{{$rfp->comments->count()>0 ? 'View Comments' : 'Leave a Comment'}}"> {!!$rfp->comments->count() > 0 ? '<i class="fa fa-comment" aria-hidden="true"></i> <i class="fa fa-caret-right" aria-hidden="true"></i>' : '<i class="fa fa-comment-o" aria-hidden="true"></i> <i class="fa fa-plus" aria-hidden="true"></i>'!!}</a>   
-                <div class="rating-box document-rating pull-right text-right" id="ratingBoxPolicy{{$rfp->id}}">
+                <div class="rating-box document-rating pull-right text-right" id="ratingBoxDocument{{$rfp->id}}">
                     @if(\Auth::check())
                         <?php 
                         if($ratings['document']){

@@ -18,6 +18,11 @@
     </style>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+    function showLoginModal(){
+        $('#loginModal').modal('show');
+    }
+    </script>
     @yield('scripts')
 
     @yield('styles')
@@ -63,7 +68,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}" style="padding:10px;"><span class="btn btn-sm btn-success">Login</span></a></li>
+                            <li><a href="javascript:showLoginModal()" style="padding:10px;"><span class="btn btn-sm btn-success">Login</span></a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
