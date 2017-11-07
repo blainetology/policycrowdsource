@@ -13,7 +13,7 @@
                 @else
                     Submit proposals by {{\Shared\ViewHelpers::date($rfp->submission_cutoff,true)}}
                 @endif
-                <span class="small text-info pull-right">{{ $rfp->submission_count }} submitted</span>
+                <span class="small text-info pull-right">{{ $rfp->child_count }} submitted</span>
             </div>
             <div class="short_synopsis">{{$rfp->short_overview}}</div>
         </div>

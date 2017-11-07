@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Policy;
-use App\Rfp;
+use App\Document;
 
 class HomeController extends Controller
 {
@@ -17,12 +16,12 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
-            "house_policies" => Policy::house()->viewable()->take(3)->inRandomOrder()->get(),
-            "submitted_policies" => Policy::userSubmitted()->viewable()->take(6)->inRandomOrder()->get(),
-            "rfps" => Rfp::viewable()->take(6)->inRandomOrder()->get()
+            "house_policies" => Document::policy()->house()->viewable()->take(3)->inRandomOrder()->get(),
+            "submitted_policies" => Document::policy()->userSubmitted()->viewable()->take(6)->inRandomOrder()->get(),
+            "rfps" => Document::rfp()->viewable()->take(6)->inRandomOrder()->get()
         ];
         if(\Auth::check())
-            $data['my_policies'] = Policy::userSubmitted()->userCollaboratingOn()->take(3)->inRandomOrder()->get();
+            $data['my_policies'] = Document::policy()->userSubmitted()->userCollaboratingOn()->take(3)->inRandomOrder()->get();
         return view('home',$data);
     }
 }

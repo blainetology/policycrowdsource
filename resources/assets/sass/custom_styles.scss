@@ -124,10 +124,12 @@ a.comment-icon,a.comment-icon:hover{
 		background:$comment-bg-hover;
 		border-radius:4px;
 	}
+	.form-control{
+		border-color:$comment-bg-hover;
+		background:lighten($comment-bg-hover,25%);
+	}
 }
-
 .form-control{
-	border-color:$comment-bg-hover;
-	background:lighten($comment-bg-hover,25%);
+	border-color:#999; 
 	box-shadow:none;
 }

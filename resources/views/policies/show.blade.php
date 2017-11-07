@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-9">
             <strong class="label label-sm label-info">
-            @if($policy->starter_policy==1)
+            @if($policy->starter_document==1)
             Example Policy
             @else
             Submitted Policy
@@ -25,7 +25,7 @@
                 {{implode(', ',$collabs)}} 
             </p>
             <p>{{$policy->full_synopsis}}</p>
-            @include('partials/comments',['comments'=>\App\Comment::forPolicy($policy->id)->with('user')->get(),'type'=>'policy','id'=>$policy->id])
+            @include('partials/comments',['comments'=>\App\Comment::forDocument($policy->id)->with('user')->get(),'type'=>'policy','id'=>$policy->id])
         </div>
         <div class="col-md-3">
             <div class="well well-sm">

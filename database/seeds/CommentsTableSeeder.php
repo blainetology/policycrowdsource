@@ -3,9 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use App\Policy;
+use App\Document;
 use App\Section;
-use App\Rfp;
 use App\Comment;
 use App\User;
 
@@ -33,34 +32,30 @@ class CommentsTableSeeder extends Seeder
 
         foreach($comments as $comment){
             $sections = Section::inRandomOrder()->take(30)->get();
-            $policies = Policy::inRandomOrder()->take(2)->get();
-            $rfps = Rfp::inRandomOrder()->take(2)->get();
+            $policies = Document::policy()->inRandomOrder()->take(2)->get();
+            $rfps = Document::rfp()->inRandomOrder()->take(2)->get();
             foreach($sections as $section){
                 $user = User::inRandomOrder()->first();
                 Comment::create(['section_id'=>$section->id,'user_id'=>$user->id,'comment'=>$comment]);
             }
             foreach($policies as $policy){
                 $user = User::inRandomOrder()->first();
-                Comment::create(['policy_id'=>$policy->id,'user_id'=>$user->id,'comment'=>$comment]);
+                Comment::create(['document_id'=>$policy->id,'user_id'=>$user->id,'comment'=>$comment]);
             }
             foreach($rfps as $rfp){
                 $user = User::inRandomOrder()->first();
-                Comment::create(['rfp_id'=>$rfp->id,'user_id'=>$user->id,'comment'=>$comment]);
+                Comment::create(['document_id'=>$rfp->id,'user_id'=>$user->id,'comment'=>$comment]);
             }
             sleep(2);
         }
 
-        foreach(Policy::all() as $policy){
-            $policy->comments_count = Comment::where('policy_id',$policy->id)->count();
-            $policy->save();
+        foreach(Document::all() as $document){
+            $document->comments_count = Comment::where('document_id',$document->id)->count();
+            $document->save();
         }
         foreach(Section::all() as $section){
             $section->comments_count = Comment::where('section_id',$section->id)->count();
             $section->save();
-        }
-        foreach(Rfp::all() as $rfp){
-            $rfp->comments_count = Comment::where('rfp_id',$rfp->id)->count();
-            $rfp->save();
         }
 
     }

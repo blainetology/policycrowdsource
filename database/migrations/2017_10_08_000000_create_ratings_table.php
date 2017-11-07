@@ -16,9 +16,8 @@ class CreateRatingsTable extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index();
-            $table->integer('policy_id')->index()->nullable();
+            $table->integer('document_id')->index()->nullable();
             $table->integer('section_id')->index()->nullable();
-            $table->integer('rfp_id')->index()->nullable();
             $table->integer('political_weight')->default(0);
             $table->integer('rating')->nullable();
             $table->integer('rating_abs_val')->nullable();

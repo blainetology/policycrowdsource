@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Rfp;
-use App\Policy;
+use App\Document;
 use App\Section;
 use App\Rating;
 use App\Collaborator;
@@ -19,7 +18,7 @@ class RFPsController extends Controller
     public function index()
     {
         //
-        $rfps = Rfp::viewable()->get();
+        $rfps = Document::rfp()->viewable()->get();
         $data = [
             'rfps'  => $rfps
         ];
@@ -71,14 +70,14 @@ class RFPsController extends Controller
         if(\Auth::guest())
             \Session::put('url.intended', url()->current());  
 
-        $rfp = Rfp::find($id);
+        $rfp = Document::rfp()->where('id',$id)->first();
         $rfp->rating = round($rfp->rating);
         if($rfp->rating == -0)
             $rfp->rating = 0;
         $ratings = null;
         if(\Auth::check()){
             $ratings=['document'=>null,'sections'=>null];
-            $ratingsresult = Rating::byUser()->where('rfp_id',$rfp->id)->first();
+            $ratingsresult = Rating::byUser()->where('document_id',$rfp->id)->first();
             if($ratingsresult)
                 $ratings['document']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
             $ratingsresults = Rating::byUser()->whereIn('section_id',$rfp->sections->pluck('id'))->get();

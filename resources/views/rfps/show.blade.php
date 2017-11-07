@@ -18,7 +18,7 @@
                 ?>
                 {{implode(', ',$collabs)}} 
             </p>
-            @include('partials/comments',['comments'=>\App\Comment::forRfp($rfp->id)->with('user')->get(),'type'=>'rfp','id'=>$rfp->id])
+            @include('partials/comments',['comments'=>\App\Comment::forDocument($rfp->id)->with('user')->get(),'type'=>'rfp','id'=>$rfp->id])
         </div>
         <div class="col-md-3">
             <div class="well well-sm">
@@ -52,7 +52,7 @@
         @include('partials.sections',['sections'=>$sections,'document'=>$rfp])         
     </div>
     <br/>
-    @if($rfp->policies->count()>0)
+    @if($rfp->children->count()>0)
         <div class="row">
             <div class="col-lg-12"> 
                 <hr/>
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="row">
-            @foreach($rfp->policies as $policy)
+            @foreach($rfp->children as $policy)
                 @include('partials.policy-box',['policy'=>$policy])
             @endforeach
         </div>

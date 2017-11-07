@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     //
-    protected $fillable = ['name','policy_id','user_id','revision_id','parent_section_id','display_order','political_rating'];
+    protected $fillable = ['name','document_id','user_id','revision_id','parent_section_id','display_order','political_rating'];
 
     // RELATIONSHIPS
+
+    public function document(){
+        return $this->belongsTo('\App\Document');
+    }
 
     public function subsections(){
     	return $this->hasMany('\App\Section','parent_section_id')->with('subsections');

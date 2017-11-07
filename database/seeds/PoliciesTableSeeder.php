@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use App\Policy;
+use App\Document;
 use App\Section;
 use App\Collaborator;
 use App\User;
@@ -18,6 +18,8 @@ class PoliciesTableSeeder extends Seeder
     public function run()
     {
         //
+
+        $prefixes = ["Policy","Education","Tax","Healthcare","HOA","Bylaws","Procedures","Human Resources"];
 
         $content = [
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt ipsum ut lorem accumsan vulputate. In sit amet arcu imperdiet, ultricies sem nec, venenatis felis. Pellentesque tristique turpis ante, eget scelerisque velit blandit ac. Maecenas sit amet varius augue, in porttitor arcu. Donec gravida nec lacus vitae porttitor. Nulla est velit, scelerisque ac nisl sed, sollicitudin feugiat ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris et lorem elit. Phasellus vestibulum sagittis est, ut bibendum nisl rhoncus nec. Nulla a accumsan nunc.",
@@ -39,33 +41,42 @@ class PoliciesTableSeeder extends Seeder
 
         DB::update("ALTER TABLE sections AUTO_INCREMENT = 403000;");
 
-        $policy = Policy::create(['name'=>'Heathcare Reform', 'short_synopsis'=>'Repeal and replacement of the Affordable Care Act','full_synopsis'=>'A formal replacement for the Affordable Care Act. The first step will be to completely repeal the Act. Then the replacement will be established.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30001]);
-        $this->createSections($policy,$content);
+        $document = Document::create(['type'=>'policy','name'=>'Heathcare Reform', 'short_synopsis'=>'Repeal and replacement of the Affordable Care Act','full_synopsis'=>'A formal replacement for the Affordable Care Act. The first step will be to completely repeal the Act. Then the replacement will be established.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30001]);
+        $this->createSections($document,$content);
 
-        $policy = Policy::create(['name'=>'Gun Control Overhaul', 'short_synopsis'=>'Establishing limits on certain kind of firearms and establishing a national background check system','full_synopsis'=>'Establishing limits on certain kind of firearms, specifically assault rifles, and banning the sale of accessories that can be used to adapt semi-automatic to act as an automatic. This also establishes a national background check system to provide for approvals within minutes, thereby eliminating the gun show loophole.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30002]);
-        $this->createSections($policy,$content);
+        $document = Document::create(['type'=>'policy','name'=>'Gun Control Overhaul', 'short_synopsis'=>'Establishing limits on certain kind of firearms and establishing a national background check system','full_synopsis'=>'Establishing limits on certain kind of firearms, specifically assault rifles, and banning the sale of accessories that can be used to adapt semi-automatic to act as an automatic. This also establishes a national background check system to provide for approvals within minutes, thereby eliminating the gun show loophole.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30002]);
+        $this->createSections($document,$content);
 
-        $policy = Policy::create(['name'=>'Local Townhomes CC&amp;R', 'short_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions','full_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions for the local Townhomes Homeowners Association. The current ones are too limiting.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30002]);
-        $this->createSections($policy,$content);
+        $document = Document::create(['type'=>'policy','name'=>'Local Townhomes CC&amp;R', 'short_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions','full_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions for the local Townhomes Homeowners Association. The current ones are too limiting.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30002]);
+        $this->createSections($document,$content);
 
-        $policy = Policy::create(['name'=>'School Board Policies', 'short_synopsis'=>'Establishing new policies for school board meetings.','full_synopsis'=>'Establishing new policies for school board meetings, for both audience participation and from the board members.', 'published'=>1, 'public'=>1, 'house_policy'=>0, 'rfp_id'=>30003]);
-        $this->createSections($policy,$content);
+        $document = Document::create(['type'=>'policy','name'=>'School Board Policies', 'short_synopsis'=>'Establishing new policies for school board meetings.','full_synopsis'=>'Establishing new policies for school board meetings, for both audience participation and from the board members.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30003]);
+        $this->createSections($document,$content);
 
-        $policy = Policy::create(['name'=>'PTA Bylaws', 'short_synopsis'=>'Establishing new policies and procedures for the local school PTA','full_synopsis'=>'Establishing new policies and procedures for the local elementary school\'s Parent Teacher Association, including member expectations and procedures for working with the administration.', 'published'=>1, 'public'=>1, 'house_policy'=>0]);
-        $this->createSections($policy,$content);
+        $document = Document::create(['type'=>'policy','name'=>'PTA Bylaws', 'short_synopsis'=>'Establishing new policies and procedures for the local school PTA','full_synopsis'=>'Establishing new policies and procedures for the local elementary school\'s Parent Teacher Association, including member expectations and procedures for working with the administration.', 'published'=>1, 'public'=>1, 'house_document'=>0]);
+        $this->createSections($document,$content);
 
-        $policy = Policy::create(['name'=>'Citywide Curfew', 'short_synopsis'=>'Establishing curfews for minors at different age groups','full_synopsis'=>'Establishing curfews for unaccompanied minors. Different age groups will have different curfew times.', 'published'=>1, 'public'=>1, 'house_policy'=>0]);
-        $this->createSections($policy,$content);
+        $document = Document::create(['type'=>'policy','name'=>'Citywide Curfew', 'short_synopsis'=>'Establishing curfews for minors at different age groups','full_synopsis'=>'Establishing curfews for unaccompanied minors. Different age groups will have different curfew times.', 'published'=>1, 'public'=>1, 'house_document'=>0]);
+        $this->createSections($document,$content);
 
-        $policy = Policy::create(['name'=>'Zoning Laws', 'short_synopsis'=>'Establishing zoning laws for future development in the city','full_synopsis'=>'Updating the zoning laws in the city for all future development. This includes establishing commercial, manufacturing, public-use, and housing sections.', 'published'=>1, 'public'=>1, 'house_policy'=>0]);
-        $this->createSections($policy,$content);
+        $document = Document::create(['type'=>'policy','name'=>'Zoning Laws', 'short_synopsis'=>'Establishing zoning laws for future development in the city','full_synopsis'=>'Updating the zoning laws in the city for all future development. This includes establishing commercial, manufacturing, public-use, and housing sections.', 'published'=>1, 'public'=>1, 'house_document'=>0]);
+        $this->createSections($document,$content);
 
+        DB::update("ALTER TABLE documents AUTO_INCREMENT = 30001;");
+
+        // RFPs
+        for($x=0;$x<8;$x++){
+            $document = Document::create(['type'=>'rfp', 'name'=>$prefixes[$x].' RFP','short_synopsis'=>'short overview of '.$prefixes[$x].' RFP'.' with quick details about the objective','full_synopsis'=>"A much longer explanation of the ".$prefixes[$x]." RFP and what is expected in a response, including specific items that need to be addressed.",'public'=>1,'published'=>1, 'submission_start'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")"), 'submission_cutoff'=>\DB::raw("ADDDATE(NOW(),".rand(10,30).")")]);
+            $this->createSections($document,$content);
+            $document->child_count=$document->children->count();
+            $document->save();
+        }
 
         // update the sections counts
-        foreach(Policy::all() as $policy){
-            $policy->section_count = $policy->sections->count();
-            $policy->top_section_count = $policy->topLevelSections->count();
-            $policy->save();
+        foreach(Document::all() as $document){
+            $document->section_count = $document->sections->count();
+            $document->top_section_count = $document->topLevelSections->count();
+            $document->save();
         }
         foreach(Section::all() as $section){
             $section->section_count = Section::where('parent_section_id',$section->id)->count();
@@ -73,30 +84,35 @@ class PoliciesTableSeeder extends Seeder
         }
     }
 
-    protected function createSections($policy,$content){
+
+
+    protected function createSections($document,$content){
         for($x=1;$x<=rand(1,6);$x++){
-            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
+            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
             $sections2num=rand(0,5);
             if($sections2num>0){
                 for($y=1;$y<=rand(1,4);$y++){
-                    $section2 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
+                    $section2 = Section::create(['content'=>$content[rand(0,14)], 'document_id'=>$document->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
                     $sections3num=rand(0,3);
                     if($sections3num>0){
                         for($z=1;$z<=rand(2,4);$z++){
-                            $section3 = Section::create(['content'=>$content[rand(0,14)], 'policy_id'=>$policy->id, 'parent_section_id'=>$section2->id, 'user_id'=>100000, 'display_order'=>$z]); //400000
+                            $section3 = Section::create(['content'=>$content[rand(0,14)], 'document_id'=>$document->id, 'parent_section_id'=>$section2->id, 'user_id'=>100000, 'display_order'=>$z]); //400000
                         }
                     }
                 }
             }
         }
         $user = User::where('email','test@testgmail.com')->first();
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100001,100004),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100010,100030),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100031,100050),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100051,100070),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        Collaborator::create(['policy_id'=>$policy->id,'user_id'=>rand(100071,100090),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100001,100004),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100010,100030),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        if(rand(1,2)==1)
+            Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100031,100050),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        if(rand(1,2)==1)
+            Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100051,100070),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        if(rand(1,2)==1)
+            Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100071,100090),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         if(rand(1,2)==1 && $user)
-            Collaborator::create(['policy_id'=>$policy->id,'user_id'=>$user->id,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+            Collaborator::create(['document_id'=>$document->id,'user_id'=>$user->id,'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
 
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Policy;
+use App\Document;
 use App\Section;
 use App\Rating;
 use App\Collaborator;
@@ -18,7 +18,7 @@ class PoliciesController extends Controller
     public function index()
     {
         //
-        $policies = Policy::viewable()->get();
+        $policies = Document::policy()->viewable()->get();
         $data = [
             'policies'  => $policies,
             'pagetitle' => 'Browse Policies'
@@ -53,10 +53,11 @@ class PoliciesController extends Controller
     {
         //
         $input = $request->get('policy');
-        $policy = Policy::create($input);
-        $policy_id=$policy->id;
-        Collaborator::create(['policy_id'=>$policy_id,'user_id'=>\Auth::user()->id,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
-        return redirect()->route('policies.edit',$policy_id);
+        $input['type'] = 'policy';
+        $document = Document::create($input);
+        $document_id=$policy->id;
+        Collaborator::create(['document_id'=>$document_id,'user_id'=>\Auth::user()->id,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        return redirect()->route('policies.edit',$document_id);
     }
 
     /**
@@ -70,14 +71,14 @@ class PoliciesController extends Controller
         if(\Auth::guest())
             \Session::put('url.intended', url()->current());  
         //
-        $policy = Policy::find($id);
+        $policy = Document::policy()->where('id',$id)->first();
         $policy->rating = round($policy->rating);
         if($policy->rating == -0)
             $policy->rating = 0;
         $ratings = null;
         if(\Auth::check()){
             $ratings=['document'=>null,'sections'=>null];
-            $ratingsresult = Rating::byUser()->where('policy_id',$policy->id)->first();
+            $ratingsresult = Rating::byUser()->where('document_id',$policy->id)->first();
             if($ratingsresult)
                 $ratings['document']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
             $ratingsresults = Rating::byUser()->whereIn('section_id',$policy->sections->pluck('id'))->get();
@@ -112,7 +113,7 @@ class PoliciesController extends Controller
             return redirect()->route('policies.index');
         $data = [
             'pagetitle' => 'Draft a Policy',
-            'policy'    => Policy::find($id)
+            'policy'    => Document::policy()->where('id',$id)->first()
         ];
         return view('policies.create',$data);
     }
@@ -142,7 +143,7 @@ class PoliciesController extends Controller
 
     public function getsubsections($pid,$sid){
 
-        $policy = Policy::find($pid);
+        $policy = Document::find($pid);
         if(!$policy)
             return redirect()->route('home');
         $sections = Section::where('policy_id',$policy->id)->where('parent_section_id',$sid)->orderBy('display_order','asc')->get();

@@ -16,6 +16,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index();
+            $table->integer('document_id')->index()->nullable();
             $table->integer('policy_id')->index()->nullable();
             $table->integer('section_id')->index()->nullable();
             $table->integer('rfp_id')->index()->nullable();
