@@ -14,14 +14,11 @@ class CalculateRatings extends Command
 
     protected $description = 'Process and calculate new section and policy ratings when someone clicks a rating.';
 
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
     }
 
-    public function handle()
-    {
-        //
+    public function handle(){
         Section::whereNotNull('recalculate')->orderBy('recalculate','asc')->chunk(25,function($sections){
             foreach($sections as $section){
                 $ratingstotal = Rating::where('section_id',$section->id)->active()->sum('weighted_rating');

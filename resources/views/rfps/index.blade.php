@@ -8,8 +8,8 @@
         </div>
     </div>
     <div class="row">
-        @foreach($rfps as $rfp)
-            @include('partials.rfp-box',['rfp'=>$rfp])
+        @foreach($documents as $document)
+            @include('partials.rfp-box',['rfp'=>$document])
         @endforeach
     </div>
 </div>

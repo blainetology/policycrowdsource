@@ -22,10 +22,9 @@ class CreateDocumentsTable extends Migration
             $table->integer('forked_id')->index()->nullable();
             $table->integer('numbering_pattern_id')->index()->default(1);
             $table->integer('document_id')->index()->nullable();
-            $table->date('submission_start')->index()->nullable();
-            $table->date('submission_cutoff')->index()->nullable();
             $table->integer('public')->index()->default(0);
-            $table->integer('published')->index()->default(0);
+            $table->datetime('published')->nullable();
+            $table->date('submission_cutoff')->index()->nullable();
             $table->integer('house_document')->index()->default(0);
             $table->integer('starter_document')->index()->default(0);
             $table->integer('section_count')->default(0);
@@ -51,6 +50,7 @@ class CreateDocumentsTable extends Migration
             $table->longtext('content')->nullable();
             $table->string('staged_title')->nullable();
             $table->longtext('staged_content')->nullable();
+            $table->datetime('published')->nullable();
             $table->integer('document_id')->index()->nullable();
             $table->integer('user_id')->index();
             $table->integer('revision_id')->index()->nullable();

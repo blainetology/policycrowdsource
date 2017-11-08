@@ -8,7 +8,7 @@ class Document extends Model
 {
     //
 
-    protected $fillable = ['type','name','content','forked_id','numbering_pattern_id','document_id','public','published','short_synopsis','full_synopsis','submission_start','submission_cutoff','political_rating','house_document','starter_document','child_count'];
+    protected $fillable = ['type','name','content','forked_id','numbering_pattern_id','document_id','public','short_synopsis','full_synopsis','published','submission_cutoff','political_rating','house_document','starter_document','child_count'];
 
 
     // RELATIONSHIPS
@@ -44,7 +44,7 @@ class Document extends Model
         return $query->where('type','policy');
     }
     public function scopeViewable($query){
-        return $query->where('published',1)->where('public',1);
+        return $query->whereNotNull('published')->where('public',1);
     }
     public function scopeStarter($query){
         return $query->where('starter_document',1);
@@ -59,7 +59,7 @@ class Document extends Model
         return $query->where('published',1);
     }
     public function scopeUnpublished($query){
-        return $query->where('published',0);
+        return $query->whereNotNull('published');
     }
     public function scopePublic($query){
         return $query->where('public',1);

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Rfp;
-use App\Policy;
+use App\Document;
 use App\Section;
 use App\Rating;
 use App\User;
@@ -45,7 +44,7 @@ class AccountController extends Controller
 
     public function mypolicies(){
         $data = [
-            'policies' => Policy::userCollaboratingOn()->get(),
+            'policies' => Document::policy()->userCollaboratingOn()->get(),
             'pagetitle' => "My Policies",
             'headertitle' => "Policies On Which I'm Collaborating"
         ];
@@ -54,7 +53,7 @@ class AccountController extends Controller
 
     public function myrfps(){
         $data = [
-            'rfps' => Rfp::userCollaboratingOn()->get(),
+            'rfps' => Document::rfp()->userCollaboratingOn()->get(),
             'pagetitle' => "My RFPs",
             'headertitle' => "RFPs On Which I'm Collaborating"
         ];
@@ -63,7 +62,7 @@ class AccountController extends Controller
 
     public function ratedpolicies(){
         $data = [
-            'policies' => Policy::userRatedBy()->get(),
+            'policies' => Document::policy()->userRatedBy()->get(),
             'pagetitle' => "Rated Policies",
             'headertitle' => "Policies I've Rated"
         ];
@@ -72,7 +71,7 @@ class AccountController extends Controller
 
     public function ratedrfps(){
         $data = [
-            'rfps' => Rfp::userRatedBy()->get(),
+            'rfps' => Document::rfp()->userRatedBy()->get(),
             'pagetitle' => "Rated RFPs",
             'headertitle' => "RFPs I've Rated"
         ];

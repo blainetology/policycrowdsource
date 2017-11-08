@@ -55,7 +55,7 @@ class PoliciesController extends Controller
         $input = $request->get('policy');
         $input['type'] = 'policy';
         $document = Document::create($input);
-        $document_id=$policy->id;
+        $document_id=$document->id;
         Collaborator::create(['document_id'=>$document_id,'user_id'=>\Auth::user()->id,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         return redirect()->route('policies.edit',$document_id);
     }
@@ -71,17 +71,17 @@ class PoliciesController extends Controller
         if(\Auth::guest())
             \Session::put('url.intended', url()->current());  
         //
-        $policy = Document::policy()->where('id',$id)->first();
-        $policy->rating = round($policy->rating);
-        if($policy->rating == -0)
-            $policy->rating = 0;
+        $document = Document::policy()->where('id',$id)->first();
+        $document->rating = round($document->rating);
+        if($document->rating == -0)
+            $document->rating = 0;
         $ratings = null;
         if(\Auth::check()){
             $ratings=['document'=>null,'sections'=>null];
-            $ratingsresult = Rating::byUser()->where('document_id',$policy->id)->first();
+            $ratingsresult = Rating::byUser()->where('document_id',$document->id)->first();
             if($ratingsresult)
                 $ratings['document']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
-            $ratingsresults = Rating::byUser()->whereIn('section_id',$policy->sections->pluck('id'))->get();
+            $ratingsresults = Rating::byUser()->whereIn('section_id',$document->sections->pluck('id'))->get();
             if($ratingsresults->count()>0){
                 $ratings['sections']=[];
                 foreach($ratingsresults as $rating)
@@ -90,11 +90,10 @@ class PoliciesController extends Controller
         }
         $data = [
             //'policyescaped' => Policy::where('id',$id)->with('topLevelSectionsNested')->first(),
-            'policy'        => $policy,
-            'doctype'       => 'policy',
-            'sections'      => Section::sortSections($policy->sections->toArray()),
+            'document'      => $document,
+            'sections'      => Section::sortSections($document->sections->toArray()),
             'ratings'       => $ratings,
-            'pagetitle'     => $policy->name
+            'pagetitle'     => $document->name
         ];
 
         return view('policies.show',$data);
@@ -143,17 +142,17 @@ class PoliciesController extends Controller
 
     public function getsubsections($pid,$sid){
 
-        $policy = Document::find($pid);
-        if(!$policy)
+        $document = Document::find($pid);
+        if(!$document)
             return redirect()->route('home');
-        $sections = Section::where('policy_id',$policy->id)->where('parent_section_id',$sid)->orderBy('display_order','asc')->get();
-        $policy->rating = round($policy->rating);
-        if($policy->rating == -0)
-            $policy->rating = 0;
+        $sections = Section::where('policy_id',$document->id)->where('parent_section_id',$sid)->orderBy('display_order','asc')->get();
+        $document->rating = round($document->rating);
+        if($document->rating == -0)
+            $document->rating = 0;
         $ratings = null;
         if(\Auth::check()){
             $ratings=['policy'=>null,'sections'=>null];
-            $ratingsresult = Rating::byUser()->where('policy_id',$policy->id)->first();
+            $ratingsresult = Rating::byUser()->where('policy_id',$document->id)->first();
             if($ratingsresult)
                 $ratings['policy']=['rating'=>$ratingsresult->rating,'calculated_rating'=>$ratingsresult->calculated_rating];
             $ratingsresults = Rating::byUser()->whereIn('section_id',$sections->pluck('id'))->get();
@@ -164,10 +163,10 @@ class PoliciesController extends Controller
             }
         }
         $data = [
-            'policy'        => $policy,
+            'policy'        => $document,
             'sections'      => $sections,
             'ratings'       => $ratings,
-            'pagetitle'     => $policy->name
+            'pagetitle'     => $document->name
         ];
 
         return view('policies.section',$data);

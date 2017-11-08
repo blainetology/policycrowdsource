@@ -19,25 +19,22 @@ Route::get('policies/sections/{pid}/{sid}',['as'=>'getpolicysections','uses'=>'P
 Route::resource('policies','PoliciesController');
 Route::resource('rfp','RFPsController');
 
-Route::get('/comment/policy/{pid}',['as'=>'commentpolicy','uses'=>'CommentsController@getpolicy']);
-Route::get('/comment/section/{sid}',['as'=>'commentsection','uses'=>'CommentsController@getsection']);
-Route::get('/comment/rfp/{rid}',['as'=>'commentrfp','uses'=>'CommentsController@getrfp']);
+Route::get('/comment/document/{id}',['as'=>'commentdocument','uses'=>'CommentsController@getdocument']);
+Route::get('/comment/section/{id}',['as'=>'commentsection','uses'=>'CommentsController@getsection']);
 
 Route::group(['middleware'=>['auth']],function(){
 
-	Route::get('/rate/r/{rid}/r/{rating}',['as'=>'raterfp','uses'=>'RatingsController@raterfp']);
-	Route::get('/rate/p/{pid}/r/{rating}',['as'=>'ratepolicy','uses'=>'RatingsController@ratepolicy']);
-	Route::get('/rate/p/{pid}/s/{sid}/r/{rating}',['as'=>'ratesection','uses'=>'RatingsController@ratesection']);
+	Route::get('/rate/d/{id}/r/{rating}',['as'=>'ratepolicy','uses'=>'RatingsController@ratedocument']);
+	Route::get('/rate/d/{id}/s/{sid}/r/{rating}',['as'=>'ratesection','uses'=>'RatingsController@ratesection']);
 
 	Route::get('/account/settings',['as'=>'accountsettings','uses'=>'AccountController@settings']);
 	Route::post('/account/settings',['as'=>'accountsettings','uses'=>'AccountController@updatesettings']);
-	Route::get('/account/mypolicies',['as'=>'accountmypolicies','uses'=>'AccountController@mypolicies']);
-	Route::get('/account/myrfps',['as'=>'accountmyrfps','uses'=>'AccountController@myrfps']);
-	Route::get('/account/ratedpolicies',['as'=>'accountratedpolicies','uses'=>'AccountController@ratedpolicies']);
-	Route::get('/account/ratedrfps',['as'=>'accountratedrfps','uses'=>'AccountController@ratedrfps']);
+	Route::get('/account/policies/mine',['as'=>'accountmypolicies','uses'=>'AccountController@mypolicies']);
+	Route::get('/account/rfps/mine',['as'=>'accountmyrfps','uses'=>'AccountController@myrfps']);
+	Route::get('/account/policies/rated',['as'=>'accountratedpolicies','uses'=>'AccountController@ratedpolicies']);
+	Route::get('/account/rfps/rated',['as'=>'accountratedrfps','uses'=>'AccountController@ratedrfps']);
 
-	Route::post('/comment/policy/{pid}',['as'=>'commentpolicy','uses'=>'CommentsController@postpolicy']);
-	Route::post('/comment/section/{sid}',['as'=>'commentsection','uses'=>'CommentsController@postsection']);
-	Route::post('/comment/rfp/{rid}',['as'=>'commentrfp','uses'=>'CommentsController@postrfp']);
+	Route::post('/comment/document/{id}',['as'=>'commentdocument','uses'=>'CommentsController@postdocument']);
+	Route::post('/comment/section/{id}',['as'=>'commentsection','uses'=>'CommentsController@postsection']);
 
 });

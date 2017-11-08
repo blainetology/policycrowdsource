@@ -8,13 +8,10 @@ function PCAppFunctions(){
 	this.show_comments = function(type,id){
 	    $('#'+type+'CommentsBox'+id).slideDown(500);
 	}
-	this.rate_ajax = function(type,id,sid,rating){
+	this.rate_ajax = function(id,sid,rating){
 	    var url = "/";
 	    if(sid){
-	        if(type=='rfp')
-	            url = '/rate/r/'+id+'/s/'+sid+'/r/'+rating;
-	        else
-	            url = '/rate/p/'+id+'/s/'+sid+'/r/'+rating
+            url = '/rate/d/'+id+'/s/'+sid+'/r/'+rating
 	        $.get(url,null,function(data){
 	            if(data['calculated']){
 	                if(data['calculated'][2]=='section'){
@@ -38,10 +35,7 @@ function PCAppFunctions(){
 	        $('#ratingBoxSection'+sid).removeClass('rating-calculated');
 	    }
 	    else{
-	        if(type=='rfp')
-	            url = '/rate/r/'+id+'/r/'+rating;
-	        else
-	            url = '/rate/p/'+id+'/r/'+rating
+            url = '/rate/d/'+id+'/r/'+rating
 	        $.get(url);
 	        $('#ratingBoxDocument'+id+' .rating-thumb').not('.rating'+rating).removeClass('selected').addClass('not-selected');
 	        $('#ratingBoxDocument'+id+' .rating'+rating).addClass('selected');

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Rfp;
-use App\Policy;
+use App\Document;
 use App\Section;
 use App\Rating;
 use App\Comment;
@@ -12,27 +11,22 @@ use App\Comment;
 class CommentsController extends Controller
 {
 
-    public function getpolicy($pid){
+    public function getdocument($id){
         return "got";
     }
 
-    public function getsection($sid){
+    public function getsection($id){
         return "got";
     }
 
-    public function getrfp($rid){
-        return "got";
-    }
-
-
-    public function postpolicy(Request $request, $pid){
-        if(!empty($pid) && !empty($request->id) && !empty($request->type) && $request->type=='policy' && $request->id==$pid){
-            $policy = Policy::find($pid);
-            if($policy){
-                $comment = Comment::create(['user_id'=>\Auth::user()->id,'policy_id'=>$policy->id,'comment'=>trim($request->comment)]);
+    public function postdocument(Request $request, $id){
+        if(!empty($id) && !empty($request->id) && !empty($request->type) && $request->id==$id){
+            $document = Document::find($id);
+            if($document){
+                $comment = Comment::create(['user_id'=>\Auth::user()->id,'document_id'=>$document->id,'comment'=>trim($request->comment)]);
                 if($comment){
-                    $policy->comments_count=Comment::where('policy_id',$policy->id)->count();
-                    $policy->save();
+                    $document->comments_count=Comment::where('document_id',$document->id)->count();
+                    $document->save();
                     return view('partials.comment',['comment'=>$comment]);
                 }
             }
@@ -40,9 +34,9 @@ class CommentsController extends Controller
         return "";
     }
 
-    public function postsection(Request $request, $sid){
-        if(!empty($sid) && !empty($request->id) && !empty($request->type) && $request->type=='section' && $request->id==$sid){
-            $section = Section::find($sid);
+    public function postsection(Request $request, $id){
+        if(!empty($id) && !empty($request->id) && !empty($request->type) && $request->type=='section' && $request->id==$id){
+            $section = Section::find($id);
             if($section){
                 $comment = Comment::create(['user_id'=>\Auth::user()->id,'section_id'=>$section->id,'comment'=>trim($request->comment)]);
                 if($comment){
@@ -53,10 +47,6 @@ class CommentsController extends Controller
             }
         }
         return "";
-    }
-
-    public function postrfp(Request $request, $rid){
-        return "posted";
     }
 
 }

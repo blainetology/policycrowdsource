@@ -41,32 +41,32 @@ class PoliciesTableSeeder extends Seeder
 
         DB::update("ALTER TABLE sections AUTO_INCREMENT = 403000;");
 
-        $document = Document::create(['type'=>'policy','name'=>'Heathcare Reform', 'short_synopsis'=>'Repeal and replacement of the Affordable Care Act','full_synopsis'=>'A formal replacement for the Affordable Care Act. The first step will be to completely repeal the Act. Then the replacement will be established.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30001]);
+        $document = Document::create(['type'=>'policy','name'=>'Heathcare Reform', 'short_synopsis'=>'Repeal and replacement of the Affordable Care Act','full_synopsis'=>'A formal replacement for the Affordable Care Act. The first step will be to completely repeal the Act. Then the replacement will be established.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30001, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
-        $document = Document::create(['type'=>'policy','name'=>'Gun Control Overhaul', 'short_synopsis'=>'Establishing limits on certain kind of firearms and establishing a national background check system','full_synopsis'=>'Establishing limits on certain kind of firearms, specifically assault rifles, and banning the sale of accessories that can be used to adapt semi-automatic to act as an automatic. This also establishes a national background check system to provide for approvals within minutes, thereby eliminating the gun show loophole.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30002]);
+        $document = Document::create(['type'=>'policy','name'=>'Gun Control Overhaul', 'short_synopsis'=>'Establishing limits on certain kind of firearms and establishing a national background check system','full_synopsis'=>'Establishing limits on certain kind of firearms, specifically assault rifles, and banning the sale of accessories that can be used to adapt semi-automatic to act as an automatic. This also establishes a national background check system to provide for approvals within minutes, thereby eliminating the gun show loophole.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30002, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
-        $document = Document::create(['type'=>'policy','name'=>'Local Townhomes CC&amp;R', 'short_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions','full_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions for the local Townhomes Homeowners Association. The current ones are too limiting.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30002]);
+        $document = Document::create(['type'=>'policy','name'=>'Local Townhomes CC&amp;R', 'short_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions','full_synopsis'=>'Establishing new Covenants, Conditions, and Restrictions for the local Townhomes Homeowners Association. The current ones are too limiting.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30002, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
-        $document = Document::create(['type'=>'policy','name'=>'School Board Policies', 'short_synopsis'=>'Establishing new policies for school board meetings.','full_synopsis'=>'Establishing new policies for school board meetings, for both audience participation and from the board members.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30003]);
+        $document = Document::create(['type'=>'policy','name'=>'School Board Policies', 'short_synopsis'=>'Establishing new policies for school board meetings.','full_synopsis'=>'Establishing new policies for school board meetings, for both audience participation and from the board members.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30003, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
-        $document = Document::create(['type'=>'policy','name'=>'PTA Bylaws', 'short_synopsis'=>'Establishing new policies and procedures for the local school PTA','full_synopsis'=>'Establishing new policies and procedures for the local elementary school\'s Parent Teacher Association, including member expectations and procedures for working with the administration.', 'published'=>1, 'public'=>1, 'house_document'=>0]);
+        $document = Document::create(['type'=>'policy','name'=>'PTA Bylaws', 'short_synopsis'=>'Establishing new policies and procedures for the local school PTA','full_synopsis'=>'Establishing new policies and procedures for the local elementary school\'s Parent Teacher Association, including member expectations and procedures for working with the administration.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
-        $document = Document::create(['type'=>'policy','name'=>'Citywide Curfew', 'short_synopsis'=>'Establishing curfews for minors at different age groups','full_synopsis'=>'Establishing curfews for unaccompanied minors. Different age groups will have different curfew times.', 'published'=>1, 'public'=>1, 'house_document'=>0]);
+        $document = Document::create(['type'=>'policy','name'=>'Citywide Curfew', 'short_synopsis'=>'Establishing curfews for minors at different age groups','full_synopsis'=>'Establishing curfews for unaccompanied minors. Different age groups will have different curfew times.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
-        $document = Document::create(['type'=>'policy','name'=>'Zoning Laws', 'short_synopsis'=>'Establishing zoning laws for future development in the city','full_synopsis'=>'Updating the zoning laws in the city for all future development. This includes establishing commercial, manufacturing, public-use, and housing sections.', 'published'=>1, 'public'=>1, 'house_document'=>0]);
+        $document = Document::create(['type'=>'policy','name'=>'Zoning Laws', 'short_synopsis'=>'Establishing zoning laws for future development in the city','full_synopsis'=>'Updating the zoning laws in the city for all future development. This includes establishing commercial, manufacturing, public-use, and housing sections.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
         DB::update("ALTER TABLE documents AUTO_INCREMENT = 30001;");
 
         // RFPs
         for($x=0;$x<8;$x++){
-            $document = Document::create(['type'=>'rfp', 'name'=>$prefixes[$x].' RFP','short_synopsis'=>'short overview of '.$prefixes[$x].' RFP'.' with quick details about the objective','full_synopsis'=>"A much longer explanation of the ".$prefixes[$x]." RFP and what is expected in a response, including specific items that need to be addressed.",'public'=>1,'published'=>1, 'submission_start'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")"), 'submission_cutoff'=>\DB::raw("ADDDATE(NOW(),".rand(10,30).")")]);
+            $document = Document::create(['type'=>'rfp', 'name'=>$prefixes[$x].' RFP','short_synopsis'=>'short overview of '.$prefixes[$x].' RFP'.' with quick details about the objective','full_synopsis'=>"A much longer explanation of the ".$prefixes[$x]." RFP and what is expected in a response, including specific items that need to be addressed.",'public'=>1,'published'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")"), 'submission_cutoff'=>\DB::raw("ADDDATE(NOW(),".rand(10,30).")")]);
             $this->createSections($document,$content);
             $document->child_count=$document->children->count();
             $document->save();
@@ -82,6 +82,10 @@ class PoliciesTableSeeder extends Seeder
             $section->section_count = Section::where('parent_section_id',$section->id)->count();
             $section->save();
         }
+
+        DB::update("UPDATE sections SET published=NOW()");
+
+
     }
 
 
