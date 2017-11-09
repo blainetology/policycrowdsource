@@ -22,13 +22,13 @@ class UsersTableSeeder extends Seeder
         \App\User::create(['first_name'=>'Austin', 'last_name'=>'Baker','email'=>'austinmbaker@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
         \App\User::create(['first_name'=>'Garett', 'last_name'=>'Bingham','email'=>'jebmotherboard@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
 
-        $first_names = ['John','Jane','Bill','Mary','Steve','Angie','Michael','Sarah','Richard','Charlotte','Bob','Elizabeth','Jacques','Meredith','Jose','Amber','Justin','Nancy'];
-        $prefixes = ["","O'","Mc","","Mac","La",""];
-        $last_names = ['Smith','Jones','Miller','Hernandez','Roosevelt','Morgan','Johnson','Goldberg','Rodriguez','Page','Gonzalez','Carter','Clinton','Lincoln','Banner','Stark','Baker','Rodriguez'];
+        $first_names = ['John','Jane','Bill','Mary','Steve','Angie','Michael','Sarah','Richard','Charlotte','Bob','Elizabeth','Jacques','Meredith','Jose','Amber','Justin','Nancy','Esteban','Barbara'];
+        $prefixes = ["","O'","Mc","","Mac","La","","D'","","Di"];
+        $last_names = ['Smith','Jones','Miller','Hernandez','Roosevelt','Morgan','Johnson','Goldberg','Rodriguez','Page','Gonzalez','Carter','Clinton','Lincoln','Banner','Stark','Baker','Rodriguez','Stevens','Parker','Stanwick','Mason'];
 
         for($x=100;$x<400;$x++){
-            $firstname=$first_names[rand(0,17)];
-            $lastname=$prefixes[rand(0,6)].$last_names[rand(0,17)];
+            $firstname=$first_names[rand(0,19)];
+            $lastname=$prefixes[rand(0,9)].$last_names[rand(0,21)];
             $weight = rand(-5,5);
             if($weight==0){
                 $check = rand(1,2);
@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
         }
 
         \DB::update("ALTER TABLE users AUTO_INCREMENT = 101000;");
-        \App\User::create(['first_name'=>'Test', 'last_name'=>'Testor','email'=>'test@testgmail.com','password'=>\Hash::make('temp123'),'political_weight'=>0,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
+        \App\User::create(['first_name'=>'Test', 'last_name'=>'Testor','email'=>'test@testgmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
 
     }
 }

@@ -57,7 +57,16 @@ class RatingsTableSeeder extends Seeder
             	else{
             		foreach($allusers as $user){
             			if(rand(1,5)!=3){
-	            			$rating = rand(1,4);
+                            if($user->political_weight<0 && $section->id%2==1)
+                                $rating = rand(1,3);
+                            else if($user->political_weight<0 && $section->id%2==0)
+                                $rating = rand(2,4);
+                            else if($user->political_weight>0 && $section->id%2==1)
+                                $rating = rand(2,4);
+                            else if($user->political_weight>0 && $section->id%2==0)
+                                $rating = rand(1,3);
+                            else
+    	            			$rating = rand(1,4);
 	            			if($rating==1)
 	            				$rating=-2;
 	            			elseif($rating==2)
