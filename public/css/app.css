@@ -11427,7 +11427,8 @@ h4 small {
 }
 
 .document-well .details_section {
-  height: 90px;
+  max-height: 95px;
+  min-height: 80px;
   overflow: hidden;
 }
 
@@ -11532,8 +11533,8 @@ a.comment-icon:hover {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-right: 0px;
-  margin-left: -10px;
-  border-left: 6px solid #807f7f;
+  margin-left: -12px;
+  border-left: 8px solid #807f7f;
 }
 
 .section-container.rating_5 {
@@ -11609,7 +11610,7 @@ a.comment-icon:hover {
 .section-container .document-section h2,
 .section-container .document-section h3,
 .section-container .document-section h4 {
-  margin: 8px 0 6px;
+  margin: 6px 0 6px;
 }
 
 .setting-rating {

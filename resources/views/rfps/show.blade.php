@@ -22,7 +22,12 @@
         </div>
         <div class="col-md-3">
             <div class="well well-sm">
-                <span class="pull-left document-rating rfp-rating rating_{{round($document->political_rating)}}"> {{number_format($document->ratings_count,0)}} Votes </span>
+                <?php 
+                    $document->political_rating = round($document->political_rating);
+                    if($document->political_rating == -0)
+                        $document->political_rating = 0;
+                ?>
+                <span class="pull-left document-rating policy-rating rating_{{$document->political_rating}}"> {{number_format($document->ratings_count,0)}} Votes </span>
                 &nbsp; &nbsp; 
                 <a href="javascript:PCApp.show_comments('document',{{$document->id}})" class="comment-icon" title="{{$document->comments->count()>0 ? 'View Comments' : 'Leave a Comment'}}"> {!!$document->comments->count() > 0 ? '<i class="fa fa-comment" aria-hidden="true"></i> <i class="fa fa-caret-right" aria-hidden="true"></i>' : '<i class="fa fa-comment-o" aria-hidden="true"></i> <i class="fa fa-plus" aria-hidden="true"></i>'!!}</a>   
                 <div class="rating-box document-rating pull-right text-right" id="ratingBoxDocument{{$document->id}}">

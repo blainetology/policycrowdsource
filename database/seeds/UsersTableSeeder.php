@@ -23,12 +23,12 @@ class UsersTableSeeder extends Seeder
         \App\User::create(['first_name'=>'Garett', 'last_name'=>'Bingham','email'=>'jebmotherboard@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
 
         $first_names = ['John','Jane','Bill','Mary','Steve','Angie','Michael','Sarah','Richard','Charlotte','Bob','Elizabeth','Jacques','Meredith','Jose','Amber','Justin','Nancy','Esteban','Barbara'];
-        $prefixes = ["","O'","Mc","","Mac","La","","D'","","Di"];
+        $prefixes = ["","O'","Mc","","Mac","La","","D'","","Di","Fitz"];
         $last_names = ['Smith','Jones','Miller','Hernandez','Roosevelt','Morgan','Johnson','Goldberg','Rodriguez','Page','Gonzalez','Carter','Clinton','Lincoln','Banner','Stark','Baker','Rodriguez','Stevens','Parker','Stanwick','Mason'];
 
-        for($x=100;$x<400;$x++){
+        for($x=100;$x<500;$x++){
             $firstname=$first_names[rand(0,19)];
-            $lastname=$prefixes[rand(0,9)].$last_names[rand(0,21)];
+            $lastname=$prefixes[rand(0,10)].$last_names[rand(0,21)];
             $weight = rand(-5,5);
             if($weight==0){
                 $check = rand(1,2);

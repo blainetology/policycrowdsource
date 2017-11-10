@@ -7,6 +7,9 @@
         ?>
         <div class="details_section">
             <span class="title"><a href="{{ route('policies.show',$policy->id) }}">{{$policy->name}}</a></span>
+            @if($policy->house_document==0)
+            <div class="small text-info">Published {{\Shared\ViewHelpers::date($policy->published,true)}}</div>
+            @endif
             <div class="short_synopsis">{{$policy->short_synopsis}}</div>
         </div>
         <div class="small">

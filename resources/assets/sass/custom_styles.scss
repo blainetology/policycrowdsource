@@ -13,7 +13,7 @@ h1,h2,h3,h4{
 	min-height: 225px; 
 	position: relative;
 	.details_section{
-		height:90px; overflow:hidden;
+		max-height:95px; min-height:80px; overflow:hidden;
 		.short_synopsis{margin:0; padding:0 0 4px; line-height: 1.3em; font-size:.9em; font-style:italic;}
 		.title{font-family: 'Oswald', sans-serif; font-size:16px;}
 	}
@@ -50,8 +50,8 @@ a.comment-icon,a.comment-icon:hover{
 	padding-top:3px;
 	padding-bottom:3px;
 	padding-right:0px;
-	margin-left:-10px;
-	border-left:6px solid $color-neutral-0;
+	margin-left:-12px;
+	border-left:8px solid $color-neutral-0;
 	&.rating_5{border-left-color:$color-plus-5;}
 	&.rating_4{border-left-color:$color-plus-4;}
 	&.rating_3{border-left-color:$color-plus-3;}
@@ -75,7 +75,7 @@ a.comment-icon,a.comment-icon:hover{
 		&:hover{
 			.rating-box{display:block !important;}
 		}
-		h1,h2,h3,h4{margin:8px 0 6px;}
+		h1,h2,h3,h4{margin:6px 0 6px;}
 	}
 }
 

@@ -7,15 +7,20 @@
         ?>
         <div class="details_section">
             <span class="title"><a href="{{ route('rfp.show',$rfp->id) }}">{{$rfp->name}}</a></span>
-            <div class="small text-danger">
+            <div class="small text-danger" style="line-height: 120%;">
+                <span class="small text-info pull-right">{{ $rfp->child_count }} submitted</span>
+                @if($rfp->house_document==0)
+                <span class="text-info">Published {{\Shared\ViewHelpers::date($rfp->published,true)}}</span><br/>
+                @endif
+                <span class="text-danger">
                 @if($rfp->no_expiration==1)
                     This RFP always accepts policy proposals
                 @else
                     Submit proposals by {{\Shared\ViewHelpers::date($rfp->submission_cutoff,true)}}
                 @endif
-                <span class="small text-info pull-right">{{ $rfp->child_count }} submitted</span>
+                </span>
             </div>
-            <div class="short_synopsis">{{$rfp->short_overview}}</div>
+            <div class="short_synopsis" style="margin-top:3px;">{{$rfp->short_synopsis}}</div>
         </div>
         <div class="small">
         {!!\App\Rating::getThumbs($rfp)!!}
