@@ -27,13 +27,17 @@ class CommentsTableSeeder extends Seeder
             "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
             "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. ",
             "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.",
-            "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+            "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+            "Quisque eget dictum nisi, ac scelerisque ligula. Donec viverra nisi nisi, a venenatis arcu placerat id. Phasellus pretium enim eget ipsum hendrerit, sit amet tempor augue mollis.",
+            "Nunc auctor lacus augue, nec convallis elit convallis vel. Aenean sed metus ut nibh fringilla porttitor. Curabitur semper augue et orci commodo, at efficitur turpis molestie.",
+            "Quisque vestibulum malesuada sapien, cursus sagittis nibh sollicitudin nec. Integer eros ipsum, maximus et auctor sit amet, blandit in nibh. Integer ut pharetra eros. Curabitur pellentesque ligula in urna dignissim, vitae feugiat massa posuere.",
+            "Curabitur posuere mauris et nulla vulputate, id pharetra ipsum eleifend. Donec convallis arcu sed ipsum commodo interdum. Nullam eget efficitur turpis, non posuere dolor."
         ];
 
         foreach($comments as $comment){
-            $sections = Section::inRandomOrder()->take(30)->get();
-            $policies = Document::policy()->inRandomOrder()->take(2)->get();
-            $rfps = Document::rfp()->inRandomOrder()->take(2)->get();
+            $sections = Section::inRandomOrder()->take(40)->get();
+            $policies = Document::policy()->inRandomOrder()->take(3)->get();
+            $rfps = Document::rfp()->inRandomOrder()->take(3)->get();
             foreach($sections as $section){
                 $user = User::inRandomOrder()->first();
                 Comment::create(['section_id'=>$section->id,'user_id'=>$user->id,'comment'=>$comment]);

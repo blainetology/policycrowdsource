@@ -11581,6 +11581,15 @@ a.comment-icon:hover {
   border-left-color: blue;
 }
 
+.section-container.section-edit {
+  border-left-color: #DDD;
+  margin-left: 0;
+}
+
+.section-container.section-edit:hover {
+  background: #FFF;
+}
+
 .section-container:hover {
   background: rgba(90, 90, 90, 0.07);
 }

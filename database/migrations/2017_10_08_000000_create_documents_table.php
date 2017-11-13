@@ -81,7 +81,27 @@ class CreateDocumentsTable extends Migration
             $table->integer('editor')->default(0);
             $table->integer('reviewer')->default(0);
             $table->integer('viewer')->default(0);
+            $table->string('pending_email')->index()->nullable();
             $table->timestamps();
+        });
+
+        Schema::create('tags', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->integer('parent_category')->index()->default(0);
+            $table->integer('tag_count')->index()->default(0);
+            $table->integer('category_count')->index()->default(0);
+            $table->integer('all_count')->index()->default(0);
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('document_tags', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('tag_id')->index();
+            $table->integer('document_id')->index();
+            $table->string('type')->index();
         });
 
         Schema::create('histories', function (Blueprint $table) {
@@ -105,5 +125,7 @@ class CreateDocumentsTable extends Migration
         Schema::dropIfExists('sections');
         Schema::dropIfExists('collaborators');
         Schema::dropIfExists('histories');
+        Schema::dropIfExists('tags');
+        Schema::dropIfExists('document_tags');
     }
 }

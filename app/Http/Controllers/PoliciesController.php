@@ -110,9 +110,13 @@ class PoliciesController extends Controller
         //
         if(!\Auth::check())
             return redirect()->route('policies.index');
+
+        $policy = Document::policy()->where('id',$id)->first();
         $data = [
             'pagetitle' => 'Draft a Policy',
-            'policy'    => Document::policy()->where('id',$id)->first()
+            'document'  => $policy,
+            'input'     => $policy->toArray(),
+            'sections'  => Section::sortSections($policy->sections->toArray()),
         ];
         return view('policies.create',$data);
     }

@@ -8,6 +8,12 @@
             <strong class="label label-sm label-success">Request for Policy</strong>
             <h1>{{$document->name}}<br/><small>{!!$document->short_synopsis!!}</small></h1>
             <p class="small">
+                <strong>categories:</strong> {{$document->categories}}
+            </p>
+            <p class="small">
+                <strong>tags:</strong> {{$document->tags}}
+            </p>
+            <p class="small">
             <strong>Prepared and Submitted By:</strong> 
                 <?php 
                 $collabs=[]; 

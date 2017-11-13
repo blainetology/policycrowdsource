@@ -63,6 +63,11 @@ a.comment-icon,a.comment-icon:hover{
 	&.rating_-3{border-left-color:$color-minus-3;}
 	&.rating_-4{border-left-color:$color-minus-4;}
 	&.rating_-5{border-left-color:$color-minus-5;}
+	&.section-edit{
+		border-left-color:#DDD;
+		margin-left:0;
+		&:hover{background:#FFF;}
+	}
 	&:hover{background:$policy-section-bg-hover;}
 	.document-section{
 		p{margin:0;}
