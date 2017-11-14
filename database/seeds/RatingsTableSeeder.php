@@ -17,11 +17,12 @@ class RatingsTableSeeder extends Seeder
 
         // Seed Policy & Section ratings
         foreach(Document::where('id','!=',20007)->get() as $document){
+            $did = $document->id;
         	echo " - ".$document->name." ratings \n";
             $ratings_array = [];
             $parents = [];
             // figure out the parent sectiond ids
-            $allsections = Section::where('document_id',$document->id)->orderBy('id','desc')->get();
+            $allsections = Section::where('document_id',$did)->orderBy('id','desc')->get();
             foreach($allsections as $section){
             	if(!isset($parents[(int)$section->parent_section_id]))
             		$parents[(int)$section->parent_section_id] = [];
@@ -31,12 +32,13 @@ class RatingsTableSeeder extends Seeder
             $allusers = User::all();
             echo " --- individual section user ratings\n";
             foreach($allsections as $section){
+                $sid=$section->id;
             	// if it is a parent section, get the aggregate rating for the section for each user
             	if(isset($parents[(int)$section->id])){
             		foreach($allusers as $user){
             			if(rand(1,5)!=3){
-	            			$ratingstotal = Rating::where('user_id',$user->id)->whereIn('section_id',$parents[(int)$section->id])->sum('rating');
-	            			$ratingscount = Rating::where('user_id',$user->id)->whereIn('section_id',$parents[(int)$section->id])->count();
+	            			$ratingstotal = Rating::user($user->id)->whereIn('section_id',$parents[(int)$sid])->sum('rating');
+	            			$ratingscount = Rating::user($user->id)->whereIn('section_id',$parents[(int)$sid])->count();
 							if($ratingscount==0)
 								$rating=0;
 							else
@@ -49,7 +51,7 @@ class RatingsTableSeeder extends Seeder
 	    	        			$rating=2;
 	    	        		else
 	    	        			$rating=1;
-	    	                Rating::create(['user_id'=>$user->id,'section_id'=>$section->id,'political_weight'=>$user->political_weight,'rating'=>$rating,'rating_abs_val'=>abs($rating),'weighted_rating'=>($user->political_weight*$rating)]);
+	    	                Rating::create(['user_id'=>$user->id,'section_id'=>$sid,'political_weight'=>$user->political_weight,'rating'=>$rating,'rating_abs_val'=>abs($rating),'weighted_rating'=>($user->political_weight*$rating)]);
 	    	            }
             		}
             	}
@@ -57,13 +59,13 @@ class RatingsTableSeeder extends Seeder
             	else{
             		foreach($allusers as $user){
             			if(rand(1,5)!=3){
-                            if($user->political_weight<0 && $section->id%2==1)
+                            if($user->political_weight<0 && $sid%2==1)
                                 $rating = rand(1,3);
-                            else if($user->political_weight<0 && $section->id%2==0)
+                            else if($user->political_weight<0 && $sid%2==0)
                                 $rating = rand(2,4);
-                            else if($user->political_weight>0 && $section->id%2==1)
+                            else if($user->political_weight>0 && $sid%2==1)
                                 $rating = rand(2,4);
-                            else if($user->political_weight>0 && $section->id%2==0)
+                            else if($user->political_weight>0 && $sid%2==0)
                                 $rating = rand(1,3);
                             else
     	            			$rating = rand(1,4);
@@ -75,7 +77,7 @@ class RatingsTableSeeder extends Seeder
 	            				$rating=1;
 	            			else
 	            				$rating=2;
-	    	                Rating::create(['user_id'=>$user->id,'section_id'=>$section->id,'political_weight'=>$user->political_weight,'rating'=>$rating,'rating_abs_val'=>abs($rating),'weighted_rating'=>($user->political_weight*$rating)]);
+	    	                Rating::create(['user_id'=>$user->id,'section_id'=>$sid,'political_weight'=>$user->political_weight,'rating'=>$rating,'rating_abs_val'=>abs($rating),'weighted_rating'=>($user->political_weight*$rating)]);
 	    	            }
     	            }
             	}
@@ -84,33 +86,19 @@ class RatingsTableSeeder extends Seeder
             // now get the overall ratings for the sections
             echo " --- overall section ratings\n";
             foreach($allsections as $section){
-    			$ratingstotal = Rating::where('section_id',$section->id)->sum('weighted_rating');
-    			$ratingscount = Rating::where('section_id',$section->id)->sum('rating_abs_val');
-				if($ratingscount==0)
-					$rating=0;
-				else
-	        		$rating = $ratingstotal/$ratingscount;
-    			if($rating > 5)
-    				$rating = 5;
-    			elseif($rating < -5)
-    				$rating = -5;
-    			$section->political_rating=$rating;
-                $section->ratings_count=Rating::where('section_id',$section->id)->count();
-                $section->ratings_minus2=Rating::where('section_id',$section->id)->where('rating','-2')->count();
-                $section->ratings_minus1=Rating::where('section_id',$section->id)->where('rating','-1')->count();
-                $section->ratings_plus1=Rating::where('section_id',$section->id)->where('rating','1')->count();
-                $section->ratings_plus2=Rating::where('section_id',$section->id)->where('rating','2')->count();
-                $ratings_avg = (($section->ratings_minus2*-2)+($section->ratings_minus1*-1)+($section->ratings_plus1*1)+($section->ratings_plus2*2))/$section->ratings_count;
-                if($ratings_avg<-1)
-                    $ratings_avg=-2;
-                elseif($ratings_avg<0)
-                    $ratings_avg=-1;
-                elseif($ratings_avg>1)
-                    $ratings_avg=2;
-                else
-                    $ratings_avg=1;
-                $section->ratings_avg=$ratings_avg;
-                $section->ratings_total=($section->ratings_minus2*-2)+($section->ratings_minus1*-1)+($section->ratings_plus1*1)+($section->ratings_plus2*2);
+                $sid=$section->id;
+    			$section->political_rating=Rating::politicalWeightCalculate(Rating::section($sid)->sum('weighted_rating'),Rating::section($sid)->sum('rating_abs_val'));
+                $section->political_rating_minus2=Rating::politicalWeightCalculate(Rating::section($sid)->rating(-2)->sum('weighted_rating'),Rating::section($sid)->rating(-2)->sum('rating_abs_val'));
+                $section->political_rating_minus1=Rating::politicalWeightCalculate(Rating::section($sid)->rating(-1)->sum('weighted_rating'),Rating::section($sid)->rating(-1)->sum('rating_abs_val'));
+                $section->political_rating_plus1=Rating::politicalWeightCalculate(Rating::section($sid)->rating(1)->sum('weighted_rating'),Rating::section($sid)->rating(1)->sum('rating_abs_val'));
+                $section->political_rating_plus2=Rating::politicalWeightCalculate(Rating::section($sid)->rating(2)->sum('weighted_rating'),Rating::section($sid)->rating(2)->sum('rating_abs_val'));
+                $section->ratings_count=Rating::section($sid)->count();
+                $section->ratings_count_minus2=Rating::section($sid)->rating(-2)->count();
+                $section->ratings_count_minus1=Rating::section($sid)->rating(-1)->count();
+                $section->ratings_count_plus1=Rating::section($sid)->rating(1)->count();
+                $section->ratings_count_plus2=Rating::section($sid)->rating(2)->count();
+                $section->ratings_avg=Rating::ratingsAvgCalculate($section);
+                $section->ratings_total=($section->ratings_count_minus2*-2)+($section->ratings_count_minus1*-1)+($section->ratings_count_plus1*1)+($section->ratings_count_plus2*2);
     			$section->save();
             }
 
@@ -118,8 +106,8 @@ class RatingsTableSeeder extends Seeder
             echo " --- individual document user ratings\n";
     		foreach($allusers as $user){
     			if(rand(1,5)!=3){
-	                $ratingstotal = Rating::where('user_id',$user->id)->whereIn('section_id',Section::where('document_id',$document->id)->topLevel()->pluck('id'))->sum('rating');
-	                $ratingscount = Rating::where('user_id',$user->id)->whereIn('section_id',Section::where('document_id',$document->id)->topLevel()->pluck('id'))->count();
+	                $ratingstotal = Rating::user($user->id)->whereIn('section_id',Section::where('document_id',$did)->topLevel()->pluck('id'))->sum('rating');
+	                $ratingscount = Rating::user($user->id)->whereIn('section_id',Section::where('document_id',$did)->topLevel()->pluck('id'))->count();
                     if($ratingscount==0)
                         $rating=0;
                     else
@@ -132,41 +120,26 @@ class RatingsTableSeeder extends Seeder
                         $rating=2;
                     else
                         $rating=1;
-	                Rating::create(['user_id'=>$user->id,'document_id'=>$document->id,'political_weight'=>$user->political_weight,'rating'=>$rating,'rating_abs_val'=>abs($rating),'weighted_rating'=>($user->political_weight*$rating)]);
+	                Rating::create(['user_id'=>$user->id,'document_id'=>$did,'political_weight'=>$user->political_weight,'rating'=>$rating,'rating_abs_val'=>abs($rating),'weighted_rating'=>($user->political_weight*$rating)]);
 	            }
     		}
 
             echo " --- overall document ratings\n";
-			$ratingstotal = Rating::where('document_id',$document->id)->sum('weighted_rating');
-			$ratingscount = Rating::where('document_id',$document->id)->sum('rating_abs_val');
-			echo $ratingstotal." / ".$ratingscount."\n";
-			if($ratingscount==0)
-				$rating=0;
-			else
-	    		$rating = $ratingstotal/$ratingscount;
-			if($rating > 5)
-				$rating = 5;
-			elseif($rating < -5)
-				$rating = -5;
-			$document->political_rating=$rating;
-            $document->ratings_count=Rating::where('document_id',$document->id)->count();
-            $document->ratings_minus2=Rating::where('document_id',$document->id)->where('rating','-2')->count();
-            $document->ratings_minus1=Rating::where('document_id',$document->id)->where('rating','-1')->count();
-            $document->ratings_plus1=Rating::where('document_id',$document->id)->where('rating','1')->count();
-            $document->ratings_plus2=Rating::where('document_id',$document->id)->where('rating','2')->count();
-            $ratings_avg = (($document->ratings_minus2*-2)+($document->ratings_minus1*-1)+($document->ratings_plus1*1)+($document->ratings_plus2*2))/$document->ratings_count;
-            if($ratings_avg<-1)
-                $ratings_avg=-2;
-            elseif($ratings_avg<0)
-                $ratings_avg=-1;
-            elseif($ratings_avg>1)
-                $ratings_avg=2;
-            else
-                $ratings_avg=1;
-            $document->ratings_avg=$ratings_avg;
-            $document->ratings_total=($document->ratings_minus2*-2)+($document->ratings_minus1*-1)+($document->ratings_plus1*1)+($document->ratings_plus2*2);
+            $document->political_rating=Rating::politicalWeightCalculate(Rating::document($did)->sum('weighted_rating'),Rating::document($did)->sum('rating_abs_val'));
+            $document->political_rating_minus2=Rating::politicalWeightCalculate(Rating::document($did)->rating(-2)->sum('weighted_rating'),Rating::document($did)->rating(-2)->sum('rating_abs_val'));
+            $document->political_rating_minus1=Rating::politicalWeightCalculate(Rating::document($did)->rating(-1)->sum('weighted_rating'),Rating::document($did)->rating(-1)->sum('rating_abs_val'));
+            $document->political_rating_plus1=Rating::politicalWeightCalculate(Rating::document($did)->rating(1)->sum('weighted_rating'),Rating::document($did)->rating(1)->sum('rating_abs_val'));
+            $document->political_rating_plus2=Rating::politicalWeightCalculate(Rating::document($did)->rating(2)->sum('weighted_rating'),Rating::document($did)->rating(2)->sum('rating_abs_val'));
+            $document->ratings_count=Rating::where('document_id',$did)->count();
+            $document->ratings_count_minus2=Rating::document($did)->rating(-2)->count();
+            $document->ratings_count_minus1=Rating::document($did)->rating(-1)->count();
+            $document->ratings_count_plus1=Rating::document($did)->rating(1)->count();
+            $document->ratings_count_plus2=Rating::document($did)->rating(2)->count();
+            $document->ratings_avg=Rating::ratingsAvgCalculate($document);
+            $document->ratings_total=($document->ratings_count_minus2*-2)+($document->ratings_count_minus1*-1)+($document->ratings_count_plus1*1)+($document->ratings_count_plus2*2);
 			$document->save();
         }
 
     }
+
 }

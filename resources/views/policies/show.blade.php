@@ -14,10 +14,9 @@
             </strong>
             <h1>{{$document->name}}</h1>
             <p class="small">
-                <strong>categories:</strong> {{$document->categories}}
-            </p>
-            <p class="small">
-                <strong>tags:</strong> {{$document->tags}}
+                <strong>Categories:</strong> {{implode(",",$document->categories->pluck('name')->toArray())}}
+                <br/>
+                <strong>Tags:</strong> {{implode(",",$document->tags->pluck('name')->toArray())}}
             </p>
             <p class="small">
                 <strong>Prepared by:</strong> 
