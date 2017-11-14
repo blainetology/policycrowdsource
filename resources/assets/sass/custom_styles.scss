@@ -100,8 +100,13 @@ a.comment-icon,a.comment-icon:hover{
 	&.selected{border-color:#000;}
 	&:hover{border-color:#222;color:#FFF;text-decoration:none;}
 }
-
-.document-rating, .setting-rating{
+.thumb-percentage{
+	padding:2px 8px;
+	color:#FFF;
+	border-radius:3px;
+	font-size:12px;
+}
+.document-rating, .setting-rating, .thumb-percentage{
 	&.rating_5{background-color:$color-plus-5;}
 	&.rating_4{background-color:$color-plus-4;}
 	&.rating_3{background-color:$color-plus-3;}

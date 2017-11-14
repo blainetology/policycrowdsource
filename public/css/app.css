@@ -11648,58 +11648,76 @@ a.comment-icon:hover {
   text-decoration: none;
 }
 
+.thumb-percentage {
+  padding: 2px 8px;
+  color: #FFF;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
 .document-rating.rating_5,
-.setting-rating.rating_5 {
+.setting-rating.rating_5,
+.thumb-percentage.rating_5 {
   background-color: red;
 }
 
 .document-rating.rating_4,
-.setting-rating.rating_4 {
+.setting-rating.rating_4,
+.thumb-percentage.rating_4 {
   background-color: #e41b1b;
 }
 
 .document-rating.rating_3,
-.setting-rating.rating_3 {
+.setting-rating.rating_3,
+.thumb-percentage.rating_3 {
   background-color: #c93636;
 }
 
 .document-rating.rating_2,
-.setting-rating.rating_2 {
+.setting-rating.rating_2,
+.thumb-percentage.rating_2 {
   background-color: #af5050;
 }
 
 .document-rating.rating_1,
-.setting-rating.rating_1 {
+.setting-rating.rating_1,
+.thumb-percentage.rating_1 {
   background-color: #946b6b;
 }
 
 .document-rating.rating_0,
-.setting-rating.rating_0 {
+.setting-rating.rating_0,
+.thumb-percentage.rating_0 {
   background-color: #807f7f;
 }
 
 .document-rating.rating_-1,
-.setting-rating.rating_-1 {
+.setting-rating.rating_-1,
+.thumb-percentage.rating_-1 {
   background-color: #6b6b94;
 }
 
 .document-rating.rating_-2,
-.setting-rating.rating_-2 {
+.setting-rating.rating_-2,
+.thumb-percentage.rating_-2 {
   background-color: #5050af;
 }
 
 .document-rating.rating_-3,
-.setting-rating.rating_-3 {
+.setting-rating.rating_-3,
+.thumb-percentage.rating_-3 {
   background-color: #3636c9;
 }
 
 .document-rating.rating_-4,
-.setting-rating.rating_-4 {
+.setting-rating.rating_-4,
+.thumb-percentage.rating_-4 {
   background-color: #1b1be4;
 }
 
 .document-rating.rating_-5,
-.setting-rating.rating_-5 {
+.setting-rating.rating_-5,
+.thumb-percentage.rating_-5 {
   background-color: blue;
 }
 
