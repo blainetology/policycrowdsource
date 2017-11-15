@@ -11649,10 +11649,11 @@ a.comment-icon:hover {
 }
 
 .thumb-percentage {
-  padding: 2px 8px;
+  padding: 3px 6px;
   color: #FFF;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 11px;
+  line-height: 22px;
 }
 
 .document-rating.rating_5,

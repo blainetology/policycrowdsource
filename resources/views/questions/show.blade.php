@@ -2,14 +2,14 @@
 
 @section('content')
 <br/>
-<div class="container policy-container">
+<div class="container question-container">
     <div class="row">
         <div class="col-md-9">
             <strong class="label label-sm label-info">
             @if($document->starter_document==1)
-            Example Policy
+            Example Questionaire
             @else
-            Submitted Policy
+            Submitted Questionaire
             @endif
             </strong>
             <h1>{{$document->name}}</h1>

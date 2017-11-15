@@ -41,6 +41,8 @@ class PoliciesTableSeeder extends Seeder
 
         DB::update("ALTER TABLE sections AUTO_INCREMENT = 403000;");
 
+        // Policies
+
         $document = Document::create(['type'=>'policy','name'=>'Heathcare Reform', 'short_synopsis'=>'Repeal and replacement of the Affordable Care Act','full_synopsis'=>'A formal replacement for the Affordable Care Act. The first step will be to completely repeal the Act. Then the replacement will be established.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'document_id'=>30001, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
@@ -71,6 +73,50 @@ class PoliciesTableSeeder extends Seeder
             $document->child_count=$document->children->count();
             $document->save();
         }
+
+        // Questions
+
+        $document = Document::create(['type'=>'question','name'=>'Gun Control Questionaire', 'short_synopsis'=>'Establishing the baseline for views on gun control','full_synopsis'=>'Establishing the baseline for views on gun control', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $questions = [
+            "Should guns be completely unregulated?",
+            "Should citizens be allowed to open-carry firearms?",
+            "Should citizens be allowed to conceal-carry firearms without a permit?",
+            "Should citizens be allowed to conceal-carry firearms WITH a permit?",
+            "Should assault rifles be banned?",
+        ];
+        foreach($questions as $index=>$question)
+            $section = Section::create(['title'=>'Question '.($index+1), 'content'=>$question, 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>($index+1)]);
+
+        $document = Document::create(['type'=>'question','name'=>'Abortion Questionaire', 'short_synopsis'=>'Establishing the baseline for views on abortion','full_synopsis'=>'Establishing the baseline for views on abortion', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $questions = [
+            "Should access to abortions be unregulated?",
+            "Should abortions be legal in cases where the mother's life is endangered by the pregnancy?",
+            "If a woman is raped, should she be allowed to get an abortion?",
+            "If a woman gets impregnated by her husband, should she be allowed to get an abortion?",
+            "If a woman gets impregnated by her boyfriend, should she be allowed to get an abortion?",
+            "If a teenaged girl is raped, should she be allowed to get an abortion?",
+            "If a teenaged girl gets impregnated by her boyfriend, should she be allowed to get an abortion?",
+            "Should abortions be allowed after 1 month?",
+            "Should abortions be allowed after 2 month?",
+            "Should abortions be allowed after 3 month?",
+            "Should abortions be allowed after 4 month?",
+            "Should abortions be allowed after 5 month?",
+            "Should abortions be allowed after 6 month?",
+        ];
+        foreach($questions as $index=>$question)
+            $section = Section::create(['title'=>'Question '.($index+1), 'content'=>$question, 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>($index+1)]);
+
+        $document = Document::create(['type'=>'question','name'=>'Healthcare Questionaire', 'short_synopsis'=>'Establishing the baseline for views on healthcare','full_synopsis'=>'Establishing the baseline for views on healthcare', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $questions = [
+            "Should the government be in charge of healthcare?",
+            "Do you consider any government-run healthcare program to be socialized healthcare?",
+            "Do you consider the Medicare program to be socialized healthcare?",
+            "Should the insurance industty be regualted?",
+            "Should pre-exising conditions be required to be covered by law?",
+            "Should all children's medical care be covered by a state-sponsored program?"
+        ];
+        foreach($questions as $index=>$question)
+            $section = Section::create(['title'=>'Question '.($index+1), 'content'=>$question, 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>($index+1)]);
 
         // update the sections counts
         foreach(Document::all() as $document){

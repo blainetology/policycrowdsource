@@ -2,7 +2,7 @@
 
 @section('content')
 <br/>
-<div class="container">
+<div class="container rfp-container">
     <div class="row">
         <div class="col-md-9">
             <strong class="label label-sm label-success">Request for Policy</strong>

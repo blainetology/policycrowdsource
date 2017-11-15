@@ -88,10 +88,10 @@ class RatingsTableSeeder extends Seeder
             foreach($allsections as $section){
                 $sid=$section->id;
     			$section->political_rating=Rating::politicalWeightCalculate(Rating::section($sid)->sum('weighted_rating'),Rating::section($sid)->sum('rating_abs_val'));
-                $section->political_rating_minus2=Rating::politicalWeightCalculate(Rating::section($sid)->rating(-2)->sum('weighted_rating'),Rating::section($sid)->rating(-2)->sum('rating_abs_val'));
-                $section->political_rating_minus1=Rating::politicalWeightCalculate(Rating::section($sid)->rating(-1)->sum('weighted_rating'),Rating::section($sid)->rating(-1)->sum('rating_abs_val'));
-                $section->political_rating_plus1=Rating::politicalWeightCalculate(Rating::section($sid)->rating(1)->sum('weighted_rating'),Rating::section($sid)->rating(1)->sum('rating_abs_val'));
-                $section->political_rating_plus2=Rating::politicalWeightCalculate(Rating::section($sid)->rating(2)->sum('weighted_rating'),Rating::section($sid)->rating(2)->sum('rating_abs_val'));
+                $section->political_rating_minus2=Rating::politicalWeightCalculate(Rating::section($sid)->rating(-2)->sum('rating'),Rating::section($sid)->rating(-2)->count());
+                $section->political_rating_minus1=Rating::politicalWeightCalculate(Rating::section($sid)->rating(-1)->sum('rating'),Rating::section($sid)->rating(-1)->count());
+                $section->political_rating_plus1=Rating::politicalWeightCalculate(Rating::section($sid)->rating(1)->sum('rating'),Rating::section($sid)->rating(1)->count());
+                $section->political_rating_plus2=Rating::politicalWeightCalculate(Rating::section($sid)->rating(2)->sum('rating'),Rating::section($sid)->rating(2)->count());
                 $section->ratings_count=Rating::section($sid)->count();
                 $section->ratings_count_minus2=Rating::section($sid)->rating(-2)->count();
                 $section->ratings_count_minus1=Rating::section($sid)->rating(-1)->count();
@@ -126,10 +126,10 @@ class RatingsTableSeeder extends Seeder
 
             echo " --- overall document ratings\n";
             $document->political_rating=Rating::politicalWeightCalculate(Rating::document($did)->sum('weighted_rating'),Rating::document($did)->sum('rating_abs_val'));
-            $document->political_rating_minus2=Rating::politicalWeightCalculate(Rating::document($did)->rating(-2)->sum('weighted_rating'),Rating::document($did)->rating(-2)->sum('rating_abs_val'));
-            $document->political_rating_minus1=Rating::politicalWeightCalculate(Rating::document($did)->rating(-1)->sum('weighted_rating'),Rating::document($did)->rating(-1)->sum('rating_abs_val'));
-            $document->political_rating_plus1=Rating::politicalWeightCalculate(Rating::document($did)->rating(1)->sum('weighted_rating'),Rating::document($did)->rating(1)->sum('rating_abs_val'));
-            $document->political_rating_plus2=Rating::politicalWeightCalculate(Rating::document($did)->rating(2)->sum('weighted_rating'),Rating::document($did)->rating(2)->sum('rating_abs_val'));
+            $document->political_rating_minus2=Rating::politicalWeightCalculate(Rating::document($did)->rating(-2)->sum('rating'),Rating::document($did)->rating(-2)->count());
+            $document->political_rating_minus1=Rating::politicalWeightCalculate(Rating::document($did)->rating(-1)->sum('rating'),Rating::document($did)->rating(-1)->count());
+            $document->political_rating_plus1=Rating::politicalWeightCalculate(Rating::document($did)->rating(1)->sum('rating'),Rating::document($did)->rating(1)->count());
+            $document->political_rating_plus2=Rating::politicalWeightCalculate(Rating::document($did)->rating(2)->sum('rating'),Rating::document($did)->rating(2)->count());
             $document->ratings_count=Rating::where('document_id',$did)->count();
             $document->ratings_count_minus2=Rating::document($did)->rating(-2)->count();
             $document->ratings_count_minus1=Rating::document($did)->rating(-1)->count();

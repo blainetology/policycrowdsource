@@ -49,6 +49,9 @@ class Document extends Model
     public function scopePolicy($query){
         return $query->where('type','policy');
     }
+    public function scopeQuestion($query){
+        return $query->where('type','question');
+    }
     public function scopeViewable($query){
         return $query->whereNotNull('published')->where('public',1);
     }

@@ -18,7 +18,8 @@ class HomeController extends Controller
         $data = [
             "house_policies" => Document::policy()->house()->viewable()->take(3)->inRandomOrder()->get(),
             "submitted_policies" => Document::policy()->userSubmitted()->viewable()->take(6)->inRandomOrder()->get(),
-            "rfps" => Document::rfp()->viewable()->take(6)->inRandomOrder()->get()
+            "questions" => Document::question()->house()->viewable()->take(3)->inRandomOrder()->get(),
+            "rfps" => Document::rfp()->viewable()->take(6)->inRandomOrder()->get(),
         ];
         if(\Auth::check())
             $data['my_policies'] = Document::policy()->userSubmitted()->userCollaboratingOn()->take(3)->inRandomOrder()->get();

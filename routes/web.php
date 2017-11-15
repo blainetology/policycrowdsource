@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('policies/sections/{pid}/{sid}',['as'=>'getpolicysections','uses'=>'PoliciesController@getsubsections']);
 Route::resource('policies','PoliciesController');
+Route::resource('questions','QuestionsController');
 Route::resource('rfp','RFPsController');
 
 Route::get('/comment/document/{id}',['as'=>'commentdocument','uses'=>'CommentsController@getdocument']);

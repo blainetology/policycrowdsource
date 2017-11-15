@@ -111,6 +111,20 @@
     </div>
 </div>
 
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Respond to Questionaires</h3>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($questions as $question)
+                @include('partials.question-box',['question'=>$question])
+            @endforeach
+        </div>
+    </div>
+</div>
 <div class="container-fluid bg-warning">
     <div class="container">
         <div class="row">
