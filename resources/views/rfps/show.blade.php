@@ -5,7 +5,7 @@
 <div class="container rfp-container">
     <div class="row">
         <div class="col-md-9">
-            <strong class="label label-sm label-success">Request for Policy</strong>
+            <strong class="label label-success">Request for Policy</strong>
             <h1>{{$document->name}}<br/><small>{!!$document->short_synopsis!!}</small></h1>
             <p class="small">
                 <strong>Categories:</strong> {{implode(",",$document->categories->pluck('name')->toArray())}}

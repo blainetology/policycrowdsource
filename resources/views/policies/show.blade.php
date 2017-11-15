@@ -5,8 +5,8 @@
 <div class="container policy-container">
     <div class="row">
         <div class="col-md-9">
-            <strong class="label label-sm label-info">
-            @if($document->starter_document==1)
+            <strong class="label label-info">
+            @if($document->house_document==1)
             Example Policy
             @else
             Submitted Policy

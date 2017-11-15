@@ -115,7 +115,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3>Respond to Questionaires</h3>
+                <h3>Respond to Questionnaires</h3>
+                <p>{{config('app.name')}} attempts to check the pulse of the country on any range of issues. It doesn't always need to be through a new prooposed policy. Sometimes this can be accomplished through a series of questions to establish a baseline and a good starting point when crafting a policy. Responding to these questionnaires helps all policy makers understand better where we stand collectively.</p>
             </div>
         </div>
         <div class="row">
@@ -130,6 +131,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3>Respond to Requests For Policy</h3>
+                <p>Ask the world for their proposals for specific policies. We may not always know the best way to change policy, but we know what topics need to be addressed. {{config('app.name')}} encourages anyone to submit a request for policy and encourages anyone to respond with a proposed policy.</p>
             </div>
         </div>
         <div class="row">

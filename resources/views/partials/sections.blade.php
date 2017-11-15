@@ -4,7 +4,7 @@
             <div class="row  document-section" data-section="{{$section['id']}}" id="section{{$section['id']}}">
                 <div class="col-md-10">
                     @if(!empty($section['title']))
-                        @if($section['parent_section_id']==0)
+                        @if($section['parent_section_id']==0 && $document->type != 'question')
                         <h2>{{$section['title']}}</h2>
                         @else
                         <h3>{{$section['title']}}</h3>

@@ -5,11 +5,11 @@
 <div class="container question-container">
     <div class="row">
         <div class="col-md-9">
-            <strong class="label label-sm label-info">
-            @if($document->starter_document==1)
-            Example Questionaire
+            <strong class="label label-danger">
+            @if($document->house_document==1)
+            Example Questionnaire
             @else
-            Submitted Questionaire
+            Submitted Questionnaire
             @endif
             </strong>
             <h1>{{$document->name}}</h1>

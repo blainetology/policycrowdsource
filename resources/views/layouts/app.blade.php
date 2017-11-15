@@ -60,7 +60,7 @@
                             <a href="{{route('policies.index')}}">Browse Policies</a>
                         </li>
                         <li>
-                            <a href="{{route('questions.index')}}">Questionaires</a>
+                            <a href="{{route('questions.index')}}">Questionnaires</a>
                         </li>
                         <li>
                             <a href="{{route('rfp.index')}}">Requests for Policies</a>

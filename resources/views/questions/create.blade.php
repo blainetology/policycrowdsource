@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1>{{!empty($policy['id']) ? 'Update' : 'Draft a '}} Policy</h1>
+            <h1>{{!empty($policy['id']) ? 'Update' : 'Draft a '}} Questionnaire</h1>
         </div>
     </div>
     <hr/>

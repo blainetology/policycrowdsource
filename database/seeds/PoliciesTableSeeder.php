@@ -76,7 +76,7 @@ class PoliciesTableSeeder extends Seeder
 
         // Questions
 
-        $document = Document::create(['type'=>'question','name'=>'Gun Control Questionaire', 'short_synopsis'=>'Establishing the baseline for views on gun control','full_synopsis'=>'Establishing the baseline for views on gun control', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $document = Document::create(['type'=>'question','name'=>'Gun Control Questionnaire', 'short_synopsis'=>'Establishing the baseline for views on gun control','full_synopsis'=>'Establishing the baseline for views on gun control', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $questions = [
             "Should guns be completely unregulated?",
             "Should citizens be allowed to open-carry firearms?",
@@ -87,7 +87,7 @@ class PoliciesTableSeeder extends Seeder
         foreach($questions as $index=>$question)
             $section = Section::create(['title'=>'Question '.($index+1), 'content'=>$question, 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>($index+1)]);
 
-        $document = Document::create(['type'=>'question','name'=>'Abortion Questionaire', 'short_synopsis'=>'Establishing the baseline for views on abortion','full_synopsis'=>'Establishing the baseline for views on abortion', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $document = Document::create(['type'=>'question','name'=>'Abortion Questionnaire', 'short_synopsis'=>'Establishing the baseline for views on abortion','full_synopsis'=>'Establishing the baseline for views on abortion', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $questions = [
             "Should access to abortions be unregulated?",
             "Should abortions be legal in cases where the mother's life is endangered by the pregnancy?",
@@ -106,7 +106,7 @@ class PoliciesTableSeeder extends Seeder
         foreach($questions as $index=>$question)
             $section = Section::create(['title'=>'Question '.($index+1), 'content'=>$question, 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>($index+1)]);
 
-        $document = Document::create(['type'=>'question','name'=>'Healthcare Questionaire', 'short_synopsis'=>'Establishing the baseline for views on healthcare','full_synopsis'=>'Establishing the baseline for views on healthcare', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $document = Document::create(['type'=>'question','name'=>'Healthcare Questionnaire', 'short_synopsis'=>'Establishing the baseline for views on healthcare','full_synopsis'=>'Establishing the baseline for views on healthcare', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $questions = [
             "Should the government be in charge of healthcare?",
             "Do you consider any government-run healthcare program to be socialized healthcare?",
