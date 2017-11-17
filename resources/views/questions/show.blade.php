@@ -13,7 +13,7 @@
             @endif
             </strong>
             <h1>{{$document->name}}</h1>
-            <p class="small">
+            <p class="small hidden">
                 <strong>Categories:</strong> {{implode(",",$document->categories->pluck('name')->toArray())}}
                 <br/>
                 <strong>Tags:</strong> {{implode(",",$document->tags->pluck('name')->toArray())}}
@@ -33,7 +33,7 @@
             @include('partials/comments',['comments'=>\App\Comment::forDocument($document->id)->with('user')->get(),'type'=>'document','id'=>$document->id])
         </div>
         <div class="col-md-3">
-            <div class="well well-sm">
+            <div class="well well-sm hidden">
                 <?php 
                     $document->political_rating = round($document->political_rating);
                     if($document->political_rating == -0)

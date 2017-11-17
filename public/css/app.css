@@ -11461,6 +11461,10 @@ h4 small {
   background-color: #e4e4e4;
 }
 
+.document-well.question-well {
+  min-height: 125px;
+}
+
 .document-title {
   margin-top: -36px;
   font-size: 3em;
@@ -11620,6 +11624,10 @@ a.comment-icon:hover {
 .section-container .document-section h3,
 .section-container .document-section h4 {
   margin: 6px 0 6px;
+}
+
+.question-container .rating-box {
+  display: block !important;
 }
 
 .setting-rating {

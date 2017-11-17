@@ -12,10 +12,6 @@
             @endif
             <div class="short_synopsis">{{$question->short_synopsis}}</div>
         </div>
-        <div class="small">
-        {!!\App\Rating::getThumbs($question)!!}
-        </div>
-        <span class="document-rating rating_{{$question->political_rating}}"> {{number_format($question->ratings_count,0)}} votes </span>
-        <div class="text-right"><a href="{{ route('questions.show',$question->id) }}" class="btn btn-xs btn-primary btn-view-more">read more <span class="glyphicon glyphicon-triangle-right"></span></a></div>
+        <div class="text-right"><a href="{{ route('questions.show',$question->id) }}" class="btn btn-xs btn-primary btn-view-more">answer the questions <span class="glyphicon glyphicon-triangle-right"></span></a></div>
     </div>
 </div>

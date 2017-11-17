@@ -20,6 +20,7 @@ h1,h2,h3,h4{
 	.btn-view-more{position: absolute; right:10px; bottom:10px;}
 	.document-rating{position:absolute; left:10px; bottom:10px;}
 	&.rfp-well{background-color:darken($well-bg,4%);}
+	&.question-well{min-height:125px;}
 }
 .document-title{margin-top:-36px; font-size:3em; padding-bottom:10px;}
 .document-rating{
@@ -82,6 +83,11 @@ a.comment-icon,a.comment-icon:hover{
 		}
 		h1,h2,h3,h4{margin:6px 0 6px;}
 	}
+}
+.question-container{
+	.rating-box{
+		display:block !important; 
+	}		
 }
 
 .setting-rating{
