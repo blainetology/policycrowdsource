@@ -15,11 +15,11 @@
                 {{Form::text('policytitle',null,['name'=>'rfp[name]', 'class'=>'form-control'])}}
                 <br/>
 
-                <label for="policytitle">Short Overview</label><br/>
+                <label for="shortsynopsis">Short Overview</label><br/>
                 {{Form::text('shortsynopsis',null,['name'=>'rfp[short_overview]', 'class'=>'form-control', 'maxlength'=>250])}}
                 <br/>
 
-                <label for="policytitle">Full Details</label><br/>
+                <label for="fullsynopsis">Full Details</label><br/>
                 {{Form::textarea('fullsynopsis',null,['name'=>'rfp[full_details]', 'class'=>'form-control', 'rows'=>16])}}
                 <br/>
 

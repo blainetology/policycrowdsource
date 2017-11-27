@@ -37,8 +37,11 @@ class QuestionsController extends Controller
         if (\Auth::guest())
             return redirect()->guest('login');
 
+        $sections = null;
+
         $data = [
-            'pagetitle' => 'Draft a Question'
+            'pagetitle' => 'Draft a Question',
+            'sections'  => $sections
         ];
         return view('questions.create',$data);
     }
@@ -52,8 +55,8 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
         //
-        $input = $request->get('question');
-        $input['type'] = 'policy';
+        $input = $request->get('document');
+        $input['type'] = 'question';
         $document = Document::create($input);
         $document_id=$document->id;
         Collaborator::create(['document_id'=>$document_id,'user_id'=>\Auth::user()->id,'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
@@ -116,7 +119,7 @@ class QuestionsController extends Controller
             'pagetitle' => 'Draft a Question',
             'document'  => $question,
             'input'     => $question->toArray(),
-            'sections'  => Section::sortSections($question->sections->toArray()),
+            'sections'  => $question->sections->toArray()
         ];
         return view('questions.create',$data);
     }
