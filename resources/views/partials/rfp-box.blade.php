@@ -25,6 +25,9 @@
         <div class="small">
         {!!\App\Rating::getThumbs($rfp)!!}
         </div>
+        @if($rfp->isEditor())
+        <a href="{{ route('rfp.edit',$rfp->id) }}" class="text-info glyphicon glyphicon-pencil" title="edit" style="position: absolute; top:10px; right: 10px;"></a>
+        @endif
         <span class="document-rating rating_{{$rfp->political_rating}}"> {{number_format($rfp->ratings_count,0)}} votes </span>
         <div class="text-right"><a href="{{ route('rfp.show',$rfp->id) }}" class="btn btn-xs btn-primary btn-view-more">read more <span class="glyphicon glyphicon-triangle-right"></span></a></div>
     </div>

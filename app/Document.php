@@ -91,6 +91,39 @@ class Document extends Model
     public function isStarter(){
         return !empty($this->starter_document);
     }
-
+    public function isCollaborator(){
+        if(!\Auth::check())
+            return false;
+        $collab = \App\Collaborator::where('document_id',$this->id)->where('user_id',\Auth::user()->id)->first();
+        if($collab)
+            return $collab;
+        return false;
+    }
+    public function isOwner(){
+        if($collab = $this->isCollaborator())
+            return $collab->owner==1;
+        return false;
+    }
+    public function isAdmin(){
+        if($collab = $this->isCollaborator())
+            return $collab->admin==1;
+        return false;
+    }
+    public function isEditor(){
+        if($collab = $this->isCollaborator()){
+            return ($collab->editor==1);
+        }
+        return false;
+    }
+    public function isReviewer(){
+        if($collab = $this->isCollaborator())
+            return $collab->reviewer==1;
+        return false;
+    }
+    public function isViewer(){
+        if($collab = $this->isCollaborator())
+            return $collab->viewer==1;
+        return false;
+    }
 
 }

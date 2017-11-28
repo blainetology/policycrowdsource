@@ -112,6 +112,11 @@ class PoliciesController extends Controller
             return redirect()->route('policies.index');
 
         $policy = Document::policy()->where('id',$id)->first();
+        if(!$policy)
+            return redirect()->route('policies.index');
+        if(!$policy->isEditor())
+            return redirect()->route('policies.show',$policy->id);
+
         $data = [
             'pagetitle' => 'Draft a Policy',
             'document'  => $policy,

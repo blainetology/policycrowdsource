@@ -12,6 +12,9 @@
             @endif
             <div class="short_synopsis">{{$question->short_synopsis}}</div>
         </div>
+        @if($question->isEditor())
+        <a href="{{ route('questions.edit',$question->id) }}" class="text-info glyphicon glyphicon-pencil" title="edit" style="position: absolute; top:10px; right: 10px;"></a>
+        @endif
         <div class="text-right"><a href="{{ route('questions.show',$question->id) }}" class="btn btn-xs btn-primary btn-view-more">answer the questions <span class="glyphicon glyphicon-triangle-right"></span></a></div>
     </div>
 </div>

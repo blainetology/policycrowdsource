@@ -115,6 +115,11 @@ class QuestionsController extends Controller
             return redirect()->route('questions.index');
 
         $question = Document::question()->where('id',$id)->first();
+        if(!$question)
+            return redirect()->route('questions.index');
+        if(!$question->isEditor())
+            return redirect()->route('questions.show',$question->id);
+
         $data = [
             'pagetitle' => 'Draft a Question',
             'document'  => $question,

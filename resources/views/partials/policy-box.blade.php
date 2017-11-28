@@ -16,6 +16,9 @@
         {!!\App\Rating::getThumbs($policy)!!}
         </div>
         <span class="document-rating rating_{{$policy->political_rating}}"> {{number_format($policy->ratings_count,0)}} votes </span>
+        @if($policy->isEditor())
+        <a href="{{ route('policies.edit',$policy->id) }}" class="text-info glyphicon glyphicon-pencil" title="edit" style="position: absolute; top:10px; right: 10px;"></a>
+        @endif
         <div class="text-right"><a href="{{ route('policies.show',$policy->id) }}" class="btn btn-xs btn-primary btn-view-more">read more <span class="glyphicon glyphicon-triangle-right"></span></a></div>
     </div>
 </div>

@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         \DB::update("ALTER TABLE users AUTO_INCREMENT = 100000;");
 
         \App\User::create(['first_name'=>'Blaine', 'last_name'=>'Jones','email'=>'blainecjones@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
-        \App\User::create(['first_name'=>'Carly', 'last_name'=>'Jones','email'=>'actuallcarlyjones@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
+        \App\User::create(['first_name'=>'Carly', 'last_name'=>'Jones','email'=>'actuallycarlyjones@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
         \App\User::create(['first_name'=>'Austin', 'last_name'=>'Baker','email'=>'austinmbaker@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
         \App\User::create(['first_name'=>'Garett', 'last_name'=>'Bingham','email'=>'jebmotherboard@gmail.com','password'=>\Hash::make('temp123'),'political_weight'=>-1,'last_login'=>\DB::raw("ADDDATE(NOW(),1)"),'login_count'=>0]);
 
