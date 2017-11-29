@@ -40,3 +40,53 @@
     </div>
 </div>
 @endsection
+
+@section('styles')
+<style type="text/css">
+    textarea.section-content{height:1em; overflow:hidden;}
+</style>
+@append
+
+@section('scripts')
+<script type="text/javascript">
+var observe;
+if (window.attachEvent) {
+    observe = function (element, event, handler) {
+        element.attachEvent('on'+event, handler);
+    };
+}
+else {
+    observe = function (element, event, handler) {
+        element.addEventListener(event, handler, false);
+    };
+}
+function textareainit () {
+    var text = $('.section-content');
+
+    function resize () {
+        console.log('resize');
+        $.each(text,function(index,value){
+            var scrollHeight = this.scrollHeight;
+            //$(this).css('height','auto');
+            this.style.height = scrollHeight+'px';
+        });
+    }
+    /* 0-timeout to get the already changed text */
+    function delayedResize () {
+        window.setTimeout(resize, 0);
+    }
+    $.each(text,function(index,value){
+        observe(this, 'change',  resize);
+        observe(this, 'cut',     delayedResize);
+        observe(this, 'paste',   delayedResize);
+        observe(this, 'drop',    delayedResize);
+        observe(this, 'keydown', delayedResize);
+    });
+
+    resize();
+}    
+$(document).ready(function(){
+    textareainit();
+});
+</script>
+@append
