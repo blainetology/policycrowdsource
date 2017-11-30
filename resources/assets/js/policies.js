@@ -49,6 +49,41 @@ function PCAppFunctions(){
 	        axios.post('/comment/'+type+'/'+id,{type:type, id:id, comment:comment}).then(function(response){ $('#'+type+'CommentsList'+id).append(response.data); textarea.value="" }).catch(function(error){ console.log(error); });
 	    }
 	}
+	this.add_question = function(document_id){
+        axios.post('/comment/'+type+'/'+id,{type:type, id:id, comment:comment}).then(function(response){ $('#'+type+'CommentsList'+id).append(response.data); textarea.value="" }).catch(function(error){ console.log(error); });
+	}
+
+	this.textarea_auto_size = function(){
+	    var text = $('.auto-size');
+
+	    function resize (that) {
+	        console.log('resize');
+	        if(that){
+	            var scrollHeight = that.scrollHeight;
+	            that.style.height = scrollHeight+'px';
+	        }
+	        else{
+	            $.each(text,function(index,value){
+	                var scrollHeight = this.scrollHeight;
+	                this.style.height = scrollHeight+'px';
+	            });
+	        }
+	    }
+	    /* 0-timeout to get the already changed text */
+	    function delayedResize (that) {
+	        window.setTimeout(function(){resize(that);}, 0);
+	    }
+	    $.each(text,function(index,value){
+	        var that = this;
+	        $(that).on('change',function(){resize(that);});
+	        $(that).on('cut',function(){delayedResize(that);});
+	        $(that).on('paste',function(){delayedResize(that);});
+	        $(that).on('drop',function(){delayedResize(that);});
+	        $(that).on('keydown',function(){delayedResize(that);});
+	    });
+
+	    resize();
+	}    
 
 }
 module.exports= new PCAppFunctions();

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1>{{!empty($policy['id']) ? 'Update' : 'Draft a '}} Questionnaire</h1>
+            <h1>{{!empty($document['id']) ? 'Update' : 'Draft a '}} Questionnaire</h1>
         </div>
     </div>
     <hr/>
@@ -40,10 +40,19 @@
                 </pre>
                 @endif
 
-                <button type="submit" class="btn btn-lg btn-success">{{!empty($policy['id']) ? 'Update' : 'Create'}} Questionnaire</button>
+                <button type="submit" class="btn btn-lg btn-success">{{!empty($document['id']) ? 'Update' : 'Create'}} Questionnaire</button>
             {{Form::close()}}
             <br/>
         </div>
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        PCApp.textarea_auto_size();
+    });
+    function add_question
+</script>
+@append

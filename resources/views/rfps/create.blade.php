@@ -30,3 +30,11 @@
     <br/><br/>
 </div>
 @endsection
+
+@section('scripts')
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        PCApp.textarea_auto_size();
+    });
+</script>
+@append
