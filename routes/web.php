@@ -38,4 +38,8 @@ Route::group(['middleware'=>['auth']],function(){
 	Route::post('/comment/document/{id}',['as'=>'commentdocument','uses'=>'CommentsController@postdocument']);
 	Route::post('/comment/section/{id}',['as'=>'commentsection','uses'=>'CommentsController@postsection']);
 
+	Route::post('/add/question/section',['as'=>'addquestionsection','uses'=>'QuestionsController@addsection']);
+	Route::post('/add/policy/section',['as'=>'addpolicysection','uses'=>'PoliciesController@addsection']);
+	Route::post('/add/rfp/section',['as'=>'addrfpsection','uses'=>'RFPsController@addsection']);
+
 });

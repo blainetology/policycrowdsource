@@ -31745,8 +31745,8 @@ function PCAppFunctions() {
 		}
 	};
 	this.add_question = function (document_id) {
-		axios.post('/comment/' + type + '/' + id, { type: type, id: id, comment: comment }).then(function (response) {
-			$('#' + type + 'CommentsList' + id).append(response.data);textarea.value = "";
+		axios.post('/add/question/section', { question_id: document_id }).then(function (response) {
+			$('#questionsContainer').append(response.data);
 		}).catch(function (error) {
 			console.log(error);
 		});
