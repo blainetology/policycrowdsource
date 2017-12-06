@@ -12,10 +12,12 @@
             @endif
             <div class="short_synopsis">{{$policy->short_synopsis}}</div>
         </div>
-        <div class="small">
-        {!!\App\Rating::getThumbs($policy)!!}
-        </div>
         <span class="document-rating rating_{{$policy->political_rating}}"> {{number_format($policy->ratings_count,0)}} votes </span>
+        <?php
+        $ratings_avg = $policy->ratings_avg ?: 1;
+        $ratingthumb = \App\Rating::getRatingThumb($ratings_avg);
+        ?>
+        <i class="fa {{$ratingthumb[1]}} rating-thumb rating{{$ratings_avg}} document-rating-thumb" aria-hidden="true" title="overall average rating: {{$ratingthumb[0]}}"></i> 
         @if($policy->isEditor())
         <a href="{{ route('policies.edit',$policy->id) }}" class="text-info glyphicon glyphicon-pencil" title="edit" style="position: absolute; top:10px; right: 10px;"></a>
         @endif

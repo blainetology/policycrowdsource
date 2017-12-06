@@ -22,9 +22,11 @@
             </div>
             <div class="short_synopsis" style="margin-top:3px;">{{$rfp->short_synopsis}}</div>
         </div>
-        <div class="small">
-        {!!\App\Rating::getThumbs($rfp)!!}
-        </div>
+        <?php
+        $ratings_avg = $policy->ratings_avg ?: 1;
+        $ratingthumb = \App\Rating::getRatingThumb($ratings_avg);
+        ?>
+        <i class="fa {{$ratingthumb[1]}} rating-thumb rating{{$ratings_avg}} document-rating-thumb" aria-hidden="true" title="overall average rating: {{$ratingthumb[0]}}"></i> 
         @if($rfp->isEditor())
         <a href="{{ route('rfp.edit',$rfp->id) }}" class="text-info glyphicon glyphicon-pencil" title="edit" style="position: absolute; top:10px; right: 10px;"></a>
         @endif

@@ -47,6 +47,10 @@ class Rating extends Model
         return null;        
     }
 
+    public static function getRatingThumb($rating){
+        return self::$thumbs[$rating];
+    }
+
     public static function getThumbs($policy){
         $html = "";
 
@@ -59,6 +63,7 @@ class Rating extends Model
                 if($thumbPolWeight==-0)
                     $thumbPolWeight=0;
                 ${$thumb[2]} = round($policy->{'ratings_count_'.$thumb[2]}/$policy->ratings_count*100,1);
+                $ratingthumb = 
                 $html .= '<i class="fa '.$thumb[1].' rating-thumb rating'.$value.'" aria-hidden="true" style="width:30px; margin-top:1px;"></i><span class="thumb-percentage rating_'.$thumbPolWeight.'">'.${$thumb[2]}.'% '.$thumb[0].'</span><br/>';
             }
         }

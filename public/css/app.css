@@ -11422,7 +11422,7 @@ h4 small {
 }
 
 .document-well {
-  min-height: 225px;
+  min-height: 135px;
   position: relative;
 }
 
@@ -11453,12 +11453,23 @@ h4 small {
 
 .document-well .document-rating {
   position: absolute;
+  left: 40px;
+  bottom: 10px;
+}
+
+.document-well .document-rating-thumb {
+  position: absolute;
   left: 10px;
   bottom: 10px;
+  font-size: 16px;
+  background: #FFF;
+  padding: 2px 5px 3px;
+  border-radius: 3px;
 }
 
 .document-well.rfp-well {
   background-color: #e4e4e4;
+  min-height: 155px;
 }
 
 .document-well.question-well {

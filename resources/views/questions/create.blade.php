@@ -10,7 +10,11 @@
     <hr/>
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
+            @if(!empty($document['id']))
+            {{Form::open(['route'=>['questions.update',$document['id']], 'method'=>'PUT', 'class'=>'form'])}}
+            @else
             {{Form::open(['route'=>'questions.store', 'class'=>'form'])}}
+            @endif
                 <label for="policytitle">Questionnaire Title</label><br/>
                 {{Form::text('policytitle',(!empty($input['name']) ? $input['name'] : null),['name'=>'document[name]', 'class'=>'form-control'])}}
                 <br/>

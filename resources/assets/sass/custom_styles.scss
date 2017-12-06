@@ -10,7 +10,7 @@ h1,h2,h3,h4{
 }
 
 .document-well{
-	min-height: 225px; 
+	min-height: 135px; 
 	position: relative;
 	.details_section{
 		max-height:95px; min-height:80px; overflow:hidden;
@@ -18,8 +18,9 @@ h1,h2,h3,h4{
 		.title{font-family: 'Oswald', sans-serif; font-size:16px;}
 	}
 	.btn-view-more{position: absolute; right:10px; bottom:10px;}
-	.document-rating{position:absolute; left:10px; bottom:10px;}
-	&.rfp-well{background-color:darken($well-bg,4%);}
+	.document-rating{position:absolute; left:40px; bottom:10px;}
+	.document-rating-thumb{position:absolute; left:10px; bottom:10px; font-size:16px; background:#FFF; padding:2px 5px 3px; border-radius:3px;}
+	&.rfp-well{background-color:darken($well-bg,4%); min-height:155px;}
 	&.question-well{min-height:125px;}
 }
 .document-title{margin-top:-36px; font-size:3em; padding-bottom:10px;}

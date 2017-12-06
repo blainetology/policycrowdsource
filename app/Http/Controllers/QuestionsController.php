@@ -139,6 +139,34 @@ class QuestionsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if(!\Auth::check())
+            return redirect()->route('questions.index');
+
+        $question = Document::question()->where('id',$id)->first();
+        if(!$question)
+            return redirect()->route('questions.index');
+        if(!$question->isEditor())
+            return redirect()->route('questions.show',$question->id);
+
+        $question->name = $request->document['name'];
+        $question->short_synopsis = $request->document['short_synopsis'];
+        $question->full_synopsis = $request->document['full_synopsis'];
+        $question->save();
+
+        $x=1;
+        foreach($request->sections as $dbid=>$input){
+            $section = Section::firstOrNew(['document_id'=>$question->id, 'id'=>$dbid]);
+            if(!empty($input['content'])){
+                $section->title="Question ".$x;
+                $section->content=$input['content'];
+                $section->save();
+                $x++;
+            }
+            else{
+                $section->delete();
+            }
+        }
+        return redirect()->route('questions.show',$question->id);
     }
 
     /**
