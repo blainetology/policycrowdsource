@@ -10,7 +10,11 @@
     <hr/>
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
+            @if(!empty($document['id']))
+            {{Form::open(['route'=>['rfp.update',$document['id']], 'method'=>'PUT', 'class'=>'form'])}}
+            @else
             {{Form::open(['route'=>'rfp.store', 'class'=>'form'])}}
+            @endif
                 <label for="policytitle">RFP Title</label><br/>
                 {{Form::text('policytitle',null,['name'=>'rfp[name]', 'class'=>'form-control'])}}
                 <br/>
@@ -20,8 +24,18 @@
                 <br/>
 
                 <label for="fullsynopsis">Full Details</label><br/>
-                {{Form::textarea('fullsynopsis',null,['name'=>'rfp[full_details]', 'class'=>'form-control', 'rows'=>16])}}
+                {{Form::textarea('fullsynopsis',null,['name'=>'rfp[full_details]', 'class'=>'form-control auto-size', 'rows'=>4])}}
                 <br/>
+
+                <div class="text-left"><a href="#" class="btn btn-xs btn-info">new top section</a></div>
+                <div id="subSections0">
+                    @include('partials.sectionsedit',['sections'=>$sections,'document'=>$document])         
+                </div>
+
+                <pre>
+                <?php print_r($sections); ?>
+                </pre>
+
 
                 <button type="submit" class="btn btn-lg btn-success">Create RFP</button>
             {{Form::close()}}

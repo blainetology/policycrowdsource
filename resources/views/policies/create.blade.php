@@ -10,7 +10,11 @@
     <hr/>
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
+            @if(!empty($document['id']))
+            {{Form::open(['route'=>['policies.update',$document['id']], 'method'=>'PUT', 'class'=>'form'])}}
+            @else
             {{Form::open(['route'=>'policies.store', 'class'=>'form'])}}
+            @endif
                 <label for="policytitle">Policy Title</label><br/>
                 {{Form::text('policytitle',(!empty($input['name']) ? $input['name'] : null),['name'=>'policy[name]', 'class'=>'form-control'])}}
                 <br/>
@@ -25,16 +29,17 @@
 
                 <hr/>
 
-                <div class="text-left"><a href="#" class="btn btn-xs btn-info">new top section</a></div>
+                <div class="text-left"><a href="javascript:PCApp.add_{{$document['type']}}_section({{$document['id']}},0)" class="btn btn-xs btn-info">new top section</a></div>
                 <div id="subSections0">
                     @include('partials.sectionsedit',['sections'=>$sections,'document'=>$document])         
                 </div>
 
-                <pre>
+                <pre class="hidden">
                 <?php print_r($sections); ?>
                 </pre>
-
+                <br/>
                 <button type="submit" class="btn btn-lg btn-success">{{!empty($document['id']) ? 'Update' : 'Create'}} Policy</button>
+                <br/><br/>
             {{Form::close()}}
         </div>
     </div>

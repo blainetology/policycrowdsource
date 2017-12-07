@@ -10,7 +10,7 @@
                     {{Form::textarea('section'.$section['id'],$section['content'],['name'=>'section['.$section['id'].'[content]', 'class'=>'form-control auto-size', 'placeholder'=>'section content'])}}
                     </div>
                     <input type="hidden" name="section[{{$section['id']}}][parent_section_id]" value="{{$section['parent_section_id']}}">
-                    <div class="text-left"><a href="#" class="btn btn-xs btn-info">new subsection</a></div>
+                    <div class="text-left"><a href="javascript:PCApp.add_{{$document['type']}}_section({{$document['id']}},{{$section['id']}})" class="btn btn-xs btn-info">new subsection</a></div>
                 </div>
             </div>
             <div id="subSections{{$section['id']}}">

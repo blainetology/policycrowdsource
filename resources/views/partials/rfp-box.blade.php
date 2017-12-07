@@ -23,7 +23,7 @@
             <div class="short_synopsis" style="margin-top:3px;">{{$rfp->short_synopsis}}</div>
         </div>
         <?php
-        $ratings_avg = $policy->ratings_avg ?: 1;
+        $ratings_avg = $rfp->ratings_avg ?: 1;
         $ratingthumb = \App\Rating::getRatingThumb($ratings_avg);
         ?>
         <i class="fa {{$ratingthumb[1]}} rating-thumb rating{{$ratings_avg}} document-rating-thumb" aria-hidden="true" title="overall average rating: {{$ratingthumb[0]}}"></i> 

@@ -106,6 +106,22 @@ class RFPsController extends Controller
     public function edit($id)
     {
         //
+        if(!\Auth::check())
+            return redirect()->route('rfp.index');
+
+        $rfp = Document::rfp()->where('id',$id)->first();
+        if(!$rfp)
+            return redirect()->route('rfp.index');
+        if(!$rfp->isEditor())
+            return redirect()->route('rfp.show',$rfp->id);
+
+        $data = [
+            'pagetitle' => 'Draft a RFP',
+            'document'  => $rfp,
+            'input'     => $rfp->toArray(),
+            'sections'  => Section::sortSections($rfp->sections->toArray()),
+        ];
+        return view('rfps.create',$data);
     }
 
     /**

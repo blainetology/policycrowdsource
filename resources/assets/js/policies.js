@@ -49,8 +49,18 @@ function PCAppFunctions(){
 	        axios.post('/comment/'+type+'/'+id,{type:type, id:id, comment:comment}).then(function(response){ $('#'+type+'CommentsList'+id).append(response.data); textarea.value="" }).catch(function(error){ console.log(error); });
 	    }
 	}
-	this.add_question = function(document_id){
-        axios.post('/add/question/section',{question_id:document_id}).then(function(response) {$('#questionsContainer').append(response.data) }).catch(function(error){ console.log(error); });
+	this.add_policy_section = function(policy_id,parent_section_id){
+		if(!parent_section_id)
+			parent_section_id=0;
+        axios.post('/add/policy/section',{policy_id:policy_id,parent_section_id:parent_section_id}).then(function(response) {$('#subSections'+parent_section_id).append(response.data) }).catch(function(error){ console.log(error); });
+	}
+	this.add_rfp_section = function(rfp_id,parent_section_id){
+		if(!parent_section_id)
+			parent_section_id=0;
+        axios.post('/add/rfp/section',{rfp_id:rfp_id,parent_section_id:parent_section_id}).then(function(response) {$('#subSections'+parent_section_id).append(response.data) }).catch(function(error){ console.log(error); });
+	}
+	this.add_question = function(question_id){
+        axios.post('/add/question/section',{question_id:question_id}).then(function(response) {$('#questionsContainer').append(response.data) }).catch(function(error){ console.log(error); });
 	}
 
 	this.textarea_auto_size = function(){

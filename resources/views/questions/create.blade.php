@@ -24,7 +24,7 @@
                 <br/>
 
                 <label for="fullsynopsis">Full Synopsis</label><br/>
-                {{Form::textarea('fullsynopsis',(!empty($input['full_synopsis']) ? $input['full_synopsis'] : null),['name'=>'document[full_synopsis]', 'class'=>'form-control', 'rows'=>4])}}
+                {{Form::textarea('fullsynopsis',(!empty($input['full_synopsis']) ? $input['full_synopsis'] : null),['name'=>'document[full_synopsis]', 'class'=>'form-control auto-size', 'rows'=>4])}}
                 <br/>
 
                 <hr/>
