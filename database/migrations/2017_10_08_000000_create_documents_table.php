@@ -24,6 +24,7 @@ class CreateDocumentsTable extends Migration
             $table->integer('document_id')->index()->nullable();
             $table->integer('public')->index()->default(0);
             $table->datetime('published')->nullable();
+            $table->integer('staged_content')->default(0);
             $table->date('submission_cutoff')->index()->nullable();
             $table->integer('house_document')->index()->default(0);
             $table->integer('starter_document')->index()->default(0);
@@ -50,10 +51,12 @@ class CreateDocumentsTable extends Migration
 
         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->nullable();
+            $table->string('title')->default('');
             $table->longtext('content')->nullable();
-            $table->string('staged_title')->nullable();
+            $table->string('checksum')->nullable();
+            $table->string('staged_title')->default('');
             $table->longtext('staged_content')->nullable();
+            $table->string('staged_checksum')->nullable();
             $table->datetime('published')->nullable();
             $table->integer('document_id')->index()->nullable();
             $table->integer('user_id')->index();

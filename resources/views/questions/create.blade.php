@@ -36,7 +36,7 @@
                         <div class="form-group" id="question{{$secindex}}">
                             <div class="input-group" id="subSections{{$secindex}}">
                                 <span class="input-group-addon" id="basic-addon{{$secindex}}">Ques. {{$secindex+1}}</span>
-                                {{Form::text('sectioncontent'.$secindex,(!empty($section['content']) ? $section['content'] : null),['name'=>'sections['.$section['id'].'][content]', 'id'=>'sectioncontent'.$secindex, 'class'=>'form-control', 'placeholder'=>'Question'])}}
+                                {{Form::text('sectioncontent'.$secindex,(!empty($section['staged_content']) ? $section['content'] : null),['name'=>'sections['.$section['id'].'][staged_content]', 'id'=>'sectioncontent'.$secindex, 'class'=>'form-control', 'placeholder'=>'Question'])}}
                             </div>
                         </div>
                         @endforeach

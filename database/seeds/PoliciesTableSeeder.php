@@ -129,7 +129,9 @@ class PoliciesTableSeeder extends Seeder
             $section->save();
         }
 
-        DB::update("UPDATE sections SET published=NOW()");
+        DB::update("UPDATE sections SET content = '' WHERE content IS NULL");
+        DB::update("UPDATE sections SET staged_content = '' WHERE staged_content IS NULL");
+        DB::update("UPDATE sections SET published=NOW(), `staged_title` = `title`, `staged_content` = `content`, `checksum` = MD5(CONCAT(`title`,`content`)), `staged_checksum` = MD5(CONCAT(`staged_title`,`staged_content`))");
 
 
     }

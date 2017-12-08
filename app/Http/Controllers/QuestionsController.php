@@ -217,8 +217,8 @@ class QuestionsController extends Controller
         if($document){
             if($document->isEditor()){
                 $count = Section::where('document_id',$document->id)->count()+1;
-                $section = Section::create(['document_id'=>$document->id,'display_order'=>$count,'user_id'=>\Auth::user()->id]);
-                return '<div class="form-group" id="question'.$section->id.'"><div class="input-group" id="subSections'.$section->id.'"><span class="input-group-addon" id="basic-addon'.$section->id.'">Ques. '.$count.'</span>'.\Form::text('sectioncontent'.$section->id,null,['name'=>'sections['.$section->id.'][content]', 'id'=>'sectioncontent'.$section->id, 'class'=>'form-control', 'placeholder'=>'Question']).'</div></div>';
+                $section = Section::create(['title'=>'','content'=>'', 'checksum'=>md5(''),'staged_title'=>'Question '.$count,'staged_content'=>'question', 'checksum'=>md5('Question '.$count.'question'),'document_id'=>$document->id,'display_order'=>$count,'user_id'=>\Auth::user()->id]);
+                return '<div class="form-group" id="question'.$section->id.'"><div class="input-group" id="subSections'.$section->id.'"><span class="input-group-addon" id="basic-addon'.$section->id.'">Ques. '.$count.'</span>'.\Form::text('sectioncontent'.$section->id,$section->staged_content,['name'=>'sections['.$section->id.'][staged_content]', 'id'=>'sectioncontent'.$section->id, 'class'=>'form-control', 'placeholder'=>'Question']).'</div></div>';
             }
         }
         return "";
