@@ -59,8 +59,22 @@ function PCAppFunctions(){
 			parent_section_id=0;
         axios.post('/add/rfp/section',{rfp_id:rfp_id,parent_section_id:parent_section_id}).then(function(response) {$('#subSections'+parent_section_id).append(response.data) }).catch(function(error){ console.log(error); });
 	}
-	this.add_question = function(question_id){
+	this.add_question_section = function(question_id){
         axios.post('/add/question/section',{question_id:question_id}).then(function(response) {$('#questionsContainer').append(response.data) }).catch(function(error){ console.log(error); });
+	}
+
+	this.update_policy_section = function(policy_id,section_id,title,content){
+		if(!parent_section_id)
+			parent_section_id=0;
+        axios.post('/update/policy/section',{_method:'PUT',policy_id:policy_id,parent_section_id:parent_section_id}).then(function(response) {$('#subSections'+parent_section_id).append(response.data) }).catch(function(error){ console.log(error); });
+	}
+	this.update_rfp_section = function(rfp_id,section_id,title,content){
+		if(!parent_section_id)
+			parent_section_id=0;
+        axios.post('/update/rfp/section',{_method:'PUT',rfp_id:rfp_id,parent_section_id:parent_section_id}).then(function(response) {$('#subSections'+parent_section_id).append(response.data) }).catch(function(error){ console.log(error); });
+	}
+	this.update_question_section = function(question_id,section_id,content){
+        axios.post('/update/question/section',{_method:'PUT',question_id:question_id,section_id:section_id,staged_content:content}).then(function(response){}).catch(function(error){ console.log(error); });
 	}
 
 	this.textarea_auto_size = function(){

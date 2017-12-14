@@ -218,9 +218,21 @@ class QuestionsController extends Controller
             if($document->isEditor()){
                 $count = Section::where('document_id',$document->id)->count()+1;
                 $section = Section::create(['title'=>'','content'=>'', 'checksum'=>md5(''),'staged_title'=>'Question '.$count,'staged_content'=>'question', 'checksum'=>md5('Question '.$count.'question'),'document_id'=>$document->id,'display_order'=>$count,'user_id'=>\Auth::user()->id]);
-                return '<div class="form-group" id="question'.$section->id.'"><div class="input-group" id="subSections'.$section->id.'"><span class="input-group-addon" id="basic-addon'.$section->id.'">Ques. '.$count.'</span>'.\Form::text('sectioncontent'.$section->id,$section->staged_content,['name'=>'sections['.$section->id.'][staged_content]', 'id'=>'sectioncontent'.$section->id, 'class'=>'form-control', 'placeholder'=>'Question']).'</div></div>';
+                return '<div class="form-group" id="question'.$section->id.'"><input type="hidden" value="'.$count.'" id="sectionorder'.$section->id.'" /><div class="input-group" id="subSections'.$section->id.'"><span class="input-group-addon" id="basic-addon'.$section->id.'">Ques. '.$count.'</span>'.\Form::text('sectioncontent'.$section->id,$section->staged_content,['name'=>'sections['.$section->id.'][staged_content]', 'id'=>'sectioncontent'.$section->id, 'class'=>'form-control question-section question-content', 'data-section_id'=>$section->id, 'placeholder'=>'Question']).'</div></div>';
             }
         }
         return "";
     }
+
+    public function updatesection(Request $request){
+        $document = Document::question()->where('id',$request->question_id)->first();
+        if($document){
+            if($document->isEditor()){
+                $section = Section::where('document_id',$document->id)->where('id',$request->section_id)->first();
+                return '';
+            }
+        }
+        return "";
+    }
+
 }
