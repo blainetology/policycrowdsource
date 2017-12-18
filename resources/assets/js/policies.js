@@ -64,24 +64,50 @@ function PCAppFunctions(){
 	}
 
 	this.update_policy_section = function(policy_id,section_id,title,content){
-		if(!parent_section_id)
-			parent_section_id=0;
-        axios.post('/update/policy/section',{_method:'PUT',policy_id:policy_id,parent_section_id:parent_section_id}).then(function(response) {$('#subSections'+parent_section_id).append(response.data) }).catch(function(error){ console.log(error); });
+		if(typeof(this.update_timeouts[section_id]) === 'undefined')
+			this.update_timeouts[section_id]={timeout:null,title:title,content:content};
+		if(this.update_timeouts[section_id]['timeout']){
+			clearTimeout(this.update_timeouts[section_id]['timeout']);
+		}
+		var that = this;
+		this.update_timeouts[section_id]['timeout'] = setTimeout(
+			function(){
+				if(that.update_timeouts[section_id]['title'] != title || that.update_timeouts[section_id]['content'] != content){
+					console.log('update policy section',policy_id,section_id,title,content);
+					that.update_timeouts[section_id]['title'] = title;
+					that.update_timeouts[section_id]['content'] = content;
+				}
+			},3000);
+
+//		if(!parent_section_id)
+//			parent_section_id=0;
+//        axios.post('/update/policy/section',{_method:'PUT',policy_id:policy_id,parent_section_id:parent_section_id}).then(function(response) {$('#subSections'+parent_section_id).append(response.data) }).catch(function(error){ console.log(error); });
 	}
 	this.update_rfp_section = function(rfp_id,section_id,title,content){
-		if(!parent_section_id)
-			parent_section_id=0;
-        axios.post('/update/rfp/section',{_method:'PUT',rfp_id:rfp_id,parent_section_id:parent_section_id}).then(function(response) {$('#subSections'+parent_section_id).append(response.data) }).catch(function(error){ console.log(error); });
+		if(typeof(this.update_timeouts[section_id]) === 'undefined')
+			this.update_timeouts[section_id]={timeout:null,title:title,content:content};
+		if(this.update_timeouts[section_id]['timeout']){
+			clearTimeout(this.update_timeouts[section_id]['timeout']);
+		}
+		var that = this;
+		this.update_timeouts[section_id]['timeout'] = setTimeout(
+			function(){
+				if(that.update_timeouts[section_id]['title'] != title || that.update_timeouts[section_id]['content'] != content){
+					console.log('update rfp section',rfp_id,section_id,title,content);
+					that.update_timeouts[section_id]['title'] = title;
+					that.update_timeouts[section_id]['content'] = content;
+				}
+			},3000);
 	}
 	this.update_question_section = function(question_id,section_id,content){
         axios.post('/update/question/section',{_method:'PUT',question_id:question_id,section_id:section_id,staged_content:content}).then(function(response){}).catch(function(error){ console.log(error); });
 	}
+	this.update_timeouts = {};
 
 	this.textarea_auto_size = function(){
 	    var text = $('.auto-size');
 
 	    function resize (that) {
-	        console.log('resize');
 	        if(that){
 	            var scrollHeight = that.scrollHeight;
 	            that.style.height = scrollHeight+'px';

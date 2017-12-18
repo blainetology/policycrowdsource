@@ -53,6 +53,9 @@
 
 @section('scripts')
 <script type="text/javascript">
+    function update_section(document_id,section_id){
+
+    }
     jQuery(document).ready(function($){
         PCApp.textarea_auto_size();
     });

@@ -34,9 +34,6 @@
                     @include('partials.sectionsedit',['sections'=>$sections,'document'=>$document])         
                 </div>
 
-                <pre class="hidden">
-                <?php print_r($sections); ?>
-                </pre>
                 <br/>
                 <button type="submit" class="btn btn-lg btn-success">{{!empty($document['id']) ? 'Update' : 'Create'}} Policy</button>
                 <br/><br/>
@@ -56,6 +53,10 @@
 <script type="text/javascript">
     jQuery(document).ready(function($){
         PCApp.textarea_auto_size();
+        $('.document-section').on('keyup',function(){
+            var section_id = $(this).data('section');
+            PCApp.update_rfp_section({{(int)$document['id']}},section_id,$('#sectionTitle'+section_id).val(),$('#sectionContent'+section_id).val());
+        });
     });
 </script>
 @append
