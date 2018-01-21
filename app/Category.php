@@ -4,15 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Category extends Model
 {
     //
-	protected $fillable = ['name','slug'];
+    public $table = "categories";
+	protected $fillable = ['name','slug','parent'];
 
 	// RELATIONSHIPS
 
 	public function documents(){
-		return $this->belongsToMany('\App\Document','document_tags');
+		return $this->belongsToMany('\App\Document','document_categories');
 	}
 
 	// SCOPES

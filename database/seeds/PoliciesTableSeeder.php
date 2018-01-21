@@ -61,8 +61,32 @@ class PoliciesTableSeeder extends Seeder
         $document = Document::create(['type'=>'policy','name'=>'Citywide Curfew', 'short_synopsis'=>'Establishing curfews for minors at different age groups','full_synopsis'=>'Establishing curfews for unaccompanied minors. Different age groups will have different curfew times.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
 
+        $document = Document::create(['type'=>'policy','name'=>'Lagging Green Turn Arrows', 'short_synopsis'=>'Curabitur eu turpis consequat, eleifend mi nec, pellentesque leo.','full_synopsis'=>'Nullam non diam ultrices, maximus sapien id, aliquam tortor. Praesent ornare facilisis mi, et pretium tellus eleifend et.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $this->createSections($document,$content);
+
+        $document = Document::create(['type'=>'policy','name'=>'Expansion of Private Concessionaires Inside National Parks', 'short_synopsis'=>'Nulla lobortis orci et mi pulvinar, nec ullamcorper quam aliquet.','full_synopsis'=>'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis vehicula orci ac dolor euismod, vitae efficitur sem pellentesque. Aenean laoreet, lectus ultricies tincidunt feugiat, elit enim dictum augue, eget semper diam enim non diam.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $this->createSections($document,$content);
+
+        $document = Document::create(['type'=>'policy','name'=>'Shortening the NBA Playoffs Schedule', 'short_synopsis'=>'Integer iaculis lectus quis lectus malesuada rutrum','full_synopsis'=>'Duis vehicula orci ac dolor euismod, vitae efficitur sem pellentesque. Aenean laoreet, lectus ultricies tincidunt feugiat, elit enim dictum augue, eget semper diam enim non diam.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $this->createSections($document,$content);
+
         $document = Document::create(['type'=>'policy','name'=>'Zoning Laws', 'short_synopsis'=>'Establishing zoning laws for future development in the city','full_synopsis'=>'Updating the zoning laws in the city for all future development. This includes establishing commercial, manufacturing, public-use, and housing sections.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
         $this->createSections($document,$content);
+
+        $document = Document::create(['type'=>'policy','name'=>'Removal of Pennies as a Currency', 'short_synopsis'=>'Proposal to completely remove pennies from circulation and as a currency','full_synopsis'=>'The time has come for the penny to stop being produced and circulated. It costs more to produce a penny than its worth. Also establish a timeframe for removing from circulation and the calculations for totaling transactions that currently require pennies.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $this->createSections($document,$content);
+
+        $document = Document::create(['type'=>'policy','name'=>'Presidential Primary Elections Overhaul', 'short_synopsis'=>'Presidential primary elections need to be changed to allow all states to equally affect the outcome.','full_synopsis'=>'Presidential primary elections should be on the same days for every state, so as to ensure that every state equally decides the party nominees, rather than states early in the primary cycle having an effect on the candidates remaining for states later in the cycle.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $this->createSections($document,$content);
+
+        $document = Document::create(['type'=>'policy','name'=>'Electoral Voting Overhaul', 'short_synopsis'=>'Without abolishing the electoral college, updating the way votes are distrubted.','full_synopsis'=>'The electoral college is a preferred way to elect the President, but it needs to be changed to more fairly distribute the electors, particulary through a weighted distribution of each states electors, based on that state\'s popular vote.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        $this->createSections($document,$content);
+
+
+        for($z=1;$z<=10;$z++){
+            $document = Document::create(['type'=>'policy','name'=>'Sample Policy '.($z*$z), 'short_synopsis'=>'Curabitur eu turpis consequat, eleifend mi nec, pellentesque leo.','full_synopsis'=>'Morbi non laoreet ex, id mollis orci. Cras hendrerit nec elit sed fringilla. Aenean tincidunt porta quam, eget pretium orci ultricies at.', 'published'=>1, 'public'=>1, 'house_document'=>0, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(10,30).")")]);
+            $this->createSections($document,$content);            
+        }
 
         DB::update("ALTER TABLE documents AUTO_INCREMENT = 30001;");
 
@@ -107,6 +131,7 @@ class PoliciesTableSeeder extends Seeder
             $section = Section::create(['title'=>'Question '.($index+1), 'content'=>$question, 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>($index+1)]);
 
         $document = Document::create(['type'=>'question','name'=>'Healthcare Questionnaire', 'short_synopsis'=>'Establishing the baseline for views on healthcare','full_synopsis'=>'Establishing the baseline for views on healthcare', 'published'=>1, 'public'=>1, 'house_document'=>1, 'published'=>\DB::raw("SUBDATE(NOW(),".rand(5,10).")")]);
+        Collaborator::create(['document_id'=>$document->id,'user_id'=>100000,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         $questions = [
             "Should the government be in charge of healthcare?",
             "Do you consider any government-run healthcare program to be socialized healthcare?",
@@ -139,11 +164,12 @@ class PoliciesTableSeeder extends Seeder
 
 
     protected function createSections($document,$content){
-        for($x=1;$x<=rand(1,6);$x++){
-            $section1 = Section::create(['title'=>'Section '.$x, 'content'=>$content[rand(0,14)], 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
+        $label = (rand(1,2)%2==1) ? 'Section' : 'Article';
+        for($x=1;$x<=rand(3,12);$x++){
+            $section1 = Section::create(['title'=>$label.' '.$x, 'content'=>$content[rand(0,14)], 'document_id'=>$document->id, 'user_id'=>100000, 'display_order'=>$x]); //400000
             $sections2num=rand(0,5);
             if($sections2num>0){
-                for($y=1;$y<=rand(1,4);$y++){
+                for($y=1;$y<=rand(1,5);$y++){
                     $section2 = Section::create(['content'=>$content[rand(0,14)], 'document_id'=>$document->id, 'parent_section_id'=>$section1->id, 'user_id'=>100000, 'display_order'=>$y]); //400000
                     $sections3num=rand(0,3);
                     if($sections3num>0){
@@ -155,8 +181,10 @@ class PoliciesTableSeeder extends Seeder
             }
         }
         $user = User::where('email','test@testgmail.com')->first();
-        Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100001,100004),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100002,100005),'accepted'=>1,'owner'=>1,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100010,100030),'accepted'=>1,'owner'=>0,'admin'=>1,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
+        if(rand(1,2)==1)
+            Collaborator::create(['document_id'=>$document->id,'user_id'=>100000,'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         if(rand(1,2)==1)
             Collaborator::create(['document_id'=>$document->id,'user_id'=>rand(100031,100050),'accepted'=>1,'owner'=>0,'admin'=>0,'editor'=>1,'reviewer'=>1,'viewer'=>1]);
         if(rand(1,2)==1)

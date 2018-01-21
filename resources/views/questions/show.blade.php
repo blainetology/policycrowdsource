@@ -51,7 +51,7 @@
                         }
                         ?>
                         @foreach(\App\Rating::$thumbs as $value=>$thumb)
-                        <a href="javascript:PCApp.rate_ajax({{$document->id}},null,{{$value}})" title="{{!empty($calculated) && $calculated==$value ? 'calculated - ' : ''}} {{$thumb[0]}}" class="rating-thumb rating{{$value}} {{!empty($rated) && $rated==$value ? 'selected' : ''}} {{!empty($rated) && $rated!=$value ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==$value ? 'calculated' : ''}}"><i class="fa {{$thumb[1]}}" aria-hidden="true"></i></a>
+                        <a href="javascript:PCApp.rate_ajax({{$document->id}},null,{{$value}})" title="{{!empty($calculated) && $calculated==$value ? 'calculated - ' : ''}} {{str_replace('support','agree',$thumb[0])}}" class="rating-thumb rating{{$value}} {{!empty($rated) && $rated==$value ? 'selected' : ''}} {{!empty($rated) && $rated!=$value ? 'not-selected' : ''}} {{!empty($calculated) && $calculated==$value ? 'calculated' : ''}}"><i class="fa {{$thumb[1]}}" aria-hidden="true"></i></a>
                         @endforeach
                     @else
                         <a href="javascript:showLoginModal()" class="btn btn-xs btn-default">Login to Rate</a>

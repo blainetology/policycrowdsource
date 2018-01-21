@@ -35,10 +35,10 @@ class Document extends Model
         return $this->hasMany('\App\Comment')->with('user')->orderBy('created_at','asc');
     }
     public function tags(){
-        return $this->belongsToMany('\App\Tag','document_tags')->wherePivot('type','tag');
+        return $this->belongsToMany('\App\Tag','document_tags');
     }
     public function categories(){
-        return $this->belongsToMany('\App\Tag','document_tags')->wherePivot('type','cat');
+        return $this->belongsToMany('\App\Category','document_categories');
     }
 
     // SCOPES

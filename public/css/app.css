@@ -11476,6 +11476,29 @@ h4 small {
   min-height: 125px;
 }
 
+.document-list {
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 2px;
+}
+
+.document-list .document-rating {
+  padding: 3px 10px;
+  margin-right: 3px;
+}
+
+.document-list.policy-list {
+  background-color: #EEE;
+}
+
+.document-list.rfp-list {
+  background-color: #e4e4e4;
+}
+
+.document-list.question-list {
+  background-color: #dadada;
+}
+
 .document-title {
   margin-top: -36px;
   font-size: 3em;
@@ -11739,6 +11762,14 @@ a.comment-icon:hover {
 .setting-rating.rating_-5,
 .thumb-percentage.rating_-5 {
   background-color: blue;
+}
+
+.search-sidebar {
+  font-size: 13px;
+}
+
+.search-sidebar .sidebar_category {
+  padding: 2px 0;
 }
 
 .comments-div {

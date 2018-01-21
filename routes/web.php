@@ -16,6 +16,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('policies/sections/{pid}/{sid}',['as'=>'getpolicysections','uses'=>'PoliciesController@getsubsections']);
+Route::resource('browse','BrowseController');
 Route::resource('policies','PoliciesController');
 Route::resource('questions','QuestionsController');
 Route::resource('rfp','RFPsController');

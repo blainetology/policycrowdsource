@@ -23,6 +23,18 @@ h1,h2,h3,h4{
 	&.rfp-well{background-color:darken($well-bg,4%); min-height:155px;}
 	&.question-well{min-height:125px;}
 }
+.document-list{
+	padding:5px 10px;
+	margin-bottom:5px;
+	border-radius:2px;
+	.document-rating{
+		padding:3px 10px;
+		margin-right:3px;
+	}
+	&.policy-list{background-color:$well-bg}
+	&.rfp-list{background-color:darken($well-bg,4%)}
+	&.question-list{background-color:darken($well-bg,8%)}
+}
 .document-title{margin-top:-36px; font-size:3em; padding-bottom:10px;}
 .document-rating{
 	font-size:12px;
@@ -126,6 +138,13 @@ a.comment-icon,a.comment-icon:hover{
 	&.rating_-3{background-color:$color-minus-3;}
 	&.rating_-4{background-color:$color-minus-4;}
 	&.rating_-5{background-color:$color-minus-5;}	
+}
+
+.search-sidebar{
+	font-size:13px;
+	.sidebar_category{
+		padding:2px 0;
+	}
 }
 
 .comments-div{

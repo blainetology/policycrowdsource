@@ -96,14 +96,27 @@ class CreateDocumentsTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->integer('parent')->index()->default(0);
+            $table->integer('count')->index()->default(0);
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('document_categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('category_id')->index();
+            $table->integer('document_id')->index();
+        });
+
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->integer('parent_category')->index()->default(0);
-            $table->integer('tag_count')->index()->default(0);
-            $table->integer('category_count')->index()->default(0);
-            $table->integer('all_count')->index()->default(0);
+            $table->integer('count')->index()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -112,7 +125,6 @@ class CreateDocumentsTable extends Migration
             $table->increments('id');
             $table->integer('tag_id')->index();
             $table->integer('document_id')->index();
-            $table->string('type')->index();
         });
 
         Schema::create('histories', function (Blueprint $table) {
@@ -136,6 +148,8 @@ class CreateDocumentsTable extends Migration
         Schema::dropIfExists('sections');
         Schema::dropIfExists('collaborators');
         Schema::dropIfExists('histories');
+        Schema::dropIfExists('categories');
+        Schema::dropIfExists('document_categories');
         Schema::dropIfExists('tags');
         Schema::dropIfExists('document_tags');
     }
