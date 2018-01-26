@@ -27,22 +27,25 @@
                 {{Form::textarea('fullsynopsis',(!empty($input['full_synopsis']) ? $input['full_synopsis'] : null),['name'=>'document[full_synopsis]', 'class'=>'form-control auto-size', 'rows'=>4])}}
                 <br/>
 
-                <hr/>
+                @if(!empty($document))
+                    <hr/>
 
-                <div class="text-left"><a href="javascript:PCApp.add_question_section({{$document['id']}})" class="btn btn-sm btn-info">add question</a></div><br/>
-                <div id="questionsContainer">
-                    @if($sections)
-                        @foreach($sections as $secindex=>$section)
-                        <div class="form-group" id="question{{$secindex}}">
-                            <input type="hidden" value="'.$count.'" id="sectionorder{{$secindex}}" />
-                            <div class="input-group" id="subSections{{$secindex}}">
-                                <span class="input-group-addon" id="basic-addon{{$secindex}}">Ques. {{$secindex+1}}</span>
-                                {{Form::text('sectioncontent'.$secindex,(!empty($section['staged_content']) ? $section['content'] : null),['name'=>'sections['.$section['id'].'][staged_content]', 'id'=>'sectioncontent'.$secindex, 'class'=>'form-control question-section question-content', 'placeholder'=>'Question'])}}
+                    <div class="text-left"><a href="javascript:PCApp.add_question_section({{$document['id']}})" class="btn btn-sm btn-info">add question</a></div><br/>
+                    <div id="questionsContainer">
+                        @if($sections)
+                            @foreach($sections as $secindex=>$section)
+                            <div class="form-group" id="question{{$secindex}}">
+                                <input type="hidden" value="'.$count.'" id="sectionorder{{$secindex}}" />
+                                <div class="input-group" id="subSections{{$secindex}}">
+                                    <span class="input-group-addon" id="basic-addon{{$secindex}}">Ques. {{$secindex+1}}</span>
+                                    {{Form::text('sectioncontent'.$secindex,(!empty($section['staged_content']) ? $section['content'] : null),['name'=>'sections['.$section['id'].'][staged_content]', 'id'=>'sectioncontent'.$secindex, 'class'=>'form-control question-section question-content', 'placeholder'=>'Question'])}}
+                                </div>
                             </div>
-                        </div>
-                        @endforeach
-                    @endif
-                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                @endif
+                
                 <button type="submit" class="btn btn-lg btn-success">{{!empty($document['id']) ? 'Update' : 'Create'}} Questionnaire</button>
             {{Form::close()}}
             <br/>

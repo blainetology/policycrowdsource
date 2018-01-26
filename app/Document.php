@@ -65,10 +65,10 @@ class Document extends Model
         return $query->where('house_document',0);
     }
     public function scopePublished($query){
-        return $query->where('published',1);
+        return $query->whereNotNull('published');
     }
     public function scopeUnpublished($query){
-        return $query->whereNotNull('published');
+        return $query->whereNull('published');
     }
     public function scopePublic($query){
         return $query->where('public',1);
@@ -81,6 +81,12 @@ class Document extends Model
     }
     public function scopeUserRatedBy($query){
         return $query->whereIn('id',\App\Rating::where('user_id',\Auth::user()->id)->whereNotNull('document_id')->pluck('document_id'));
+    }
+    public function scopeHasCategories($query){
+        return $query->whereIn('id',\DB::table('document_categories')->whereIn('category_id',\Request::get('cat',[]))->pluck('document_id'));
+    }
+    public function scopeByPublished($query){
+        return $query->orderBy('published','desc');
     }
 
     // METHODS

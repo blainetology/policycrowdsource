@@ -57,13 +57,17 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <a href="{{route('policies.index')}}">Browse Policies</a>
+                            <a href="{{route('browse.index')}}">Browse</a>
                         </li>
-                        <li>
-                            <a href="{{route('questions.index')}}">Questionnaires</a>
-                        </li>
-                        <li>
-                            <a href="{{route('rfp.index')}}">Requests for Policies</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i> Create <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{route('policies.create')}}">Policy</a></li>
+                                <li><a href="{{route('rfp.create')}}">RFP</a></li>
+                                <li><a href="{{route('questions.create')}}">Questionnaire</a></li>
+                            </ul>
                         </li>
                     </ul>
 
@@ -107,10 +111,9 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <strong>Use the Site</strong><br/>
-                    <a href="{{route('policies.index')}}">Browse Submitted Policies</a><br/>
-                    <a href="#">Draft a Policy</a><br/>
-                    <a href="{{route('rfp.index')}}">View Policy Requests</a><br/>
-                    <a href="{{route('rfp.index')}}">Submit a Policy Request</a>
+                    <a href="{{route('browse.index')}}">Browse</a><br/>
+                    <a href="{{route('policies.create')}}">Draft a Policy</a><br/>
+                    <a href="{{route('rfp.create')}}">Submit a Policy Request</a>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <strong>Legal Stuff</strong><br/>
@@ -122,6 +125,10 @@
                     <a href="#">About Us</a><br/>
                     <a href="#">Our Mission</a><br/>
                     <a href="#">Our Team</a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <strong>Support</strong><br/>
+                    <a href="#">Donate</a><br/>
                 </div>
             </div>
         </div>

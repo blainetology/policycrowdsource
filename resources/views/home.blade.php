@@ -16,23 +16,17 @@
                             <h3 class="text-center text-primary">{{config('app.description')}}</h3>
                             <br/>
                             <div class="row">
+                                {{Form::open(['route'=>'browse.index','method'=>'GET'])}}
                                 <div class="col-lg-10 col-lg-offset-1">
                                     <div class="input-group">
                                         <input type="text" class="form-control input-primary" placeholder="Search for...">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-primary" type="button">Go!</button>
+                                            <button class="btn btn-primary" type="submit">Go!</button>
                                         </span>
                                     </div><!-- /input-group -->
                                 </div><!-- /.col-lg-6 -->
+                                {{Form::close()}}
                             </div><!-- /.row -->
-                            <br/>
-                            <div class="row">
-                                <div class="col-lg-12 text-center">
-                                    <a href="{{route('browse.index')}}" class="btn btn-info">Browse</a> &nbsp; 
-                                    <a href="{{route('policies.create')}}" class="btn btn-warning">Draft a Policy</a> &nbsp; 
-                                    <a href="{{route('rfp.create')}}" class="btn btn-success">Submit a RFP</a>
-                                </div>
-                            </div>
                             <br/>
 
                         </div>
@@ -64,7 +58,7 @@
     </div>
 </div>
 
-<div class="container-fluid bg-info">
+<div class="container-fluid container-one">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -81,7 +75,7 @@
 </div>
 
 @if(isset($my_policies) && $my_policies->count()>0)
-<div class="container-fluid bg-success">
+<div class="container-fluid container-two">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -97,16 +91,7 @@
 </div>
 @endif
 
-<div class="container-fluid bg-info" id="filler2">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12" style="height:350px;">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid">
+<div class="container-fluid container-three">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -121,7 +106,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid bg-warning">
+<div class="container-fluid container-one">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -141,6 +126,6 @@
 @section('styles')
 <style type="text/css">
     #homepageslide{background:url(/images/homepagebg.jpg) center center no-repeat fixed; background-size: cover; }
-    #filler2{background:url(/images/homepagebg4.jpg) center center no-repeat fixed; background-size: cover; }
+    #filler2{background:url(/images/homepagebg4.jpg) center center no-repeat fixed #69C; background-size: cover; }
 </style>
 @append

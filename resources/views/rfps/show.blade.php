@@ -64,16 +64,21 @@
     <br/>
     @if($document->children->count()>0)
         <div class="row">
-            <div class="col-lg-12"> 
+            <div class="col-lg-9"> 
                 <hr/>
                 <h3 class="text-info">Proposed Policies Submitted for This RFP</h3>           
             </div>
         </div>
         <div class="row">
-            @foreach($document->children as $policy)
-                @include('partials.policy-box',['policy'=>$policy])
-            @endforeach
+            <div class="col-lg-9"> 
+                <div class="row">
+                    @foreach($document->children as $policy)
+                        @include('partials.policy-list',['policy'=>$policy])
+                    @endforeach
+                </div>
+            </div>
         </div>
+        <br/><br/>
     @endif
 </div>
 @endsection

@@ -18,7 +18,13 @@
         <div class="col-md-9 col-sm-8">  
             <div class="row">           
                 @foreach($documents as $document)
-                    @include('partials.policy-list',['policy'=>$document])
+                    @if($document->type=='rfp')
+                        @include('partials.rfp-list',['rfp'=>$document])
+                    @elseif($document->type=='question')
+                        @include('partials.question-list',['question'=>$document])
+                    @else
+                        @include('partials.policy-list',['policy'=>$document])
+                    @endif
                 @endforeach
             </div>
         </div>

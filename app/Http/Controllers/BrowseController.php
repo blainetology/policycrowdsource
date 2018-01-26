@@ -13,7 +13,12 @@ class BrowseController extends Controller
 
     public function index(){
         //
-        $documents = Document::policy()->viewable()->get();
+        $documents = Document::viewable();
+        if(\Request::get('type'))
+            $documents = $documents->whereIn('type',\Request::get('type',['']));
+        if(\Request::get('cat'))
+            $documents = $documents->hasCategories();
+        $documents = $documents->byPublished()->get();
         $data = [
             'documents'  => $documents,
             'pagetitle' => 'Browse'
